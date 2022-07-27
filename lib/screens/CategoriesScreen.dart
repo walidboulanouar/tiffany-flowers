@@ -15,6 +15,9 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed: (){},child: Icon(Icons.whatsapp,size: 35.sp,),),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

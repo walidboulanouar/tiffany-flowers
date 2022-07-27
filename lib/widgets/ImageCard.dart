@@ -11,40 +11,35 @@ class ImageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     print(title);
     return
-    Flexible(
-      // color: Colors.red,
-     
-      
-      child: Column(
-        children: [
-          Expanded(
-            child: Card(
-                  semanticContainer: true,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: Image.asset(
-                   image,
-                    fit: BoxFit.fill,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  // elevation: 1,
-                  margin: EdgeInsets.only(left: 8.sp,right: 8.sp,bottom: 3.sp),
+    Column(
+      children: [
+        Expanded(
+          child: Card(
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.asset(
+                 image,
+                  fit: BoxFit.fill,
                 ),
-          ),
-              title!=null?
-              Container(
-                // color: Colors.red,
-                
-                  margin: EdgeInsets.only(top: 0.3.h),
-                  child: Center(
-                    
-                    child: Text(title!, style: TextStyle(fontSize: 8.sp,color: Color(0xffD8AA6B),)),
-                  ),
-                )
-              :Container(height: 0,width: 0,),
-        ],
-      ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                // elevation: 1,
+                margin: EdgeInsets.only(left: 8.sp,right: 8.sp,bottom: 3.sp),
+              ),
+        ),
+            title!=null?
+            Container(
+              // color: Colors.red,
+              
+                margin: EdgeInsets.only(top: 0.3.h),
+                child: Center(
+                  
+                  child: Text(title!, style: TextStyle(fontSize: 8.sp,color: Color(0xffD8AA6B),)),
+                ),
+              )
+            :Container(height: 0,width: 0,),
+      ],
     );
     
   }

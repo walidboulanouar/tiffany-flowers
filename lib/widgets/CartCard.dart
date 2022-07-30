@@ -8,7 +8,7 @@ class CartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(10.sp),
-      color: Color(0xffF9F9F9),
+      color: Colors.white,
       child: Row(
         children: [
           Card(
@@ -56,20 +56,21 @@ class CartCard extends StatelessWidget {
                       text: TextSpan(
                           text: '24',
                           style: TextStyle(
-                              fontSize: 20.sp, color: Color(0xffD8AA6B)),
+                            fontFamily: "Lucida Calligraphy",
+                              fontSize: 12.sp, color: Color(0xffD8AA6B)),
                           children: <TextSpan>[
                             TextSpan(
                               text: 'AED',
                               style: TextStyle(
-                                  fontSize: 14.sp, color: Color(0xffD8AA6B)),
+                                  fontSize: 10.sp, color: Color(0xffD8AA6B)),
                             ),
                           ]),
                     ),
                   ),
-                  SizedBox(width: 15.w),
+                  SizedBox(width: 20.w),
                   Container(
-                    width: 25.w,
-                    padding: EdgeInsets.all(2.sp),
+                    width: 24.w,
+                    padding: EdgeInsets.symmetric(horizontal: 2.sp),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Color(0xff73BFBD)),
@@ -80,7 +81,7 @@ class CartCard extends StatelessWidget {
                             child: Icon(
                               Icons.remove,
                               color: Colors.white,
-                              size: 18.sp,
+                              size: 14.sp,
                             )),
                         Center(
                           child: Container(
@@ -93,7 +94,7 @@ class CartCard extends StatelessWidget {
                             child: Text(
                               '3',
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 18.sp),
+                                  color: Colors.white, fontSize: 15.sp),
                             ),
                           ),
                         ),
@@ -102,7 +103,7 @@ class CartCard extends StatelessWidget {
                             child: Icon(
                               Icons.add,
                               color: Colors.white,
-                              size: 18.sp,
+                              size: 14.sp,
                             )),
                       ],
                     ),

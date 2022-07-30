@@ -29,7 +29,7 @@ class CartAppBar
           AppBar(
             title: Text(
               
-              'Categories',
+              'Cart',
               style: TextStyle(color: Color(0xff73BFBD),fontSize:10.sp),
               
             ),

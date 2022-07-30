@@ -9,7 +9,7 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(title);
+    // print(title);
     return
     Column(
       children: [

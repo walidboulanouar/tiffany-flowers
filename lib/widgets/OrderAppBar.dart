@@ -28,7 +28,7 @@ class OrderAppBar extends StatelessWidget {
             title: Text(
               
               'My Orders',
-              style: TextStyle(color: Color(0xff73BFBD),fontSize:10.sp),
+              style: TextStyle(color: Color(0xff73BFBD),fontSize:12.sp),
               
             ),
             leading: IconButton(

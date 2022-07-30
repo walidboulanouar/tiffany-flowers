@@ -2,10 +2,10 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class CategoryAppBar extends StatelessWidget {
+class DetailsAppBar extends StatelessWidget {
   String title;
   void Function() myfc;
-   CategoryAppBar({
+   DetailsAppBar({
     required this.myfc,
     required this.title,
     Key? key,
@@ -20,15 +20,15 @@ class CategoryAppBar extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topLeft,
         children: [
-          Container(
-            // color: Colors.blue,
-            //  height: 15.h,
-            width: 100.w,
-            child: Image.asset(
-              'assets/images/appbarback.png',
-              fit: BoxFit.fill,
-            ),
-          ),
+          // Container(
+          //   // color: Colors.blue,
+          //   //  height: 15.h,
+          //   width: 100.w,
+          //   child: Image.asset(
+          //     'assets/images/appbarback.png',
+          //     fit: BoxFit.fill,
+          //   ),
+          // ),
           AppBar(
             title: InkWell(
               onTap: myfc,

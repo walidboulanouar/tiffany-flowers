@@ -1,3 +1,4 @@
+import 'package:ecomerceapp/screens/Chekout.dart';
 import 'package:ecomerceapp/widgets/CartAppBar.dart';
 import 'package:ecomerceapp/widgets/CartCard.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,12 @@ class CartScreen extends StatelessWidget {
         width: 6.h,
         child: FloatingActionButton(
           backgroundColor: Colors.green,
-          onPressed: (){},child: Icon(Icons.whatsapp,size: 25.sp,),),
+          onPressed: () {},
+          child: Icon(
+            Icons.whatsapp,
+            size: 25.sp,
+          ),
+        ),
       ),
       backgroundColor: Colors.white,
       body: Column(
@@ -40,23 +46,36 @@ class CartScreen extends StatelessWidget {
                   }),
               TotalCard(),
               Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 15.sp, vertical: 14.sp),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.sp),
-                      child: Text("Checkout",style:TextStyle(color: Colors.white)),
+                margin:
+                    EdgeInsets.symmetric(horizontal: 15.sp, vertical: 14.sp),
+                child: TextButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.sp),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Checkout()),
+                        );
+                      },
+                      child: Text(
+                        "Checkout",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      )),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Color(0xff73BFBD)),
-                    ),
-                  )),
+                  ),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    )),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0xff73BFBD)),
+                  ),
+                ),
+              ),
             ]),
           ),
         ],

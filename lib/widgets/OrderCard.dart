@@ -46,7 +46,7 @@ class OrderCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children:[
         SizedBox.fromSize(
-  size: Size(6.h, 6.h), // button width and height
+  size: Size(6.h, 8.h), // button width and height
   child: ClipOval(
     child: Material(
       color: Colors.transparent, // button color
@@ -56,7 +56,11 @@ class OrderCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.keyboard_double_arrow_down,color: Colors.white,),// icon
+            // Icon(Icons.keyboard_double_arrow_down,color: Colors.white,),// icon
+            ImageIcon(
+                      AssetImage("assets/images/reorder.png"),
+                      color: Colors.white,
+                    ),
             Text("Reorder",style:TextStyle(fontSize: 7.sp,color: Color.fromARGB(133, 255, 255, 255))), // text
           ],
         ),
@@ -65,7 +69,9 @@ class OrderCard extends StatelessWidget {
   ),
 ),
         SizedBox(height:5.h),
-        Text("05:19 PM",style:TextStyle(fontSize: 7.sp,color: Color.fromARGB(133, 255, 255, 255))),
+        Container(
+          margin: EdgeInsets.only(bottom: 5.sp),
+          child: Text("05:19 PM",style:TextStyle(fontSize: 7.sp,color: Color.fromARGB(133, 255, 255, 255)))),
       ]),
     ],),);
     

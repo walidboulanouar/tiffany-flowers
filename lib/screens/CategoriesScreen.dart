@@ -33,6 +33,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         height: 6.h,
         width: 6.h,
         child: FloatingActionButton(
+          heroTag: Text("btn2"),
           backgroundColor: Colors.green,
           onPressed: () {},
           child: Icon(
@@ -77,7 +78,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 itemCount: widget.categories.length,
                 itemBuilder: (BuildContext ctx, index) {
                   return InkWell(
-                    onTap: () {
+                    onTap: () {    
                       Navigator.push(
                         context,
                         MaterialPageRoute(

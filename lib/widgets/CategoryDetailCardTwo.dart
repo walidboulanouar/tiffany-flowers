@@ -61,7 +61,7 @@ class CategoryDetailCardTwo extends StatelessWidget {
                         ]),
                   ),
                 ),
-                SizedBox(height: 1.h),
+                // SizedBox(height: 1.h),
                 Row(
                   children: [
                     SizedBox(
@@ -70,29 +70,29 @@ class CategoryDetailCardTwo extends StatelessWidget {
                     TextButton.icon(
                       style: ButtonStyle(
                           minimumSize:
-                              MaterialStateProperty.all(Size(12.w, 22.sp)),
+                              MaterialStateProperty.all(Size(12.w, 20.sp)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           )),
                           fixedSize:
-                              MaterialStateProperty.all(Size(27.w, 10.sp)),
+                              MaterialStateProperty.all(Size(25.w, 20.sp)),
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xff73BFBD))),
                       onPressed: () {},
                       icon: Text("Add To Cart",
                           style: TextStyle(
-                            fontSize: 8.sp,
+                            fontSize: 7.sp,
                             color: Colors.white,
                           )),
-                      label: Icon(Icons.add, size: 12.sp, color: Colors.white),
+                      label: Icon(Icons.add, size: 10.sp, color: Colors.white),
                     ),
                     IconButton(
                         onPressed: () {},
                         icon: Icon(
                           Icons.favorite,
-                          size: 15.sp,
+                          size: 14.sp,
                           color: Colors.red,
                         ))
                   ],

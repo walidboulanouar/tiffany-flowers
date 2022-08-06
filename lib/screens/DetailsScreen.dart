@@ -88,6 +88,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         height: 6.h,
         width: 6.h,
         child: FloatingActionButton(
+          heroTag: Text("btn4"),
           backgroundColor: Colors.green,
           onPressed: () {},
           child: Icon(
@@ -444,13 +445,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       borderRadius: BorderRadius.circular(20.0),
                                     )),
                                     fixedSize: MaterialStateProperty.all(
-                                        Size(37.w, 10.sp)),
+                                        Size(35.w, 10.sp)),
                                     backgroundColor: MaterialStateProperty.all(
                                         Color(0xff73BFBD))),
                                 onPressed: () {},
                                 child: Text("Add To Wishlist",
                                     style: TextStyle(
-                                      fontSize: 9.sp,
+                                      fontSize: 8.sp,
                                       color: Colors.white,
                                     )),
                                 // label:Container(),
@@ -470,17 +471,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       borderRadius: BorderRadius.circular(20.0),
                                     )),
                                     fixedSize: MaterialStateProperty.all(
-                                        Size(37.w, 14.sp)),
+                                        Size(35.w, 14.sp)),
                                     backgroundColor: MaterialStateProperty.all(
                                        Color(0xffD8AA6B))),
                                 onPressed: () {},
                                 icon: Text("Add To Cart",
                                     style: TextStyle(
-                                      fontSize: 9.sp,
+                                      fontSize: 8.sp,
                                       color: Colors.white,
                                     )),
                                 label: Icon(Icons.add,
-                                    size: 14.sp, color: Colors.white),
+                                    size: 12.sp, color: Colors.white),
                               ),
                             ),
                             

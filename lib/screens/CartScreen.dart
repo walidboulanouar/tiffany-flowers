@@ -2,8 +2,10 @@ import 'package:ecomerceapp/screens/Chekout.dart';
 import 'package:ecomerceapp/widgets/CartAppBar.dart';
 import 'package:ecomerceapp/widgets/CartCard.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../providers/IndexProvider.dart';
 import '../widgets/OrderToggle.dart';
 import '../widgets/TotalCard.dart';
 
@@ -12,11 +14,13 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     return Scaffold(
       floatingActionButton: Container(
         height: 6.h,
         width: 6.h,
         child: FloatingActionButton(
+          heroTag: Text("btn5"),
           backgroundColor: Colors.green,
           onPressed: () {},
           child: Icon(
@@ -29,7 +33,11 @@ class CartScreen extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CartAppBar(),
+          CartAppBar(
+            myfc: () {
+              indexProvider.setCurrentIndex(2);
+            },
+          ),
           SizedBox(
             height: 2.h,
           ),
@@ -49,21 +57,18 @@ class CartScreen extends StatelessWidget {
                 margin:
                     EdgeInsets.symmetric(horizontal: 15.sp, vertical: 14.sp),
                 child: TextButton(
-                  onPressed: () {},
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.sp),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
+                  onPressed: () {
+                    Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const Checkout()),
                         );
-                      },
-                      child: Text(
-                        "Checkout",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.sp),
+                    child: Text(
+                      "Checkout",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                   style: ButtonStyle(

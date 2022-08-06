@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CartAppBar
+
  extends StatelessWidget {
-  const CartAppBar
-  ({Key? key}) : super(key: key);
+void Function() myfc;
+   CartAppBar
+  ({Key? key,required this.myfc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +29,21 @@ class CartAppBar
             ),
           ),
           AppBar(
-            title: Text(
-              
-              'Cart',
-              style: TextStyle(color: Color(0xff73BFBD),fontSize:10.sp),
-              
+            title: InkWell(
+              onTap: myfc,
+              child: Text(
+                
+                'Cart',
+                style: TextStyle(color: Color(0xff73BFBD),fontSize:10.sp),
+                
+              ),
             ),
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
                 color: Color(0xff73BFBD),
               ),
-              onPressed: () {},
+              onPressed: myfc
             ),
             elevation: 0,
             brightness: Brightness.light,

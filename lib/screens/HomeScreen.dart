@@ -13,6 +13,11 @@ import '../models/Category.dart';
 
 import '../providers/IndexProvider.dart';
 import 'CategoryDetailsScreen.dart';
+ final orderScreen = GlobalKey<NavigatorState>();
+  final categoriesScreen = GlobalKey<NavigatorState>();
+  final mainScreen = GlobalKey<NavigatorState>();
+  final accountScreen = GlobalKey<NavigatorState>();
+  final cartScreen = GlobalKey<NavigatorState>();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,28 +27,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-    final _orderScreen = GlobalKey<NavigatorState>();
-  final categoriesScreen = GlobalKey<NavigatorState>();
-  final _mainScreen = GlobalKey<NavigatorState>();
-  final _accountScreen = GlobalKey<NavigatorState>();
-  final _cartScreen = GlobalKey<NavigatorState>();
+   
   void _onTap(int val, BuildContext context,IndexProvider pv) {
     if (pv.currentIndex == val) {
       switch (val) {
         case 0:
-          _orderScreen.currentState!.popUntil((route) => route.isFirst);
+          orderScreen.currentState!.popUntil((route) => route.isFirst);
           break;
         case 1:
           categoriesScreen.currentState!.popUntil((route) => route.isFirst);
           break;
         case 2:
-          _mainScreen.currentState!.popUntil((route) => route.isFirst);
+          mainScreen.currentState!.popUntil((route) => route.isFirst);
           break;
         case 3:
-          _accountScreen.currentState!.popUntil((route) => route.isFirst);
+          accountScreen.currentState!.popUntil((route) => route.isFirst);
           break;
         case 3:
-          _cartScreen.currentState!.popUntil((route) => route.isFirst);
+          cartScreen.currentState!.popUntil((route) => route.isFirst);
           break;
         default:
       }
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.category),
+              icon: ImageIcon(AssetImage("assets/images/categoryicon.png")),
               label: 'CATEGORIES',
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
@@ -124,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
         index: indexProvider.currentIndex,
         children: <Widget>[
           Navigator(
-            key: _orderScreen,
+            key: orderScreen,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => OrdersScreen(),
@@ -157,21 +158,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Navigator(
-            key: _mainScreen,
+            key: mainScreen,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => MainScreen(),
             ),
           ),
           Navigator(
-            key: _accountScreen,
+            key: accountScreen,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => AccountScreen(),
             ),
           ),
           Navigator(
-            key: _cartScreen,
+            key: cartScreen,
             onGenerateRoute: (route) => MaterialPageRoute(
               settings: route,
               builder: (context) => CartScreen(),

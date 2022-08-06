@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:ecomerceapp/screens/CartScreen.dart';
+import 'package:ecomerceapp/screens/OrderDetails.dart';
 import 'package:ecomerceapp/widgets/OrderCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -95,7 +97,21 @@ class _OrderToggleState extends State<OrderToggle> {
                 padding: EdgeInsets.all(0),
                 itemCount: 7,
                 itemBuilder: (_, index) {
-                  return OrderCard(orderColor: _Colors[_tabTextIndexSelected],);
+                  return InkWell(
+                    onTap: (){
+                      Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+              builder: (_) => OrderDetails(),
+            ),
+          );
+                      //  Navigator.p(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (BuildContext context) =>
+                      //         (OrderDetails()),
+                      //   ),
+                      // );
+                    },
+                    child: OrderCard(orderColor: _Colors[_tabTextIndexSelected],));
                 }),
           ),
         ],

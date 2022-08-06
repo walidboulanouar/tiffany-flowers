@@ -149,7 +149,7 @@ class _CarouselImageState extends State<CarouselImage> {
                     child: Text(
                       "50% Offer On Black Friday",
                       style: TextStyle(
-                          fontSize: 13.sp,
+                          fontSize: 12.sp,
                           color: Colors.white,
                           // fontStyle: FontStyle.italic,
                           fontFamily: "Lucida Calligraphy"),
@@ -159,6 +159,7 @@ class _CarouselImageState extends State<CarouselImage> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       child: Container(
+                        
                         height: 3.h,
                         width: 18.w,
                         decoration: BoxDecoration(

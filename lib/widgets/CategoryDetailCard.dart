@@ -27,7 +27,7 @@ class CategoryDetailCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(20.0),
               ),
               elevation: 0,
               margin: EdgeInsets.only(
@@ -73,33 +73,36 @@ class CategoryDetailCard extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 width: 8.sp,
               ),
-              TextButton.icon(
-                style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(12.w, 22.sp)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    )),
-                    fixedSize: MaterialStateProperty.all(Size(27.w, 10.sp)),
-                    backgroundColor:
-                        MaterialStateProperty.all(Color(0xff73BFBD))),
-                onPressed: () {},
-                icon: Text("Add To Cart",
-                    style: TextStyle(
-                      fontSize: 8.sp,
-                      color: Colors.white,
-                    )),
-                label: Icon(Icons.add, size: 12.sp, color: Colors.white),
+              Expanded(
+                child: TextButton.icon(
+                  style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(12.w, 20.sp)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      )),
+                      fixedSize: MaterialStateProperty.all(Size(27.w, 20.sp)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xff73BFBD))),
+                  onPressed: () {},
+                  icon: Text("Add To Cart",
+                      style: TextStyle(
+                        fontSize: 7.sp,
+                        color: Colors.white,
+                      )),
+                  label: Icon(Icons.add, size: 10.sp, color: Colors.white),
+                ),
               ),
               IconButton(
                   onPressed: () {},
                   icon: Icon(
                     Icons.favorite,
-                    size: 15.sp,
+                    size: 14.sp,
                     color: Colors.red,
                   ))
             ],

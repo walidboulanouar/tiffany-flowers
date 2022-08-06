@@ -47,6 +47,7 @@ dependencies:
   sticky_headers: ^0.3.0+2
   dropdown_button2: ^1.7.1
   provider: ^6.0.3
+  responsive_framework: ^0.2.0
  
   # flutter_multi_carousel: ^1.0.3
   

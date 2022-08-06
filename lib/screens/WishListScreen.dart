@@ -10,17 +10,17 @@ import '../models/Category.dart';
 import '../widgets/CategoryDetailCardTwo.dart';
 import 'DetailsScreen.dart';
 
-class CategoryDetailsScreen extends StatefulWidget {
+class WishListScreen extends StatefulWidget {
   final List<Category> categories;
   String? title;
-  CategoryDetailsScreen({Key? key, this.title, required this.categories})
+  WishListScreen({Key? key, this.title, required this.categories})
       : super(key: key);
 
   @override
-  State<CategoryDetailsScreen> createState() => _CategoryDetailsScreenState();
+  State<WishListScreen> createState() => _WishListScreenState();
 }
 
-class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
+class _WishListScreenState extends State<WishListScreen> {
   Color active_color = Color(0xff73BFBD);
   Color in_active_color = Color(0xffB9B9B9);
   bool active = true;
@@ -38,7 +38,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
         height: 6.h,
         width: 6.h,
         child: FloatingActionButton(
-          heroTag: Text("btn3"),
+          heroTag: Text("btn5"),
           backgroundColor: Colors.green,
           onPressed: () {},
           child: Icon(
@@ -54,7 +54,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
             myfc: (){
               Navigator.of(context).pop();
             },
-            title: widget.title.toString(),
+            title: "Wish List",
           ),
           // SizedBox(
           //   height: 2.h,

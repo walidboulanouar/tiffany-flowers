@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class OrderAppBar extends StatelessWidget {
-   
+   String title;
+   void Function() myfc;
    OrderAppBar({
-    
+    required this.myfc,
+    required this.title,
     Key? key,
   }) : super(key: key);
 
@@ -25,18 +27,22 @@ class OrderAppBar extends StatelessWidget {
             child: Container()
           ),
           AppBar(
-            title: Text(
-              
-              'My Orders',
-              style: TextStyle(color: Color(0xff73BFBD),fontSize:12.sp),
-              
+            
+            title: InkWell(
+              onTap: myfc,
+              child: Text(
+                
+                title,
+                style: TextStyle(color: Color(0xff73BFBD),fontSize:12.sp),
+                
+              ),
             ),
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
                 color: Color(0xff73BFBD),
               ),
-              onPressed: () {},
+              onPressed: myfc,
             ),
             elevation: 0,
             brightness: Brightness.light,

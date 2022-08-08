@@ -1,5 +1,5 @@
 import 'package:ecomerceapp/screens/AboutUs.dart';
-import 'package:ecomerceapp/screens/Chekout.dart';
+import 'package:ecomerceapp/screens/Checkout.dart';
 import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:ecomerceapp/screens/WishListScreen.dart';
 
@@ -147,17 +147,14 @@ class AccountScreen extends StatelessWidget {
                               (WishListScreen(
                             categories: [
                               Category(
+                                id: 1,
                                   image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
+                                  name: "Hand Bouket"),
                               Category(
+                                id:2,
                                   image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
-                              Category(
-                                  image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
-                              Category(
-                                  image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
+                                  name: "Hand Bouket"),
+                              
                             ],
                            
                           )),

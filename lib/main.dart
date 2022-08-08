@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'models/Category.dart';
+import 'providers/CategoriesProvider.dart';
 import 'screens/CategoryDetailsScreen.dart';
 
 void main() {
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
        return MultiProvider(
         providers: [
         ChangeNotifierProvider(create: (context) => IndexProvider()),
+        ChangeNotifierProvider(create: (context) => CategoriesProvider()),
+        
       ],
          child: MaterialApp(
           theme: ThemeData(fontFamily: "Lucida Calligraphy"),

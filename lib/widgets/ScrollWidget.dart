@@ -14,7 +14,7 @@ class ScrollWidget extends StatelessWidget {
         itemCount: children.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
-          return ImageCard(image: children[index].image,title: children[index].title,);
+          return ImageCard(image: children[index].image,title: children[index].name,);
         });
   }
 }

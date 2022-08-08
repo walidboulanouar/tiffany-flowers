@@ -1,3 +1,4 @@
+import 'package:ecomerceapp/providers/CategoriesProvider.dart';
 import 'package:ecomerceapp/screens/CategoryDetailsScreen.dart';
 import 'package:ecomerceapp/screens/MainScreen.dart';
 import 'package:ecomerceapp/widgets/CategoryAppBar.dart';
@@ -9,6 +10,7 @@ import 'package:sizer/sizer.dart';
 
 import '../models/Category.dart';
 import '../providers/IndexProvider.dart';
+import '../services/CategoriesService.dart';
 import 'HomeScreen.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -23,10 +25,29 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
+    getCategories(categoriesProvider);
+  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
+  //   getCategories(categoriesProvider);
+  //   // TODO: implement initState
+    
+  // }
   
   @override
   Widget build(BuildContext context) {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
+    // CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
+    // if(this.mounted){
+    //   getCategories(categoriesProvider);
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: Container(
@@ -86,19 +107,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               (CategoryDetailsScreen(
                             categories: [
                               Category(
+                                id: 1,
                                   image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
-                              Category(
+                                  name: "Hand Bouket"),Category(
+                                id: 2,
                                   image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
-                              Category(
-                                  image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
-                              Category(
-                                  image: "assets/images/bouket3.jfif",
-                                  title: "Hand Bouket"),
+                                  name: "Hand Bouket"),
                             ],
-                            title: widget.categories[index].title,
+                            title: widget.categories[index].name,
                           )),
                         ),
                       );
@@ -109,7 +125,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     },
                     child: ImageCard(
                         image: widget.categories[index].image,
-                        title: widget.categories[index].title),
+                        title: widget.categories[index].name),
                   );
                 }),
           ),

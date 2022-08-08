@@ -28,13 +28,17 @@ class MainScreen extends StatelessWidget {
               height: 24.h,
               child: ScrollWidget(children: [
                 Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
+                    id: 1,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
                 Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
+                    id: 2,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
+                    Category(
+                    id: 3,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
               ]),
             ),
             Center(
@@ -47,10 +51,18 @@ class MainScreen extends StatelessWidget {
             Container(
               height: 19.h,
               child: ScrollWidget(children: [
-                Category(image: "assets/images/bouket.jpg"),
-                Category(image: "assets/images/bouket.jpg"),
-                Category(image: "assets/images/bouket.jpg"),
-                Category(image: "assets/images/bouket.jpg"),
+                Category(
+                    id: 1,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
+                Category(
+                    id: 2,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
+                    Category(
+                    id: 3,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
               ]),
             ),
             TextTitle(
@@ -59,10 +71,19 @@ class MainScreen extends StatelessWidget {
             Container(
               height: 19.h,
               child: ScrollWidget(children: [
-                Category(image: "assets/images/bouket.jpg"),
-                Category(image: "assets/images/bouket.jpg"),
-                Category(image: "assets/images/bouket.jpg"),
-                Category(image: "assets/images/bouket.jpg"),
+                Category(
+                    id: 1,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
+                Category(
+                    id: 2,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
+                    Category(
+                    id: 3,
+                    image: "assets/images/bouket3.jfif",
+                    name: "Hand Bouket"),
+                    
               ]),
             ),
           ]),

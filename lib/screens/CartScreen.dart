@@ -1,4 +1,4 @@
-import 'package:ecomerceapp/screens/Chekout.dart';
+import 'package:ecomerceapp/screens/Checkout.dart';
 import 'package:ecomerceapp/widgets/CartAppBar.dart';
 import 'package:ecomerceapp/widgets/CartCard.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class CartScreen extends StatelessWidget {
                     Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Checkout()),
+                              builder: (context) =>  Checkout()),
                         );
                   },
                   child: Padding(

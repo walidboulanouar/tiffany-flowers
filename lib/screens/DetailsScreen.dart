@@ -502,13 +502,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
               height: 18.h,
               child: ScrollWidget(children: [
                 Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
+                                id: 1,
+                                  image: "assets/images/bouket3.jfif",
+                                  name: "Hand Bouket"),Category(
+                                id: 2,
+                                  image: "assets/images/bouket3.jfif",
+                                  name: "Hand Bouket"),
               ]),
             ),
                   ])),

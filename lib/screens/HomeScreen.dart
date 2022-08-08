@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         case 3:
           accountScreen.currentState!.popUntil((route) => route.isFirst);
           break;
-        case 3:
+        case 4:
           cartScreen.currentState!.popUntil((route) => route.isFirst);
           break;
         default:
@@ -75,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: GestureDetector(
         onTap: () {
          _onTap(2, context,indexProvider);
@@ -138,22 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context) =>  CategoriesScreen(
       categoriesScreen: categoriesScreen,
       categories: [
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                    Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
-                Category(
-                    image: "assets/images/bouket.jpg", title: "Hand Bouket"),
+               Category(
+                                id: 1,
+                                  image: "assets/images/bouket3.jfif",
+                                  name: "Hand Bouket"),Category(
+                                id: 2,
+                                  image: "assets/images/bouket3.jfif",
+                                  name: "Hand Bouket"),
               ]),
             ),
           ),

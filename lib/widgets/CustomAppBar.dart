@@ -4,7 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../providers/CartProvider.dart';
+import '../providers/IndexProvider.dart';
 import '../providers/WishListProvider.dart';
+import '../screens/HomeScreen.dart';
+import '../screens/WishListScreen.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     Key? key,
@@ -13,6 +16,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     WishListProvider wlProvider =
         Provider.of<WishListProvider>(context);
     return Container(
@@ -61,7 +65,10 @@ class CustomAppBar extends StatelessWidget {
                       child: IconButton(
                         icon:
                             Icon(Icons.shopping_cart_outlined, size: 4.w),
-                        onPressed: () {},
+                        onPressed: () {
+                           cartScreen.currentState!.popUntil((route) => route.isFirst);
+                      indexProvider.setCurrentIndex(4);
+                        },
                         color: Colors.white,
                       ),
                     ),
@@ -75,7 +82,9 @@ class CustomAppBar extends StatelessWidget {
                     child: IconButton(
                       icon: Icon(Icons.search,
                           size: 2.6.w, color: Colors.white),
-                      onPressed: () {},
+                      onPressed: () {
+                         
+                      },
                     ),
                   ),
                 ),
@@ -108,7 +117,20 @@ class CustomAppBar extends StatelessWidget {
                         child: IconButton(
                           icon:
                               Icon(Icons.favorite,size: 5.w,color: Color(0xff73BFBD)),
-                          onPressed: () {},
+                          onPressed: () {
+                           
+                     mainScreen.currentState!.push(
+                      
+                        MaterialPageRoute( 
+                          builder: (BuildContext context) =>
+                              (WishListScreen(
+                            
+                           
+                          )),
+                        ),
+                      );
+                     
+                          },
                           color: Colors.white,
                         ),
                       ),

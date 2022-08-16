@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../providers/CartProvider.dart';
+import '../providers/IndexProvider.dart';
+import '../screens/HomeScreen.dart';
 
 class DetailsAppBar extends StatelessWidget {
   String title;
@@ -16,6 +18,7 @@ class DetailsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
       height: 15.h,
@@ -94,7 +97,10 @@ class DetailsAppBar extends StatelessWidget {
                         child: IconButton(
                           icon:
                               Icon(Icons.shopping_cart_outlined,size: 15.sp,color: Color(0xff73BFBD)),
-                          onPressed: () {},
+                          onPressed: () {
+                                cartScreen.currentState!.popUntil((route) => route.isFirst);
+                      indexProvider.setCurrentIndex(4);
+                          },
                           color: Colors.white,
                         ),
                       ),

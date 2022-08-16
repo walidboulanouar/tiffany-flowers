@@ -1,57 +1,86 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ecomerceapp/models/FeatureValue.dart';
 import 'package:ecomerceapp/screens/CategoryDetailsScreen.dart';
 import 'package:ecomerceapp/widgets/CategoryAppBar.dart';
 import 'package:ecomerceapp/widgets/DetailsAppBar.dart';
 import 'package:ecomerceapp/widgets/ImageCard.dart';
 import 'package:ecomerceapp/widgets/NoLoppingSlider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
+import '../models/CartItem.dart';
 import '../models/Category.dart';
+import '../models/Feature.dart';
+import '../providers/CartProvider.dart';
+import '../providers/IndexProvider.dart';
+import '../providers/ProductProvider.dart';
+import '../services/Services.dart';
+import '../services/SqlService.dart';
+import '../widgets/CountButton.dart';
+import '../widgets/MyColorPicker.dart';
+import '../widgets/ProductScrollWidget.dart';
 import '../widgets/ScrollWidget.dart';
 
 class DetailsScreen extends StatefulWidget {
-  DetailsScreen({Key? key}) : super(key: key);
+  int productId;
+
+  DetailsScreen({Key? key, required this.productId}) : super(key: key);
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  final List<Map<String, dynamic>> items = [
-    {"title": 'Small', "price": 55, "color": Color(0xff73BFBD)},
-    {"title": 'Eduim', "price": 90, "color": Color(0xff73BFBD)},
-    {"title": 'Large', "price": 100, "color": Color(0xffD8AA6B)}
-  ];
-  String? selectedValue;
+  @override
+  void initState() {
+    super.initState();
+    ProductProvider productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+    getProductById(
+      widget.productId,
+      productProvider,
+    );
+    // TODO: implement initState
+  }
 
-  List<DropdownMenuItem<String>> _addDividersAfterItems(
-      List<Map<String, dynamic>> items) {
-    List<DropdownMenuItem<String>> _menuItems = [];
+  // final List<Map<String, dynamic>> items = [
+  //   {"title": 'Small', "price": 55, "color": Color(0xff73BFBD)},
+  //   {"title": 'Eduim', "price": 90, "color": Color(0xff73BFBD)},
+  //   {"title": 'Large', "price": 100, "color": Color(0xffD8AA6B)}
+  // ];
+  int selectedValue = 0;
+  Color _color = Color(0xffD8AA6B);
+  int _productCount = 1;
+
+  List<DropdownMenuItem<int>> _addDividersAfterItems(List<FeatureValue> items) {
+    List<DropdownMenuItem<int>> _menuItems = [];
     for (var item in items) {
       _menuItems.addAll(
         [
-          DropdownMenuItem<String>(
-            value: item["title"],
+          DropdownMenuItem<int>(
+            value: items.indexOf(item),
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
               child: RichText(
                 text: TextSpan(
-                    text: item["title"] + "(+",
+                    text: item.value + "(+",
                     style: TextStyle(
                         fontFamily: "Lucida Calligraphy",
                         fontSize: 10.sp,
-                        color: item["color"]),
+                        color: Color(0xff73BFBD)),
                     children: <TextSpan>[
                       TextSpan(
-                        text: item["price"].toString(),
-                        style: TextStyle(fontSize: 14.sp, color: item["color"]),
+                        text: item.price.toString(),
+                        style: TextStyle(
+                            fontSize: 14.sp, color: Color(0xff73BFBD)),
                       ),
                       TextSpan(
                         text: "AED)",
-                        style: TextStyle(fontSize: 6.sp, color: item["color"]),
+                        style:
+                            TextStyle(fontSize: 6.sp, color: Color(0xff73BFBD)),
                       ),
                     ]),
               ),
@@ -59,7 +88,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           //If it's last item, we will not add Divider after it.
           if (item != items.last)
-            const DropdownMenuItem<String>(
+            const DropdownMenuItem<int>(
               enabled: false,
               child: Divider(),
             ),
@@ -69,7 +98,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return _menuItems;
   }
 
-  List<int> _getDividersIndexes() {
+  List<int> _getDividersIndexes(items) {
     List<int> _dividersIndexes = [];
     for (var i = 0; i < (items.length * 2) - 1; i++) {
       //Dividers indexes will be the odd indexes
@@ -82,6 +111,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var sqlService = SqlService();
+
+    
+    IndexProvider indexProvider = Provider.of<IndexProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    
+    List<Color> colors = [];
+    List<FeatureValue> size = [];
+    if (productProvider.selectedProduct != null) {
+      List<Feature> colors1 = productProvider.selectedProduct!.features!
+          .where((feature) => feature.name == "colors")
+          .toList();
+      colors =
+          colors1[0].values.map((val) => Color(int.parse(val.value))).toList();
+      List<Feature> size1 = productProvider.selectedProduct!.features!
+          .where((feature) => feature.name == "size")
+          .toList();
+      size = size1[0].values;
+      
+    
+    }
+
+    int sizePrice = size.isNotEmpty ? size[selectedValue].price : 0;
+
+    
+
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: Container(
@@ -90,7 +146,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
         child: FloatingActionButton(
           heroTag: Text("btn4"),
           backgroundColor: Colors.green,
-          onPressed: () {},
+          onPressed: () {
+            openWhatsap();
+          },
           child: Icon(
             Icons.whatsapp,
             size: 25.sp,
@@ -104,9 +162,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               DetailsAppBar(
-                myfc: (){
-              Navigator.of(context).pop();
-            },
+                myfc: () {
+                  Navigator.pop(context);
+                },
                 title: "Details",
               ),
               // SizedBox(
@@ -116,12 +174,23 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   child: ListView(
                       padding: EdgeInsets.only(top: 5.sp, bottom: 50.sp),
                       children: [
-                    NoLoopingSlider(),
+                    productProvider.selectedProduct != null
+                        ? NoLoopingSlider(
+                            imgList:
+                                // productProvider.selectedProduct != null
+                                // ?
+                                productProvider.selectedProduct!.images
+                            // : []
+                            )
+                        : Container(
+                            height: 15.w, width: 15.w, color: Colors.grey),
                     Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.sp),
                         child: Text(
-                          "Vase Arrangement 0016",
+                          productProvider.selectedProduct != null
+                              ? productProvider.selectedProduct!.name
+                              : "",
                           style: TextStyle(
                               fontSize: 12.sp, color: Color(0xffD8AA6B)),
                         ),
@@ -129,7 +198,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                     Center(
                       child: Container(
-                        width: 28.w,
+                        width: 35.w,
+                        height: 6.h,
                         padding: EdgeInsets.symmetric(
                           horizontal: 6.sp,
                         ),
@@ -139,29 +209,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         child: Row(
                           children: [
                             InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  _productCount > 1
+                                      ? setState(() {
+                                          _productCount -= 1;
+                                        })
+                                      : null;
+                                },
                                 child: Icon(
                                   Icons.remove,
                                   color: Colors.white,
                                   size: 17.sp,
                                 )),
-                            Center(
-                              child: Container(
-                                // margin: EdgeInsets.symmetric(horizontal: 3),
-                                padding: EdgeInsets.only(
-                                    bottom: 4.sp, left: 12.sp, right: 12.sp),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3),
-                                    color: Color(0xff73BFBD)),
-                                child: Text(
-                                  '1',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20.sp),
+                            Flexible(
+                              child: Center(
+                                child: Container(
+                                  // margin: EdgeInsets.symmetric(horizontal: 3),
+                                  padding: EdgeInsets.only(
+                                      bottom: 4.sp, left: 12.sp, right: 12.sp),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      color: Color(0xff73BFBD)),
+                                  child: Text(
+                                    _productCount.toString(),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15.sp),
+                                  ),
                                 ),
                               ),
                             ),
                             InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    _productCount += 1;
+                                  });
+                                },
                                 child: Icon(
                                   Icons.add,
                                   color: Colors.white,
@@ -194,62 +276,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     fontSize: 12.sp, color: Color(0xff73BFBD)),
                               ),
                               SizedBox(
-                                width: 50.sp,
+                                width: 40.sp,
                               ),
                               Container(
-                                margin: EdgeInsets.only(right: 10.sp),
-                                child: Icon(
-                                  Icons.local_florist,
-                                  color: Color.fromARGB(255, 62, 45, 91),
-                                  size: 17.sp,
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 10.sp),
-                                child: Icon(
-                                  Icons.local_florist,
-                                  color: Color.fromARGB(255, 171, 201, 112),
-                                  size: 17.sp,
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Color(0xff73BFBD),
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                margin: EdgeInsets.only(right: 10.sp),
-                                padding: EdgeInsets.all(2.sp),
-                                child: Icon(
-                                  Icons.local_florist,
-                                  color: Color.fromARGB(255, 114, 64, 178),
-                                  size: 17.sp,
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Color(0xff73BFBD),
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                margin: EdgeInsets.only(right: 10.sp),
-                                padding: EdgeInsets.all(2.sp),
-                                child: Icon(
-                                  Icons.local_florist,
-                                  color: Color.fromARGB(255, 216, 114, 191),
-                                  size: 17.sp,
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 10.sp),
-                                child: Icon(
-                                  Icons.local_florist,
-                                  color: Color.fromARGB(255, 93, 32, 32),
-                                  size: 17.sp,
-                                ),
-                              ),
+                                // color: Colors.red,
+                                height: 5.h,
+                                width: 60.w,
+                                child: MyColorPicker(
+                                    onSelectColor: (value) {
+                                      setState(() {
+                                        _color = value;
+                                      });
+                                    },
+                                    availableColors:
+                                        productProvider.selectedProduct != null
+                                            ? colors
+                                            : [],
+                                    initialColor: Colors.blue),
+                              )
                             ],
                           )),
                     ),
@@ -280,13 +324,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               color: Color(0xff73BFBD),
                             ),
                           ),
-                          items: _addDividersAfterItems(items),
-                          customItemsIndexes: _getDividersIndexes(),
+                          items: _addDividersAfterItems(
+                            productProvider.selectedProduct != null ? size : [],
+                          ),
+                          customItemsIndexes: _getDividersIndexes(size),
                           customItemsHeight: 4,
                           value: selectedValue,
                           onChanged: (value) {
                             setState(() {
-                              selectedValue = value as String;
+                              selectedValue = value as int;
                             });
                           },
                           buttonHeight: 40,
@@ -318,11 +364,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
+                                    productProvider.selectedProduct != null
+                                        ? productProvider
+                                            .selectedProduct!.description
+                                        : "",
                                     style: TextStyle(
                                         height: 2,
                                         fontSize: 10.sp,
-                                        color: Color.fromARGB(121, 80, 80, 80)),
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, pulvinar facilisi.")),
+                                        color:
+                                            Color.fromARGB(121, 80, 80, 80)))),
                           ],
                         )),
                     Container(
@@ -349,7 +399,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               alignment: Alignment.bottomRight,
                               child: RichText(
                                 text: TextSpan(
-                                    text: '20',
+                                    text: productProvider.selectedProduct !=
+                                            null
+                                        ? productProvider.selectedProduct!.price
+                                            .toString()
+                                        : "",
                                     style: TextStyle(
                                         fontFamily: "Lucida Calligraphy",
                                         fontSize: 16.sp,
@@ -402,7 +456,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               alignment: Alignment.bottomRight,
                               child: RichText(
                                 text: TextSpan(
-                                    text: '40.',
+                                    text: productProvider.selectedProduct !=
+                                            null
+                                        ? ((productProvider.selectedProduct!
+                                                        .price +
+                                                    sizePrice +
+                                                    productProvider
+                                                            .selectedProduct!
+                                                            .price /
+                                                        5) *
+                                                indexProvider.productCount)
+                                            .toString()
+                                        : "",
                                     style: TextStyle(
                                         fontFamily: "Lucida Calligraphy",
                                         fontSize: 17.sp,
@@ -416,14 +481,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       ),
                                     ]),
                               ),
-                              
                             ),
                           ],
                         )),
                     Container(
                         decoration: BoxDecoration(
                           // borderRadius: BorderRadius.circular(10.0),
-                          color:Colors.white,
+                          color: Colors.white,
                         ),
                         padding: EdgeInsets.only(
                             left: 24.sp, right: 36.sp, top: 6.sp, bottom: 6.sp),
@@ -473,8 +537,31 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     fixedSize: MaterialStateProperty.all(
                                         Size(35.w, 14.sp)),
                                     backgroundColor: MaterialStateProperty.all(
-                                       Color(0xffD8AA6B))),
-                                onPressed: () {},
+                                        Color(0xffD8AA6B))),
+                                onPressed: () {
+                                  // cartProvider.
+                                  sqlService.addToCart(
+                                      CartItem(
+                                          productId: productProvider
+                                              .selectedProduct!.id,
+                                          name: productProvider
+                                              .selectedProduct!.name,
+                                          color: _color.value,
+                                          count: _productCount,
+                                          image: productProvider
+                                              .selectedProduct!.images[0]
+                                              .toString(),
+                                          price: productProvider
+                                              .selectedProduct!.price,
+                                          size: size[selectedValue].value,
+                                          sizePrice: sizePrice),
+                                      cartProvider);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+
+                                      SnackBar(
+                                         behavior: SnackBarBehavior.floating,
+                                        content: Text("Added to Cart")));
+                                },
                                 icon: Text("Add To Cart",
                                     style: TextStyle(
                                       fontSize: 8.sp,
@@ -484,13 +571,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     size: 12.sp, color: Colors.white),
                               ),
                             ),
-                            
                           ],
                         )),
-                         Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.only(top: 15.sp, left: 25.sp,bottom: 5.sp),
+                        margin: EdgeInsets.only(
+                            top: 15.sp, left: 25.sp, bottom: 5.sp),
                         child: Text(
                           "Related Products",
                           style: TextStyle(
@@ -498,20 +585,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                     ),
-                     Container(
-              height: 18.h,
-              child: ScrollWidget(children: [
-                Category(
-                                id: 1,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),Category(
-                                id: 2,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),
-              ]),
-            ),
+                    Container(
+                      height: 18.h,
+                      child: productProvider.selectedProduct != null
+                          ? ProductScrollWidget(
+                              children: productProvider
+                                  .selectedProduct!.product_related!
+                              // productProvider.selectedProduct != null &&
+                              //         productProvider
+                              //                 .selectedProduct!.product_related !=
+                              //             null
+                              //     ? productProvider
+                              //         .selectedProduct!.product_related!
+                              //         .map((rp) => Category(
+                              //             image: rp.images[0],
+                              //             name: rp.name,
+                              //             id: rp.id))
+                              //         .toList()
+                              //     : []
+                              )
+                          : Container(),
+                    ),
                   ])),
-                  
             ],
           ),
         ),

@@ -2,9 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-
+import '../models/Banner.dart' as b;
 class CarouselImage extends StatefulWidget {
-  CarouselImage({Key? key}) : super(key: key);
+  List<b.Banner> banners;
+  CarouselImage({Key? key,required this.banners}) : super(key: key);
 
   @override
   State<CarouselImage> createState() => _CarouselImageState();
@@ -12,15 +13,12 @@ class CarouselImage extends StatefulWidget {
 
 class _CarouselImageState extends State<CarouselImage> {
   CarouselController carouselController = CarouselController();
-  double currentIndexPage = 0;
-  final featuredImages = [
-    'assets/images/appbarback.png',
-    'assets/images/Logo.png',
-    'assets/images/flowers.jpg',
-  ];
+  int currentIndexPage = 0;
+   
 
   @override
   Widget build(BuildContext context) {
+    List<String> featuredImages =widget.banners.map((e) => e.image).toList();
     return Container(
       // decoration:BoxDecoration(border: Border.all(color: Colors.red),),
       width: 100.w,
@@ -33,7 +31,7 @@ class _CarouselImageState extends State<CarouselImage> {
               options: CarouselOptions(
                 onPageChanged: (index, reason) => {
                   setState(() {
-                    currentIndexPage = index.toDouble();
+                    currentIndexPage = index;
                   })
                 },
                 disableCenter: false,
@@ -44,7 +42,7 @@ class _CarouselImageState extends State<CarouselImage> {
               ),
               items: featuredImages.map((featuredImage) {
                 return Image(
-                  image: AssetImage(featuredImage),
+                  image: NetworkImage(featuredImage),
                   height: double.infinity,
                   width: double.infinity,
                   fit: BoxFit.fill,
@@ -147,7 +145,8 @@ class _CarouselImageState extends State<CarouselImage> {
                 children: [
                   Container(
                     child: Text(
-                      "50% Offer On Black Friday",
+                      widget.banners.isNotEmpty?
+                      widget.banners[currentIndexPage].text:"",
                       style: TextStyle(
                           fontSize: 12.sp,
                           color: Colors.white,
@@ -179,14 +178,18 @@ class _CarouselImageState extends State<CarouselImage> {
           Positioned(
             bottom: 2.h,
             left: 40.w,
-              child: DotsIndicator(
+              child: 
+              featuredImages.length!=0?
+              DotsIndicator(
             dotsCount: featuredImages.length,
-            position: currentIndexPage,
+            position: double.parse(currentIndexPage.toString()),
             decorator: DotsDecorator(
               color: Colors.white, // Inactive color
               activeColor: Colors.black
             ),
-          ))
+          ):
+          Container()
+          )
         ],
       ),
     );

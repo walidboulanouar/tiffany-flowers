@@ -11,7 +11,11 @@ import 'package:sizer/sizer.dart';
 
 import '../models/Category.dart';
 
+import '../providers/CategoriesProvider.dart';
 import '../providers/IndexProvider.dart';
+import '../providers/WishListProvider.dart';
+import '../services/Services.dart';
+import '../services/SqlService.dart';
 import 'CategoryDetailsScreen.dart';
  final orderScreen = GlobalKey<NavigatorState>();
   final categoriesScreen = GlobalKey<NavigatorState>();
@@ -28,6 +32,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
    
+
+   @override
+  void initState() {
+    super.initState();
+    CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context,listen:false);
+    getCategories(categoriesProvider);
+  
+    
+  }
   void _onTap(int val, BuildContext context,IndexProvider pv) {
     if (pv.currentIndex == val) {
       switch (val) {
@@ -51,27 +64,24 @@ class _HomeScreenState extends State<HomeScreen> {
     } else {
       if (mounted) {
         pv.setCurrentIndex(val);
-        // setState(() {
-        //   _selectedIndex = val;
-        // });
+        
       }
     }
   }
 
 
-  // int _selectedIndex = 2;
+ 
   void _onItemTapped(int index,IndexProvider pv) {
     pv.setCurrentIndex(index);
     
-    // setState(() {
-    //   _selectedIndex = index;
-    // });
+    
     
   }
 
   @override
   Widget build(BuildContext context) {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
+    CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
@@ -138,15 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
               settings: route,
               builder: (context) =>  CategoriesScreen(
       categoriesScreen: categoriesScreen,
-      categories: [
-               Category(
-                                id: 1,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),Category(
-                                id: 2,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),
-              ]),
+      categories:categoriesProvider.categories),
             ),
           ),
           Navigator(
@@ -172,12 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      // ValueListenableBuilder(
-      //     valueListenable: children,
-      //     builder: (_, child, __) {
-      //       return children.value.elementAt(_selectedIndex);
-      //     }),
-      // children[_selectedIndex],
+    
     );
   }
 }

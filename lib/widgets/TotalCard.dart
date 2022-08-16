@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../providers/CartProvider.dart';
+
 class TotalCard extends StatelessWidget {
+  // int price ;
+  // int sizePrice;
+  // int count;
   const TotalCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+     
+     CartProvider cartProvider =Provider.of<CartProvider>(context);
     return Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
@@ -24,7 +32,7 @@ class TotalCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 10.sp),
+                  padding: EdgeInsets.only(left: 13.sp),
                   child: Text(
                     "subTotal",
                     style: TextStyle(color: Colors.white),
@@ -34,32 +42,12 @@ class TotalCard extends StatelessWidget {
                   width: 40.w,
                 ),
                 Text(
-                  "240.AED",
+                  cartProvider.subTotal().toString()+" AED",
                   style: TextStyle(color: Colors.white),
                 )
               ],
             ),
-            SizedBox(
-              height: 2.h,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 10.sp),
-                  child: Text(
-                    "Shipping",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  "20.AED",
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
+           
             Container(
               padding: EdgeInsets.symmetric(vertical: 7.sp, horizontal: 5.sp),
               margin: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
@@ -96,14 +84,14 @@ class TotalCard extends StatelessWidget {
                     padding: EdgeInsets.only(left: 8.sp),
                     child: RichText(
                       text: TextSpan(
-                          text: '260.',
+                          text: cartProvider.Total().toString(),
                           style: TextStyle(
                               fontFamily: "Lucida Calligraphy",
                               fontSize: 14.sp,
                               color: Color(0xffD8AA6B)),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'AED',
+                              text: '.AED',
                               style: TextStyle(
                                   fontSize: 10.sp, color: Color(0xffD8AA6B)),
                             ),

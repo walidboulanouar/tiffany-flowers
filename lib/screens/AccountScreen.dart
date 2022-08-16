@@ -11,7 +11,9 @@ import 'package:sizer/sizer.dart';
 import 'package:badges/badges.dart';
 
 import '../models/Category.dart';
+import '../providers/CartProvider.dart';
 import '../providers/IndexProvider.dart';
+import '../providers/WishListProvider.dart';
 import '../widgets/AccountAppBar.dart';
 import '../widgets/CategoryAppBar.dart';
 import '../widgets/DetailsAppBar.dart';
@@ -22,6 +24,9 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
+    WishListProvider wlProvider =
+        Provider.of<WishListProvider>(context);
+        CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -117,15 +122,22 @@ class AccountScreen extends StatelessWidget {
                     hoverColor: Color(0xff73BFBD),
                     dense: true,
                     selectedTileColor: Color(0xff73BFBD),
-                    trailing: Badge(
-                      position: BadgePosition.topEnd(top: 2, end: -2),
-                      toAnimate: false,
-                      shape: BadgeShape.circle,
-                      badgeColor: Color(0xffFF7171),
-                      borderRadius: BorderRadius.circular(18),
-                      badgeContent: Text(
-                        "12",
-                        style: TextStyle(color: Colors.white, fontSize: 8.sp),
+                    trailing:  Container(
+                      height:2.5.h,
+                      width: 2.5.h,
+                      child: Badge(
+                        position: BadgePosition.topEnd(top: 2, end: -2),
+                        toAnimate: false,
+                        shape: BadgeShape.circle,
+                        badgeColor: Color(0xffFF7171),
+                        borderRadius: BorderRadius.circular(18),
+                        badgeContent: FittedBox(
+                          child: Text(
+                            cartProvider.count.toString(),
+                           
+                            style: TextStyle(color: Colors.white, ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -145,17 +157,7 @@ class AccountScreen extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
                               (WishListScreen(
-                            categories: [
-                              Category(
-                                id: 1,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),
-                              Category(
-                                id:2,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),
-                              
-                            ],
+                            
                            
                           )),
                         ),
@@ -165,15 +167,22 @@ class AccountScreen extends StatelessWidget {
                     },
                     hoverColor: Color(0xff73BFBD),
                     dense: true,
-                    trailing: Badge(
-                      position: BadgePosition.topEnd(top: 2, end: -2),
-                      toAnimate: false,
-                      shape: BadgeShape.circle,
-                      badgeColor: Color(0xffFF7171),
-                      borderRadius: BorderRadius.circular(18),
-                      badgeContent: Text(
-                        "12",
-                        style: TextStyle(color: Colors.white, fontSize: 8.sp),
+                    trailing: Container(
+                      height:2.5.h,
+                      width: 2.5.h,
+                      child: Badge(
+                        position: BadgePosition.topEnd(top: 2, end: -2),
+                        toAnimate: false,
+                        shape: BadgeShape.circle,
+                        badgeColor: Color(0xffFF7171),
+                        borderRadius: BorderRadius.circular(18),
+                        badgeContent: FittedBox(
+                          child: Text(
+                            wlProvider.count.toString(),
+                           
+                            style: TextStyle(color: Colors.white, ),
+                          ),
+                        ),
                       ),
                     ),
                     selectedTileColor: Color(0xff73BFBD),

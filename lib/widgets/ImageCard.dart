@@ -9,7 +9,6 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(title);
     return
     Column(
       children: [
@@ -17,7 +16,7 @@ class ImageCard extends StatelessWidget {
           child: Card(
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.asset(
+                child: Image.network(
                  image,
                   fit: BoxFit.fill,
                 ),

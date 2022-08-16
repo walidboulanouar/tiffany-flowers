@@ -87,11 +87,13 @@ class OrderDetailCard extends StatelessWidget {
                             backgroundColor:
                                 MaterialStateProperty.all(Color(0xff73BFBD))),
                         onPressed: () {},
-                        child: Text("70 AED",
-                            style: TextStyle(
-                              fontSize: 7.sp,
-                              color: Colors.white,
-                            )),
+                        child: FittedBox(
+                          child: Text("70 AED",
+                              style: TextStyle(
+                                // fontSize: 16.sp,
+                                color: Colors.white,
+                              )),
+                        ),
                         // label:Container(),
                         //  Icon(Icons.add,
                         //     size: 12.sp, color: Colors.white),

@@ -22,21 +22,25 @@ class _OrderToggleState extends State<OrderToggle> {
   List<Color> _Colors=[Color(0xff73BFBD),Color(0xff656565),Color(0xffEC7979)];
   List<String> _listTextTabToggle = ["Completed", "Pennding", "Canceled"];
   Color _selectedBgColor = Color(0xff73BFBD);
+  bool _reOrder=true;
   void _changeBgColor(int index) {
     switch (index) {
       case 1:
         setState(() {
           _selectedBgColor = Color(0xff656565);
+          _reOrder=false;
         });
         break;
       case 2:
         setState(() {
           _selectedBgColor = Color(0xffEC7979);
+           _reOrder=false;
         });
         break;
       default:
         setState(() {
           _selectedBgColor = Color(0xff73BFBD);
+           _reOrder=true;
         });
     }
   }
@@ -111,7 +115,7 @@ class _OrderToggleState extends State<OrderToggle> {
                       //   ),
                       // );
                     },
-                    child: OrderCard(orderColor: _Colors[_tabTextIndexSelected],));
+                    child: OrderCard(reorder: _reOrder,orderColor: _Colors[_tabTextIndexSelected],));
                 }),
           ),
         ],

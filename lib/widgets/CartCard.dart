@@ -1,11 +1,19 @@
+import 'package:ecomerceapp/providers/CartProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../models/CartItem.dart';
+import '../services/SqlService.dart';
+
 class CartCard extends StatelessWidget {
-  CartCard({Key? key}) : super(key: key);
+  CartItem item;
+  CartCard({Key? key,required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+     var sqlService = SqlService();
+     CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Card(
       margin: EdgeInsets.all(10.sp),
       color: Colors.white,
@@ -17,8 +25,8 @@ class CartCard extends StatelessWidget {
             child: Container(
               height: 17.h,
               width: 12.h,
-              child: Image.asset(
-                "assets/images/bouket.jpg",
+              child: Image.network(
+                item.image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -36,14 +44,14 @@ class CartCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 8.sp),
                   child: Text(
-                    "Vase Arrangement 0016",
+                    item.name,
                     style: TextStyle(fontSize: 12.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
                 SizedBox(height: 2.h),
                 Padding(
                   padding: EdgeInsets.only(left: 8.sp),
-                  child: Text("Small",
+                  child: Text(item.size,
                       style: TextStyle(
                           fontSize: 9.sp,
                           color: Color.fromARGB(86, 80, 80, 80))),
@@ -54,7 +62,7 @@ class CartCard extends StatelessWidget {
                     padding:  EdgeInsets.only(left:8.sp),
                     child: RichText(
                       text: TextSpan(
-                          text: '24',
+                          text: item.price.toString(),
                           style: TextStyle(
                             fontFamily: "Lucida Calligraphy",
                               fontSize: 12.sp, color: Color(0xffD8AA6B)),
@@ -77,7 +85,12 @@ class CartCard extends StatelessWidget {
                     child: Row(
                       children: [
                         InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              if(item.count>1){
+                                 sqlService.editCount(item.productId,item.count-1,cartProvider);
+                              }
+                             
+                            },
                             child: Icon(
                               Icons.remove,
                               color: Colors.white,
@@ -92,14 +105,16 @@ class CartCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(3),
                                 color: Color(0xff73BFBD)),
                             child: Text(
-                              '3',
+                              item.count.toString(),
                               style: TextStyle(
                                   color: Colors.white, fontSize: 15.sp),
                             ),
                           ),
                         ),
                         InkWell(
-                            onTap: () {},
+                            onTap: () {
+                             sqlService.editCount(item.productId,item.count+1,cartProvider);
+                            },
                             child: Icon(
                               Icons.add,
                               color: Colors.white,

@@ -3,17 +3,22 @@ import 'package:ecomerceapp/widgets/CategoryDetailCard.dart';
 import 'package:ecomerceapp/widgets/ImageCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../models/Category.dart';
 
+import '../models/Product.dart';
+import '../providers/WishListProvider.dart';
+import '../services/Services.dart';
+import '../services/SqlService.dart';
 import '../widgets/CategoryDetailCardTwo.dart';
 import 'DetailsScreen.dart';
 
 class WishListScreen extends StatefulWidget {
-  final List<Category> categories;
-  String? title;
-  WishListScreen({Key? key, this.title, required this.categories})
+  // final List<Product> products;
+  // String? title;
+  WishListScreen({Key? key,})
       : super(key: key);
 
   @override
@@ -21,6 +26,23 @@ class WishListScreen extends StatefulWidget {
 }
 
 class _WishListScreenState extends State<WishListScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     
+     WishListProvider  wlProvider = Provider.of<WishListProvider>(context,listen:false);
+      
+     Future.delayed(Duration.zero,(){
+      
+      getProductByIds(wlProvider.wishList,wlProvider);
+       
+  });
+     
+     
+    
+     
+  }
   Color active_color = Color(0xff73BFBD);
   Color in_active_color = Color(0xffB9B9B9);
   bool active = true;
@@ -32,6 +54,10 @@ class _WishListScreenState extends State<WishListScreen> {
 
   @override
   Widget build(BuildContext context) {
+     WishListProvider  wlProvider = Provider.of<WishListProvider>(context);
+     
+    
+    
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: Container(
@@ -40,7 +66,9 @@ class _WishListScreenState extends State<WishListScreen> {
         child: FloatingActionButton(
           heroTag: Text("btn5"),
           backgroundColor: Colors.green,
-          onPressed: () {},
+          onPressed: () {
+            openWhatsap();
+          },
           child: Icon(
             Icons.whatsapp,
             size: 25.sp,
@@ -59,6 +87,7 @@ class _WishListScreenState extends State<WishListScreen> {
           // SizedBox(
           //   height: 2.h,
           // ),
+          // wlProvider.wishListProducts.length>0 ?
           Flexible(
             child: active
                 ? StaggeredGridView.countBuilder(
@@ -67,7 +96,7 @@ class _WishListScreenState extends State<WishListScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,
-                    itemCount: widget.categories.length + 1,
+                    itemCount: wlProvider.wishListProducts.length + 1,
                     itemBuilder: (BuildContext context, int index) => index == 0
                         ? Wrap(children: [
                             IconButton(
@@ -101,14 +130,16 @@ class _WishListScreenState extends State<WishListScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      (DetailsScreen()),
+                                      (DetailsScreen(productId:wlProvider.wishListProducts[index - 1].id,)),
                                 ),
                               );
                             },
                             child: CategoryDetailCard(
-                              image: widget.categories[index - 1].image,
-                              // title: widget.categories[index-1].title
-                              // .toString()
+                              
+                              id: wlProvider.wishListProducts[index - 1].id,
+                              name: wlProvider.wishListProducts[index - 1].name,
+                              image: wlProvider.wishListProducts[index - 1].images[0],
+                              price: wlProvider.wishListProducts[index - 1].price,
                             ),
                           ),
                     staggeredTileBuilder: (int index) => StaggeredTile.count(
@@ -120,7 +151,7 @@ class _WishListScreenState extends State<WishListScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,
-                    itemCount: widget.categories.length + 1,
+                    itemCount: wlProvider.wishListProducts.length + 1,
                     itemBuilder: (BuildContext context, int index) => index == 0
                         ? Wrap(children: [
                             IconButton(
@@ -154,18 +185,22 @@ class _WishListScreenState extends State<WishListScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      (DetailsScreen()),
+                                      (DetailsScreen(productId:wlProvider.wishListProducts[index - 1].id,)),
                                 ),
                               );
                             },
                             child: CategoryDetailCardTwo(
-                              image: widget.categories[index - 1].image,
+                            id: wlProvider.wishListProducts[index - 1].id,
+                              name: wlProvider.wishListProducts[index - 1].name,
+                              image: wlProvider.wishListProducts[index - 1].images[0],
+                              price: wlProvider.wishListProducts[index - 1].price,
                             ),
                           ),
                     staggeredTileBuilder: (int index) => StaggeredTile.count(
                         index == 0 ? 2 : 2, index == 0 ? 0.21 : 0.8),
                   ),
-          ),
+          )
+          // :Container(height: 20.h,),
         ],
       ),
     );

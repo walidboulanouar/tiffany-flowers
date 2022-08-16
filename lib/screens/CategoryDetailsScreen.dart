@@ -1,19 +1,25 @@
+import 'package:ecomerceapp/providers/ProductProvider.dart';
+import 'package:ecomerceapp/providers/WishListProvider.dart';
+import 'package:ecomerceapp/services/SqlService.dart';
 import 'package:ecomerceapp/widgets/CategoryAppBar.dart';
 import 'package:ecomerceapp/widgets/CategoryDetailCard.dart';
 import 'package:ecomerceapp/widgets/ImageCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../models/Category.dart';
 
+import '../providers/CategoriesProvider.dart';
+import '../services/Services.dart';
 import '../widgets/CategoryDetailCardTwo.dart';
 import 'DetailsScreen.dart';
 
 class CategoryDetailsScreen extends StatefulWidget {
-  final List<Category> categories;
-  String? title;
-  CategoryDetailsScreen({Key? key, this.title, required this.categories})
+  final int catId;
+  final String name;
+  CategoryDetailsScreen({Key? key, required this.name, required this.catId})
       : super(key: key);
 
   @override
@@ -21,6 +27,21 @@ class CategoryDetailsScreen extends StatefulWidget {
 }
 
 class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    ProductProvider productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+
+    
+    getProductsByCatgory(
+      widget.catId,
+      productProvider,
+    );
+    // TODO: implement initState
+  }
+
   Color active_color = Color(0xff73BFBD);
   Color in_active_color = Color(0xffB9B9B9);
   bool active = true;
@@ -32,6 +53,9 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    
+    
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: Container(
@@ -40,7 +64,9 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
         child: FloatingActionButton(
           heroTag: Text("btn3"),
           backgroundColor: Colors.green,
-          onPressed: () {},
+          onPressed: () {
+            openWhatsap();
+          },
           child: Icon(
             Icons.whatsapp,
             size: 25.sp,
@@ -51,14 +77,12 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CategoryAppBar(
-            myfc: (){
+            myfc: () {
               Navigator.of(context).pop();
             },
-            title: widget.title.toString(),
+            title: widget.name.toString(),
           ),
-          // SizedBox(
-          //   height: 2.h,
-          // ),
+          
           Flexible(
             child: active
                 ? StaggeredGridView.countBuilder(
@@ -67,7 +91,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,
-                    itemCount: widget.categories.length + 1,
+                    itemCount: productProvider.categoryproducts.length + 1,
                     itemBuilder: (BuildContext context, int index) => index == 0
                         ? Wrap(children: [
                             IconButton(
@@ -101,12 +125,22 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      (DetailsScreen()),
+                                      (DetailsScreen(
+                                    productId: productProvider
+                                        .categoryproducts[index - 1].id,
+                                  )),
                                 ),
                               );
                             },
                             child: CategoryDetailCard(
-                              image: widget.categories[index - 1].image,
+                              id: productProvider
+                                  .categoryproducts[index - 1].id,
+                              name: productProvider
+                                  .categoryproducts[index - 1].name,
+                              image: productProvider
+                                  .categoryproducts[index - 1].images[0],
+                              price: productProvider
+                                  .categoryproducts[index - 1].price,
                               // title: widget.categories[index-1].title
                               // .toString()
                             ),
@@ -120,7 +154,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,
-                    itemCount: widget.categories.length + 1,
+                    itemCount: productProvider.categoryproducts.length + 1,
                     itemBuilder: (BuildContext context, int index) => index == 0
                         ? Wrap(children: [
                             IconButton(
@@ -154,12 +188,21 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      (DetailsScreen()),
+                                      (DetailsScreen(
+                                          productId: productProvider
+                                              .categoryproducts[index - 1].id)),
                                 ),
                               );
                             },
                             child: CategoryDetailCardTwo(
-                              image: widget.categories[index - 1].image,
+                              id: productProvider
+                                  .categoryproducts[index - 1].id,
+                              name: productProvider
+                                  .categoryproducts[index - 1].name,
+                              image: productProvider
+                                  .categoryproducts[index - 1].images[0],
+                              price: productProvider
+                                  .categoryproducts[index - 1].price,
                             ),
                           ),
                     staggeredTileBuilder: (int index) => StaggeredTile.count(

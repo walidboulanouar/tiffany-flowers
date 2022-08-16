@@ -1,6 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../providers/CartProvider.dart';
 
 class CategoryAppBar extends StatelessWidget {
   String title;
@@ -13,6 +16,7 @@ class CategoryAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
       height: 15.h,
       width: 100.w,
@@ -82,9 +86,15 @@ class CategoryAppBar extends StatelessWidget {
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
-                  badgeContent: Text(
-                    "12",
-                    style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                  badgeContent: Container(
+                     height: 5.sp,
+                    width: 5.sp,
+                    child: FittedBox(
+                      child: Text(
+                        cartProvider.count.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                      ),
+                    ),
                   ),
                    child: Container(
                     margin: EdgeInsets.only(bottom:20),

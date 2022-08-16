@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class CategoryDetailCardTwo extends StatelessWidget {
-  String image;
-  CategoryDetailCardTwo({Key? key, required this.image}) : super(key: key);
+import '../models/CartItem.dart';
+import '../providers/CartProvider.dart';
+import '../providers/WishListProvider.dart';
+import '../services/SqlService.dart';
+
+class CategoryDetailCardTwo extends StatefulWidget {
+  int id;
+ String image;
+  String name;
+  int price;
+  CategoryDetailCardTwo({Key? key, required this.id,required this.image,required this.name,required this.price}) : super(key: key);
 
   @override
+  State<CategoryDetailCardTwo> createState() => _CategoryDetailCardTwoState();
+}
+
+class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WishListProvider wlProvider =
+        Provider.of<WishListProvider>(context, listen: false);
+    var sqlService = SqlService();
+     
+     sqlService.getProducts(wlProvider);
+  }
   Widget build(BuildContext context) {
-    
+    var sqlService = SqlService();
+    WishListProvider  wlProvider = Provider.of<WishListProvider>(context);
+     CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10.sp),
       color: Colors.white,
@@ -19,8 +44,8 @@ class CategoryDetailCardTwo extends StatelessWidget {
             child: Container(
               height: 18.h,
               width: 12.h,
-              child: Image.asset(
-                image,
+              child: Image.network(
+                widget.image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -38,7 +63,7 @@ class CategoryDetailCardTwo extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 8.sp),
                   child: Text(
-                    "Vase Arrangement 0016",
+                    widget.name,
                     style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
@@ -47,7 +72,7 @@ class CategoryDetailCardTwo extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.sp),
                   child: RichText(
                     text: TextSpan(
-                        text: '20',
+                        text: widget.price.toString(),
                         style: TextStyle(
                             fontFamily: "Lucida Calligraphy",
                             fontSize: 12.sp,
@@ -80,7 +105,23 @@ class CategoryDetailCardTwo extends StatelessWidget {
                               MaterialStateProperty.all(Size(25.w, 20.sp)),
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xff73BFBD))),
-                      onPressed: () {},
+                      onPressed: () {
+                        sqlService.addToCart(
+                        CartItem(
+                            productId: widget.id,
+                            name: widget.name,
+                            color: 0xffD8AA6B,
+                            count: 1,
+                            image: widget.image.toString(),
+                            price: widget.price,
+                            size: "small",
+                            sizePrice: 20),
+                        cartProvider);
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                           behavior: SnackBarBehavior.floating,
+                          content: Text("Added to Cart")));
+                      },
                       icon: Text("Add To Cart",
                           style: TextStyle(
                             fontSize: 7.sp,
@@ -88,13 +129,32 @@ class CategoryDetailCardTwo extends StatelessWidget {
                           )),
                       label: Icon(Icons.add, size: 10.sp, color: Colors.white),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite,
-                          size: 14.sp,
-                          color: Colors.red,
-                        ))
+                     !wlProvider.wishList.contains(widget.id)?IconButton(
+                  onPressed: () {
+                    sqlService.saveProduct(widget.id, wlProvider);
+                     ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                               behavior: SnackBarBehavior.floating,
+                              content: Text("added to wishlist")));
+                  },
+                  icon: Icon(
+                    Icons.favorite_border,
+                    size: 14.sp,
+                    color: Colors.red,
+                  )):
+                  IconButton(
+                  onPressed: () {
+                    sqlService.deleteProduct(widget.id, wlProvider);
+                     ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                               behavior: SnackBarBehavior.floating,
+                              content: Text("removed from  wishlist")));
+                  },
+                  icon: Icon(
+                    Icons.favorite,
+                    size: 14.sp,
+                    color: Colors.red,
+                  ))
                   ],
                 )
               ]),

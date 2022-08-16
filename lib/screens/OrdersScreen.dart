@@ -17,19 +17,21 @@ class OrdersScreen extends StatelessWidget {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          OrderAppBar(
-            myfc: () {
-             indexProvider.setCurrentIndex(2);
-            },
-            title: "My Orders",),
-          SizedBox(
-            height: 2.h,
-          ),
-          OrderToggle(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            OrderAppBar(
+              myfc: () {
+               indexProvider.setCurrentIndex(2);
+              },
+              title: "My Orders",),
+            SizedBox(
+              height: 2.h,
+            ),
+            OrderToggle(),
+          ],
+        ),
       ),
     );
   }

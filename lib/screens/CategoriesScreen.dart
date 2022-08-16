@@ -10,7 +10,7 @@ import 'package:sizer/sizer.dart';
 
 import '../models/Category.dart';
 import '../providers/IndexProvider.dart';
-import '../services/CategoriesService.dart';
+import '../services/Services.dart';
 import 'HomeScreen.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -25,26 +25,15 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
-    getCategories(categoriesProvider);
-  }
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
-  //   getCategories(categoriesProvider);
-  //   // TODO: implement initState
-    
-  // }
+  
+  
   
   @override
   Widget build(BuildContext context) {
+    
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
-    // CategoriesProvider  categoriesProvider = Provider.of<CategoriesProvider>(context);
+    
+    
     // if(this.mounted){
     //   getCategories(categoriesProvider);
     // }
@@ -56,7 +45,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         child: FloatingActionButton(
           heroTag: Text("btn2"),
           backgroundColor: Colors.green,
-          onPressed: () {},
+          onPressed: () {
+            openWhatsap();
+          },
           child: Icon(
             Icons.whatsapp,
             size: 25.sp,
@@ -105,16 +96,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
                               (CategoryDetailsScreen(
-                            categories: [
-                              Category(
-                                id: 1,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),Category(
-                                id: 2,
-                                  image: "assets/images/bouket3.jfif",
-                                  name: "Hand Bouket"),
-                            ],
-                            title: widget.categories[index].name,
+                              catId: widget.categories[index].id,
+                            name: widget.categories[index].name.toString(),
                           )),
                         ),
                       );

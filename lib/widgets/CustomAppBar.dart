@@ -1,6 +1,10 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../providers/CartProvider.dart';
+import '../providers/WishListProvider.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     Key? key,
@@ -8,6 +12,9 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    WishListProvider wlProvider =
+        Provider.of<WishListProvider>(context);
     return Container(
       height: 18.h,
             width: 100.w,
@@ -27,15 +34,22 @@ class CustomAppBar extends StatelessWidget {
           Padding(
               padding:  EdgeInsets.only(top:1.h, left: 5.w),
               child: Row(children: [
+                
                 Badge(
                   position: BadgePosition.topEnd(top: 3, end: -13),
                   toAnimate: false,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
-                  badgeContent: Text(
-                    "12",
-                    style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                  badgeContent: Container(
+                    height: 7.sp,
+                    width: 7.sp,
+                    child: FittedBox(
+                      child: Text(
+                        cartProvider.count.toString(),
+                        style: TextStyle(color: Colors.white,fontSize: 10.sp ),
+                      ),
+                    ),
                   ),
                   child: Container(
                     height: 8.w,
@@ -54,7 +68,7 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 5.w, right: 10.w),
+                  margin: EdgeInsets.only(left: 5.w, right: 9.w),
                   child: CircleAvatar(
                     backgroundColor: Color(0xff73BFBD),
                     radius: 2.9.w,
@@ -66,7 +80,7 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    padding: EdgeInsets.only(bottom: 4.h),
+                    padding: EdgeInsets.only(bottom: 4.h,top: 2.h),
                     height: 20.h,
                     width: 35.w,
                     child: Image.asset("assets/images/Logo.png")),
@@ -77,9 +91,15 @@ class CustomAppBar extends StatelessWidget {
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
-                  badgeContent: Text(
-                    "12",
-                    style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                  badgeContent: Container(
+                     height: 5.sp,
+                    width: 5.sp,
+                    child: FittedBox(
+                      child: Text(
+                        wlProvider.count.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                      ),
+                    ),
                   ),
                   
                       child: Container(

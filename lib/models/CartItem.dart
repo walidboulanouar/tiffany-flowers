@@ -4,9 +4,9 @@ import 'Product.dart';
 
 class CartItem {
 
-   int productId;
-   String name;
-    int color;
+  int productId;
+  String name;
+  int color;
   int count;
   String image;
   int price;

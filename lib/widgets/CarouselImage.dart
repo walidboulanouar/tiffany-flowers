@@ -144,14 +144,21 @@ class _CarouselImageState extends State<CarouselImage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    child: Text(
-                      widget.banners.isNotEmpty?
-                      widget.banners[currentIndexPage].text:"",
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.white,
-                          // fontStyle: FontStyle.italic,
-                          fontFamily: "Lucida Calligraphy"),
+                    child: FittedBox(
+                      child: Container(
+                        height: 30.sp,
+                        width: 100.sp,
+                        child: Text(
+                          widget.banners.isNotEmpty?
+                          widget.banners[currentIndexPage].text:"",
+                          style: TextStyle(
+                           
+                              // fontSize: 12.sp,
+                              color: Colors.white,
+                              // fontStyle: FontStyle.italic,
+                              fontFamily: "Lucida Calligraphy"),
+                        ),
+                      ),
                     ),
                   ),
                   Align(
@@ -166,10 +173,15 @@ class _CarouselImageState extends State<CarouselImage> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Center(
-                            child: Text(
-                          "View More",
-                          style: TextStyle(fontSize: 5.sp, color: Colors.white),
-                        )),
+                            child: FittedBox(
+                              child: Container(
+                                height: 10.sp,
+                                child: Text(
+                                                        "View More",
+                                                        style: TextStyle(fontSize: 5.sp, color: Colors.white),
+                                                      ),
+                              ),
+                            )),
                       ),
                     ),
                   )

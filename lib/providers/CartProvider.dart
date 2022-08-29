@@ -36,9 +36,9 @@ class CartProvider with ChangeNotifier {
   }
 
   int Total() {
-    int total = 0;
+    int total = subTotal();
     _items.forEach((item) {
-      total += (item.price + item.sizePrice + item.price ~/ 5) * item.count;
+      total += subTotal()~/5;
     });
     return total;
   }

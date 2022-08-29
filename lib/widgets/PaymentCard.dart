@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class PaymentCard extends StatelessWidget {
-  PaymentCard({Key? key}) : super(key: key);
+  String image;
+  String name;
+  String size;
+  int quantity;
+  int price;
+  PaymentCard({
+    Key? key,
+    required this.image,
+    required this.name,
+    required this.size,
+    required this.quantity,
+    required this.price,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +29,8 @@ class PaymentCard extends StatelessWidget {
             child: Container(
               height: 10.h,
               width: 15.w,
-              child: Image.asset(
-                "assets/images/bouket.jpg",
+              child: Image.network(
+                image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -34,9 +46,9 @@ class PaymentCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 8.sp,top: 4.sp),
+                  padding: EdgeInsets.only(left: 8.sp, top: 4.sp),
                   child: Text(
-                    "Vase Arrangement 0016",
+                    name,
                     style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
@@ -52,19 +64,29 @@ class PaymentCard extends StatelessWidget {
                 Row(children: [
                   Padding(
                     padding: EdgeInsets.only(left: 8.sp),
-                    child: Text("Small",
+                    child: Text(size,
                         style: TextStyle(
                             fontSize: 8.sp,
                             color: Color.fromARGB(86, 80, 80, 80))),
                   ),
                   SizedBox(
-                    width: 30.w,
+                    width: 10.w,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.sp),
+                    child: Text("${quantity} items",
+                        style: TextStyle(
+                            fontSize: 8.sp,
+                            color: Color.fromARGB(86, 80, 80, 80))),
+                  ),
+                  SizedBox(
+                    width: 10.w,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 8.sp),
                     child: RichText(
                       text: TextSpan(
-                          text: '20',
+                          text: price.toString(),
                           style: TextStyle(
                               fontFamily: "Lucida Calligraphy",
                               fontSize: 12.sp,

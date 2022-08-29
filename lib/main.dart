@@ -10,6 +10,7 @@ import 'models/Category.dart';
 import 'providers/BannerProvider.dart';
 import 'providers/CategoriesProvider.dart';
 import 'providers/ProductProvider.dart';
+import 'providers/UserProvider.dart';
 import 'screens/CategoryDetailsScreen.dart';
 
 void main() {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => BannerProvider()),
         ChangeNotifierProvider(create: (context) => WishListProvider()),
         ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
         
         
       ],

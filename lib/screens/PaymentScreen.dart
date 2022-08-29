@@ -1,8 +1,12 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
+import '../providers/CartProvider.dart';
+import '../providers/UserProvider.dart';
+import '../services/SqlService.dart';
 import '../widgets/CartCard.dart';
 import '../widgets/OrderAppBar.dart';
 import '../widgets/PaymentCard.dart';
@@ -16,13 +20,29 @@ class PaymentScreen extends StatefulWidget {
   State<PaymentScreen> createState() => _PaymentScreenState();
 }
 
-enum PaymentMethod { CashOnDelivery, CreditCard }
+enum PaymentMethod { CreditCard }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  PaymentMethod? _character = null;
+   void initState() {
+    // TODO: implement initState
+    super.initState();
+    var sqlService = SqlService();
+    CartProvider cartProvider =
+        Provider.of<CartProvider>(context, listen: false);
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
+
+    sqlService.getItems(cartProvider);
+    sqlService.getUser(userProvider);
+  }
+  PaymentMethod? _character = PaymentMethod.CreditCard;
 
   @override
   Widget build(BuildContext context) {
+     var sqlService = SqlService();
+    
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -50,24 +70,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           fontSize: 10.sp,
                         )),
                   ),
+                
                   RadioListTile<PaymentMethod>(
-                    toggleable: true,
-                    activeColor: Color(0xff73BFBD),
-                    title: Text('Cash On Delivery',
-                        style: TextStyle(
-                          color: Color(0xff73BFBD),
-                          fontSize: 9.sp,
-                        )),
-                    value: PaymentMethod.CashOnDelivery,
-                    groupValue: _character,
-                    onChanged: (PaymentMethod? value) {
-                      setState(() {
-                        _character = value;
-                      });
-                    },
-                  ),
-                  RadioListTile<PaymentMethod>(
-                     toggleable: true,
+                  
                     activeColor: Color(0xff73BFBD),
                     secondary: Container(
                       width: 26.w,
@@ -95,7 +100,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     groupValue: _character,
                     onChanged: (PaymentMethod? value) {
                       setState(() {
-                        _character = value;
+                        _character = value??PaymentMethod.CreditCard;
                       });
                     },
                   ),
@@ -113,14 +118,27 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     physics: ScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.all(0),
-                    itemCount: 3,
+                    itemCount: cartProvider.count,
                     itemBuilder: (_, index) {
-                      return PaymentCard();
+                      return PaymentCard(
+                        image: cartProvider.items[index].image,
+                        name: cartProvider.items[index].name,
+                        price: cartProvider.items[index].price,
+                        quantity: cartProvider.items[index].count,
+                        size: cartProvider.items[index].size,
+                        
+                      );
                     }),
                   ),
                   Padding(
                      padding:  EdgeInsets.symmetric(horizontal: 5.sp, vertical:5.sp),
-                    child: PaymentTotalCard(),
+                    child: PaymentTotalCard(
+                      shipping_cost: 50,
+                      subTotal: cartProvider.subTotal(),
+                      total: cartProvider.Total()+50,
+                    
+
+                    ),
                   ),
               Container(
                 margin:

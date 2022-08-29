@@ -13,7 +13,9 @@ import 'package:badges/badges.dart';
 import '../models/Category.dart';
 import '../providers/CartProvider.dart';
 import '../providers/IndexProvider.dart';
+import '../providers/UserProvider.dart';
 import '../providers/WishListProvider.dart';
+import '../services/SqlService.dart';
 import '../widgets/AccountAppBar.dart';
 import '../widgets/CategoryAppBar.dart';
 import '../widgets/DetailsAppBar.dart';
@@ -23,6 +25,9 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     var sqlService = SqlService();
+      UserProvider userProvider =
+        Provider.of<UserProvider>(context);
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     WishListProvider wlProvider =
         Provider.of<WishListProvider>(context);
@@ -280,6 +285,30 @@ class AccountScreen extends StatelessWidget {
                     contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                     textColor: Color(0xffD8AA6B),
                     onTap: () => null,
+                    hoverColor: Color(0xff73BFBD),
+                    dense: true,
+                    selectedTileColor: Color(0xff73BFBD),
+                  ),
+                   ListTile(
+                    leading: ImageIcon(
+                      AssetImage("assets/images/Group 40340.png"),
+                      color: Color(0xff73BFBD),
+                    ),
+                    title: Text('Sign out',
+                        style: TextStyle(fontSize: 11.sp)),
+                    minLeadingWidth: 5,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
+                    textColor: Color(0xffD8AA6B),
+                    onTap: () {
+                      
+                      sqlService.deleteUser( userProvider);
+
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const Checkout()),
+                      // );
+                    },
                     hoverColor: Color(0xff73BFBD),
                     dense: true,
                     selectedTileColor: Color(0xff73BFBD),

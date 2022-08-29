@@ -88,6 +88,48 @@ getProductByIds(List<int> productsId, WishListProvider wlProvider) async {
 
   wlProvider.wishListProducts = products;
 }
+register(String phone,String email,String firsName,String lastName) async {
+ 
+  
+    Response response = await dio.post('/register',data:{
+     "phone_number": phone,
+     "first_name":firsName,
+        "last_name":lastName,
+        "email":email
+   
+},options:
+Options (
+ validateStatus: (_) => true,
+ contentType: Headers.jsonContentType,
+ responseType:ResponseType.json,
+));
+print(response);
+
+   
+   
+}
+Future<Response> verifyPhone(String phone,int otp,) async {
+ 
+  
+  
+ Response response = await dio.post('/verify-phone-number',data:{
+    "phone_number": phone
+     ,
+     "otp":otp
+
+   
+},
+options:
+Options (
+ validateStatus: (_) => true,
+ contentType: Headers.jsonContentType,
+ responseType:ResponseType.json,
+));
+return response;
+
+   
+   
+}
 
 openWhatsap() async {
   var whatsapp = "+212650398901";

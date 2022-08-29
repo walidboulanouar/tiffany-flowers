@@ -2,7 +2,9 @@ import 'package:ecomerceapp/models/CartItem.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../models/User.dart';
 import '../providers/CartProvider.dart';
+import '../providers/UserProvider.dart';
 import '../providers/WishListProvider.dart';
 
 class SqlService {
@@ -23,6 +25,8 @@ class SqlService {
 
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
+    await db.execute(
+        "CREATE TABLE IF NOT EXISTS User(id INTEGER PRIMARY KEY,phone TEXT,email TEXT,firstName TEXT,lastName TEXT)");
     await db
         .execute("CREATE TABLE IF NOT EXISTS Product(id INTEGER PRIMARY KEY )");
     await db.execute(
@@ -33,14 +37,25 @@ class SqlService {
   void saveProduct(int id, WishListProvider wishListProvider) async {
     var dbClient = await db;
     await dbClient!.transaction((txn) async {
-     
       List ids = await txn.rawQuery('SELECT * FROM Product WHERE id=${id}');
 
       if (ids.isEmpty) {
         await txn.rawInsert('INSERT INTO Product(id) VALUES(${id})');
         wishListProvider.addToWishList(id);
       }
-      
+    });
+  }
+
+  void saveUser(User user, UserProvider userProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      List ids = await txn.rawQuery('SELECT * FROM User WHERE id=${user.id}');
+
+      if (ids.isEmpty) {
+        await txn.rawInsert(
+            "INSERT INTO User(id,phone,email,firstName,lastName) VALUES(${user.id},'${user.phone}','${user.email}','${user.firstName}','${user.lastName}')");
+        userProvider.user = user;
+      }
     });
   }
 
@@ -52,6 +67,15 @@ class SqlService {
     });
   }
 
+  void deleteUser(UserProvider userProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      userProvider.deleteUser();
+      await txn.rawDelete('DELETE FROM User');
+    });
+    print("done");
+  }
+
   getProducts(WishListProvider wishListProvider) async {
     var dbClient = await db;
     List<Map> list = await dbClient!.rawQuery('SELECT * FROM Product');
@@ -60,20 +84,32 @@ class SqlService {
       products.add(list[i]["id"]);
     }
     wishListProvider.wishList = products;
-   
+  }
+
+  getUser(
+    UserProvider userProvider,
+  ) async {
+    var dbClient = await db;
+    List<Map> list = await dbClient!.rawQuery('SELECT * FROM User');
+
+    list.isNotEmpty
+        ? userProvider.user = User(
+            id: list[0]['id'],
+            phone: list[0]['phone'],
+            email: list[0]['email'],
+            firstName: list[0]['firstName'],
+            lastName: list[0]['lastName'])
+        : null;
   }
 
   void addToCart(CartItem item, CartProvider cartProvider) async {
-  
     var dbClient = await db;
-   
+
     await dbClient!.transaction((txn) async {
       List ids = await txn
           .rawQuery('SELECT * FROM Carts WHERE productId=${item.productId}');
 
       if (ids.isEmpty) {
-       
-
         await txn.rawInsert(
             "INSERT INTO Carts(productId,name,sizePrice,color,count,image,price,size) VALUES(${item.productId},'${item.name}','${item.sizePrice}',${item.color},${item.count},'${item.image}',${item.price},'${item.size}')");
         cartProvider.addToCart(item);
@@ -81,11 +117,9 @@ class SqlService {
     });
   }
 
-
   void editCount(int itemId, int count, CartProvider cartProvider) async {
     var dbClient = await db;
     await dbClient!.transaction((txn) async {
-     
       await txn.rawUpdate(
           'UPDATE Carts SET count = ${count} WHERE productId =${itemId}');
     });
@@ -116,6 +150,5 @@ class SqlService {
           sizePrice: list[i]["sizePrice"]));
     }
     cartProvider.items = its;
-   
   }
 }

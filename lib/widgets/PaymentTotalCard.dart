@@ -4,7 +4,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sizer/sizer.dart';
 
 class PaymentTotalCard extends StatelessWidget {
-  const PaymentTotalCard({Key? key}) : super(key: key);
+  int shipping_cost;
+  int subTotal;
+  int total;
+   PaymentTotalCard({Key? key,required this.shipping_cost,required this.subTotal,required this.total}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +34,11 @@ class PaymentTotalCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 40.w,
+                  width: 50.w,
                 ),
                 Text(
-                  "240.AED",
+                  subTotal.toString()
+                  ,
                   style: TextStyle(color: Colors.white),
                 )
               ],
@@ -47,15 +51,36 @@ class PaymentTotalCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
-                    "Shipping",
+                    "Shipping cost",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
                 SizedBox(
-                  width: 40.w,
+                  width: 41.w,
                 ),
                 Text(
-                  "20.AED",
+                  shipping_cost. toString(),
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
+            ),
+             SizedBox(
+              height: 2.h,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10.sp),
+                  child: Text(
+                    "Tax",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                SizedBox(
+                  width: 58.w,
+                ),
+                Text(
+                  "5%",
                   style: TextStyle(color: Colors.white),
                 )
               ],
@@ -96,7 +121,7 @@ class PaymentTotalCard extends StatelessWidget {
                     padding: EdgeInsets.only(left: 8.sp),
                     child: RichText(
                       text: TextSpan(
-                          text: '260.',
+                          text: '${total}.',
                           style: TextStyle(
                               fontFamily: "Lucida Calligraphy",
                               fontSize: 14.sp,

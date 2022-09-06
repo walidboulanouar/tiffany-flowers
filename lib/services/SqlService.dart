@@ -102,6 +102,20 @@ class SqlService {
         : null;
   }
 
+  //  getUserFromStorage(User? user) async {
+  //   var dbClient = await db;
+  //   List<Map> list = await dbClient!.rawQuery('SELECT * FROM User');
+
+  //   if (list.isNotEmpty) {
+  //     user= User(
+  //         id: list[0]['id'],
+  //         phone: list[0]['phone'],
+  //         email: list[0]['email'],
+  //         firstName: list[0]['firstName'],
+  //         lastName: list[0]['lastName']);
+  //   }
+  // }
+
   void addToCart(CartItem item, CartProvider cartProvider) async {
     var dbClient = await db;
 
@@ -131,6 +145,14 @@ class SqlService {
     await dbClient!.transaction((txn) async {
       cartProvider.removeFromCart(id);
       await txn.rawDelete('DELETE FROM Carts WHERE productId = ?', [id]);
+    });
+  }
+
+  void deleteCartItems(CartProvider cartProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      cartProvider.deleteItems();
+      await txn.rawDelete('DELETE FROM Carts');
     });
   }
 

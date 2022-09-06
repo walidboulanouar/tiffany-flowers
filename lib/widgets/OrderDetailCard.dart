@@ -3,7 +3,16 @@ import 'package:sizer/sizer.dart';
 
 class OrderDetailCard extends StatelessWidget {
   String image;
-  OrderDetailCard({Key? key, required this.image}) : super(key: key);
+  String name;
+  int quantity;
+  double price;
+  OrderDetailCard({
+    Key? key,
+    required this.image,
+    required this.name,
+    required this.price,
+    required this.quantity,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +27,7 @@ class OrderDetailCard extends StatelessWidget {
             child: Container(
               height: 13.h,
               width: 10.h,
-              child: Image.asset(
+              child: Image.network(
                 image,
                 fit: BoxFit.fill,
               ),
@@ -37,7 +46,7 @@ class OrderDetailCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 8.sp, top: 8.sp),
                   child: Text(
-                    "Vase Arrangement 0016",
+                    name,
                     style: TextStyle(fontSize: 9.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
@@ -59,12 +68,12 @@ class OrderDetailCard extends StatelessWidget {
                                 color: Color(0xff505050)),
                             children: <TextSpan>[
                               TextSpan(
-                                text: "2 ",
+                                text: quantity.toString(),
                                 style: TextStyle(
                                     fontSize: 9.sp, color: Color(0xff505050)),
                               ),
                               TextSpan(
-                                text: "Items",
+                                text: " Items",
                                 style: TextStyle(
                                     fontSize: 8.sp, color: Color(0xff505050)),
                               ),
@@ -77,9 +86,8 @@ class OrderDetailCard extends StatelessWidget {
                         style: ButtonStyle(
                             minimumSize:
                                 MaterialStateProperty.all(Size(10.w, 15.sp)),
-                            shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7.0),
                             )),
                             fixedSize:
@@ -88,7 +96,7 @@ class OrderDetailCard extends StatelessWidget {
                                 MaterialStateProperty.all(Color(0xff73BFBD))),
                         onPressed: () {},
                         child: FittedBox(
-                          child: Text("70 AED",
+                          child: Text("${price*quantity} AED",
                               style: TextStyle(
                                 // fontSize: 16.sp,
                                 color: Colors.white,
@@ -107,21 +115,24 @@ class OrderDetailCard extends StatelessWidget {
                   // color: Colors.blue,
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: 8.sp,
-                      ),
-                      Text("Item Price: 35 AED",
+                      // SizedBox(
+                      //   width: 8.sp,
+                      // ),
+                      Text("Item Price: ${price} AED",
                           style: TextStyle(
                             fontSize: 7.sp,
                             color: Color(0xffD8AA6B),
                           )),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.favorite,
-                            size: 14.sp,
-                            color: Colors.red,
-                          ))
+                      Container(
+                        width: 9.w,
+                      )
+                      // IconButton(
+                      //     onPressed: () {},
+                      //     icon: Icon(
+                      //       Icons.favorite,
+                      //       size: 14.sp,
+                      //       color: Colors.red,
+                      //     ))
                     ],
                   ),
                 )

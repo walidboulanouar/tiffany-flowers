@@ -21,7 +21,7 @@ class DetailsAppBar extends StatelessWidget {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
-      height: 15.h,
+      height: 10.h,
       width: 100.w,
       decoration: BoxDecoration(color: Colors.white),
       child: Stack(

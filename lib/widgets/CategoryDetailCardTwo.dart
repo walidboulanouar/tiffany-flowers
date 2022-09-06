@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import '../models/CartItem.dart';
 import '../providers/CartProvider.dart';
 import '../providers/WishListProvider.dart';
+import '../screens/DetailsScreen.dart';
 import '../services/SqlService.dart';
 
 class CategoryDetailCardTwo extends StatefulWidget {
@@ -63,7 +64,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                 Padding(
                   padding: EdgeInsets.only(left: 8.sp),
                   child: Text(
-                    widget.name,
+                    widget.name.toLowerCase(),
                     style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
@@ -106,21 +107,30 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xff73BFBD))),
                       onPressed: () {
-                        sqlService.addToCart(
-                        CartItem(
-                            productId: widget.id,
-                            name: widget.name,
-                            color: 0xffD8AA6B,
-                            count: 1,
-                            image: widget.image.toString(),
-                            price: widget.price,
-                            size: "small",
-                            sizePrice: 20),
-                        cartProvider);
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(
-                           behavior: SnackBarBehavior.floating,
-                          content: Text("Added to Cart")));
+                        Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      (DetailsScreen(
+                                   productId: widget.id,
+                                  )),
+                                ),
+                              );
+                    //     sqlService.addToCart(
+                    //     CartItem(
+                    //         productId: widget.id,
+                    //         name: widget.name,
+                    //         color: 0xffD8AA6B,
+                    //         count: 1,
+                    //         image: widget.image.toString(),
+                    //         price: widget.price,
+                    //         size: "small",
+                    //         sizePrice: 20),
+                    //     cartProvider);
+                    // ScaffoldMessenger.of(context)
+                    //     .showSnackBar(SnackBar(
+                    //        behavior: SnackBarBehavior.floating,
+                    //       content: Text("Added to Cart")));
                       },
                       icon: Text("Add To Cart",
                           style: TextStyle(

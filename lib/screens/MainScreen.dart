@@ -65,15 +65,15 @@ class _MainScreenState extends State<MainScreen> {
     CategoriesProvider categoriesProvider =
         Provider.of<CategoriesProvider>(context);
     List<Product> newProducts = productProvider.products.length > 10
-        ? productProvider.products.sublist(0, 1)
+        ? productProvider.products.sublist(0, 10)
         : productProvider.products;
     List<Product> sortedProducts = [...productProvider.products];
     sortedProducts.sort((a, b) => b.view.compareTo(a.view));
 List<Product> mostViewProducts=sortedProducts.length > 10
-        ? sortedProducts.sublist(0, 1)
+        ? sortedProducts.sublist(0, 10)
         : sortedProducts;
-    List<Category> categories = categoriesProvider.categories.length > 1
-        ? categoriesProvider.categories.sublist(0, 1)
+    List<Category> categories = categoriesProvider.categories.length > 10
+        ? categoriesProvider.categories.sublist(0, 10)
         : categoriesProvider.categories;
     return Column(
       mainAxisSize: MainAxisSize.min,

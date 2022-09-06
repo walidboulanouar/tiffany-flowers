@@ -116,10 +116,9 @@ class CustomAppBar extends StatelessWidget {
                         width:5.w,height:5.w,
                         child: IconButton(
                           icon:
-                              Icon(Icons.favorite,size: 5.w,color: Color(0xff73BFBD)),
+                              Icon(Icons.favorite,size: 5.5.w,color: Color(0xff73BFBD)),
                           onPressed: () {
-                           
-                     mainScreen.currentState!.push(
+                           mainScreen.currentState!.push(
                       
                         MaterialPageRoute( 
                           builder: (BuildContext context) =>
@@ -129,6 +128,7 @@ class CustomAppBar extends StatelessWidget {
                           )),
                         ),
                       );
+                    
                      
                           },
                           color: Colors.white,

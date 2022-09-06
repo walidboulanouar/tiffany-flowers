@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ecomerceapp/providers/CartProvider.dart';
 import 'package:ecomerceapp/screens/Checkout.dart';
+import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:ecomerceapp/widgets/CartAppBar.dart';
 import 'package:ecomerceapp/widgets/CartCard.dart';
 import 'package:ecomerceapp/widgets/WebViewExample.dart';
@@ -44,6 +45,7 @@ class _CartScreenState extends State<CartScreen> {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    
     return Scaffold(
       floatingActionButton: Container(
         height: 6.h,
@@ -74,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Flexible(
             // height: 70.h,
-            child: ListView(padding: EdgeInsets.all(0), children: [
+            child: cartProvider.count > 0?ListView(padding: EdgeInsets.all(0), children: [
               ListView.builder(
                   physics: ScrollPhysics(),
                   shrinkWrap: true,
@@ -153,7 +155,7 @@ class _CartScreenState extends State<CartScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => LoginScreen()),
+                                          builder: (context) => LoginScreen(cartScreen)),
                                     );
                                   },
                                 ).show()
@@ -182,7 +184,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     )
                   : Container(),
-            ]),
+            ]):Center(child: Text("Your Cart Is Empty Start Adding to The Cart"),),
           ),
         ],
       ),

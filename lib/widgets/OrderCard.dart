@@ -1,30 +1,60 @@
+import 'package:ecomerceapp/models/OrderItem.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class OrderCard extends StatelessWidget {
+import '../models/Order.dart';
+import '../providers/OrderProvider.dart';
+import '../services/Services.dart';
+
+class OrderCard extends StatefulWidget {
   Color orderColor;
   bool reorder;
-  OrderCard({required this.orderColor, required this.reorder, Key? key})
+  Order order;
+
+  OrderCard(
+      {required this.orderColor,
+      required this.reorder,
+      required this.order,
+      Key? key})
       : super(key: key);
 
   @override
+  State<OrderCard> createState() => _OrderCardState();
+}
+
+class _OrderCardState extends State<OrderCard> {
+ 
+
+  @override
   Widget build(BuildContext context) {
+    DateTime tempDate = DateTime.parse(widget.order.startDate);
+    // OrderProvider orderProvider = Provider.of<OrderProvider>(context);
+// print(orderItems[0].size);
+// print(orderImg);
     return Card(
       margin: EdgeInsets.all(10.sp),
-      color: orderColor,
+      color: widget.orderColor,
       child: Row(
         children: [
           Card(
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Container(
-              height: 12.h,
-              width: 12.h,
-              child: Image.asset(
-                "assets/images/bouket.jpg",
-                fit: BoxFit.fill,
-              ),
-            ),
+            child: widget.order.orderImg != null
+                ? Container(
+                    height: 12.h,
+                    width: 12.h,
+                    child: Image.network(
+                      widget.order.orderImg,
+                      fit: BoxFit.fill,
+                    ),
+                  )
+                : Container(
+                    height: 12.h,
+                    width: 12.h,
+                    color: Color.fromARGB(255, 127, 127, 127),
+                  ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
@@ -34,16 +64,20 @@ class OrderCard extends StatelessWidget {
           ),
           Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             Container(
+                // padding: EdgeInsets.only(left: 8.sp),
                 width: 25.w,
                 child: FittedBox(
-                    child: Text("DFTHG-GHJL",
-                        style:
-                            TextStyle(fontSize: 10.sp, color: Colors.white)))),
+                    child: Text(widget.order.orderId,
+                        style: TextStyle(
+                            fontSize: 10.sp,
+                            color: Colors.white,
+                            fontFamily: '',
+                            fontWeight: FontWeight.bold)))),
             SizedBox(height: 2.h),
             Container(
                 width: 25.w,
                 child: FittedBox(
-                    child: Text("Quantity:6 Items",
+                    child: Text("Quantity: ${widget.order.itemCount} Items",
                         style: TextStyle(
                             fontSize: 9.sp,
                             color: Color.fromARGB(133, 255, 255, 255))))),
@@ -51,7 +85,7 @@ class OrderCard extends StatelessWidget {
             Container(
               width: 25.w,
               child: FittedBox(
-                  child: Text("Value:250 AED",
+                  child: Text("Value: ${widget.order.subTotal} AED",
                       style: TextStyle(
                           fontSize: 9.sp,
                           color: Color.fromARGB(133, 255, 255, 255)))),
@@ -61,7 +95,7 @@ class OrderCard extends StatelessWidget {
             width: 20.w,
           ),
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            reorder
+            widget.reorder
                 ? SizedBox.fromSize(
                     size: Size(8.h, 8.h), // button width and height
                     child: ClipOval(
@@ -75,26 +109,25 @@ class OrderCard extends StatelessWidget {
                             children: <Widget>[
                               // Icon(Icons.keyboard_double_arrow_down,color: Colors.white,),// icon
                               ImageIcon(
-                                size:15.sp,
+                                size: 15.sp,
                                 AssetImage("assets/images/reorder.png"),
                                 color: Colors.white,
                               ),
                               Container(
                                 // width: 6.h,
-                                margin: EdgeInsets.only(top:2.sp),
-                                padding: EdgeInsets.symmetric(horizontal: 3.sp, vertical:2.sp),
+                                margin: EdgeInsets.only(top: 2.sp),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3.sp, vertical: 2.sp),
                                 decoration: BoxDecoration(
-                                   color: Color(0xffD8AA6B),
+                                  color: Color(0xffD8AA6B),
                                   borderRadius: BorderRadius.circular(18),
-                                 
                                 ),
-                               
+
                                 child: FittedBox(
                                     child: Text("Re-Order",
                                         style: TextStyle(
                                             fontSize: 7.sp,
-                                            color: Colors.white
-                                                ))),
+                                            color: Colors.white))),
                               ), // text
                             ],
                           ),
@@ -109,9 +142,10 @@ class OrderCard extends StatelessWidget {
             SizedBox(height: 5.h),
             Container(
                 margin: EdgeInsets.only(bottom: 5.sp),
-                child: Text("05:19 PM",
+                child: Text(DateFormat.Hm().format(tempDate),
+                    // tempDate.hour.toString()+":"+tempDate.minute.toString(),
                     style: TextStyle(
-                        fontSize: 7.sp,
+                        fontSize: 10.sp,
                         color: Color.fromARGB(133, 255, 255, 255)))),
           ]),
         ],

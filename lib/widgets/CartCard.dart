@@ -44,8 +44,9 @@ class CartCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 8.sp),
                   child: Text(
-                    item.name,
-                    style: TextStyle(fontSize: 12.sp, color: Color(0xff73BFBD)),
+                    textAlign:TextAlign.center,
+                    item.name.toLowerCase(),
+                    style: TextStyle(fontSize: 7.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
                 SizedBox(height: 2.h),

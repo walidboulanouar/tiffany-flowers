@@ -137,28 +137,26 @@ class _CarouselImageState extends State<CarouselImage> {
           ),
           Positioned(
             height: 10.h,
-            width: 35.w,
+            width:70.w,
             top: 8.h,
             left: 14.w,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    child: FittedBox(
-                      child: Container(
-                        height: 30.sp,
-                        width: 100.sp,
-                        child: Text(
-                          widget.banners.isNotEmpty?
-                          widget.banners[currentIndexPage].text:"",
-                          style: TextStyle(
-                           
-                              // fontSize: 12.sp,
-                              color: Colors.white,
-                              // fontStyle: FontStyle.italic,
-                              fontFamily: "Lucida Calligraphy"),
-                        ),
-                      ),
+                    // color: Colors.red,
+                    height: 30.sp,
+                    width: 100.w,
+                    child: Text(
+                      // textAlign:TextAlign.left,
+                      widget.banners.isNotEmpty?
+                      widget.banners[currentIndexPage].text:"",
+                      style: TextStyle(
+                       
+                          // fontSize: 12.sp,
+                          color: Colors.white,
+                          // fontStyle: FontStyle.italic,
+                          fontFamily: "Lucida Calligraphy"),
                     ),
                   ),
                   Align(

@@ -124,11 +124,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
       List<Feature> colors1 = productProvider.selectedProduct!.features!
           .where((feature) => feature.name == "colors")
           .toList();
-      colors =
+      if(colors1.isNotEmpty){
+        colors =
           colors1[0].values.map((val) => Color(int.parse(val.value))).toList();
+      }
       List<Feature> size1 = productProvider.selectedProduct!.features!
           .where((feature) => feature.name == "size")
           .toList();
+          print(size1);
       size = size1[0].values;
       
     
@@ -188,6 +191,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.sp),
                         child: Text(
+                          textAlign:TextAlign.center,
                           productProvider.selectedProduct != null
                               ? productProvider.selectedProduct!.name
                               : "",
@@ -283,6 +287,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 height: 5.h,
                                 width: 60.w,
                                 child: MyColorPicker(
+                                  
                                     onSelectColor: (value) {
                                       setState(() {
                                         _color = value;
@@ -553,7 +558,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               .toString(),
                                           price: productProvider
                                               .selectedProduct!.price,
-                                          size: size[selectedValue].value,
+                                          size: size.isNotEmpty?size[selectedValue].value:"",
                                           sizePrice: sizePrice),
                                       cartProvider);
                                   ScaffoldMessenger.of(context).showSnackBar(

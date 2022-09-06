@@ -1,5 +1,11 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ecomerceapp/providers/LoadingProvider.dart';
+import 'package:ecomerceapp/services/Services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
@@ -48,7 +54,7 @@ class _CheckoutState extends State<Checkout> {
     {"city": "Al Ain", "price": 150},
     {"city": " Umm Al Quwain", "price": 30},
   ];
-  int selectedValue2=0;
+  int selectedValue2 = 0;
 
   List<DropdownMenuItem<int>> _addDividersAfterItems2(
       List<Map<String, dynamic>> items) {
@@ -106,16 +112,16 @@ class _CheckoutState extends State<Checkout> {
     return _dividersIndexes;
   }
 
-  String selectedValue= "Happy Birthday";
+  String selectedValue = "Happy Birthday";
   final _formKey = GlobalKey<FormState>();
-  
-   String? _receiver_adress;
-   String? _addt_addr_info;
-   String? _receiver_phone;
-   String? _selected_msg;
-   String? _phrase;
 
-    String? validateMobile(String? value) {
+  String? _receiver_adress;
+  String? _addt_addr_info;
+  String? _receiver_phone;
+
+  String? _phrase;
+
+  String? validateMobile(String? value) {
     String patttern =
         r'(^\+((?:9[679]|8[035789]|6[789]|5[90]|42|3[578]|2[1-689])|9[0-58]|8[1246]|6[0-6]|5[1-8]|4[013-9]|3[0-469]|2[70]|7|1)(?:\W*\d){0,13}\d$)';
     RegExp regExp = new RegExp(patttern);
@@ -126,15 +132,14 @@ class _CheckoutState extends State<Checkout> {
     }
     return null;
   }
-   
+
   String? validateText(String? value) {
-    
     if (value!.trim().length == 0) {
       return 'Please enter a valid input';
-    
     }
     return null;
   }
+
   List<DropdownMenuItem<String>> _addDividersAfterItems(List<String> items) {
     List<DropdownMenuItem<String>> _menuItems = [];
     for (var item in items) {
@@ -181,6 +186,7 @@ class _CheckoutState extends State<Checkout> {
     var sqlService = SqlService();
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    LoadingProvider loadingProvider = Provider.of<LoadingProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -193,7 +199,7 @@ class _CheckoutState extends State<Checkout> {
           ),
           Flexible(
             child: SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 30),
+              padding: EdgeInsets.only(bottom: 30, top: 10),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -220,11 +226,9 @@ class _CheckoutState extends State<Checkout> {
                         style: TextStyle(color: Color(0xff73BFBD)),
                         enabled: false,
                         initialValue: userProvider.user!.phone.toString(),
-                       
                         keyboardType: TextInputType.phone,
                         onSaved: (String? val) {},
                         decoration: InputDecoration(
-                           
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(width: 0.0001),
@@ -426,12 +430,9 @@ class _CheckoutState extends State<Checkout> {
                         width: 100.w,
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2(
-                            
                             iconSize: 25.sp,
                             iconEnabledColor: Color(0xff73BFBD),
-
                             dropdownElevation: 0,
-
                             isExpanded: true,
                             hint: Text(
                               '  Select Your Massage',
@@ -445,7 +446,6 @@ class _CheckoutState extends State<Checkout> {
                             customItemsHeight: 4,
                             value: selectedValue,
                             onChanged: (value) {
-                             
                               setState(() {
                                 selectedValue = value as String;
                               });
@@ -504,18 +504,113 @@ class _CheckoutState extends State<Checkout> {
                       margin: EdgeInsets.symmetric(
                           horizontal: 30.sp, vertical: 8.sp),
                       child: TextButton(
-                        onPressed: () {
-                          //   if (_formKey.currentState!.validate()) {
-                          //    _formKey.currentState!.save();
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            // const spinkit = SpinKitRotatingCircle(
+                            //   color: Colors.white,
+                            //   size: 50.0,
+                            // );
+                            // loadingProvider.loading
+                            //     ? 
+showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      // transitionDuration: Duration(milliseconds: 2000),
+      // transitionBuilder: (context, animation, secondaryAnimation, child) {
+      //   return FadeTransition(
+      //     opacity: animation,
+      //     child: ScaleTransition(
+      //       scale: animation,
+      //       child: child,
+      //     ),
+      //   );
+      // },
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return SafeArea(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(20),
+            color: Colors.transparent,
+            child: Center(
+              child:SpinKitWave(
+                                          // duration: const Duration(seconds: 10),
+                                          color: Color(0xff73BFBD),
+                                          size: 50.0,
+                                        ),
+            ),
+          ),
+        );
+      },
+    );
                             
-                          // }
+                                // showDialog(
+                                //     barrierDismissible: false,
+                                //     context: context,
+                                //     builder: (_) => AlertDialog(
+                                //       // backgroundColor: Colors.transparent,
+                                //       // title: Text('Dialog Title'),
+                                //       content: Container(
+                                //         height: double.infinity,
+                                //         width: double.infinity,
+                                //         child: SpinKitRotatingCircle(
+                                //           // duration: const Duration(seconds: 10),
+                                //           color: Colors.red,
+                                //           size: 50.0,
+                                //         ),
+                                //       ),
+                                //     ));
+                                // : null;
+                            // bool isloading=true;
+                            Response response = await addOrder(
+                              userProvider.user!,
+                              cartProvider.subTotal(),
+                              cartProvider.itemCount(),
+                              cities[selectedValue2]['price'],
+                              _receiver_adress!,
+                              userProvider.user!.phone,
+                              _receiver_phone!,
+                              _addt_addr_info!,
+                              selectedValue,
+                              _phrase!,
+                              cartProvider.items,
+                              cities[selectedValue2]['city'],
+                              loadingProvider,
+                            );
 
+                            if (response.statusCode == 200) {
+                              final jsonData = jsonDecode(response.data);
+                              Navigator.of(context, rootNavigator: true)
+                                      .canPop()
+                                  ? Navigator.of(context, rootNavigator: true)
+                                      .pop()
+                                  : null;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PaymentScreen(
+                                          shpping: cities[selectedValue2]
+                                              ['price'],
+                                          url: jsonData['result']
+                                              ['redirectUrl'],
+                                        )),
+                              );
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PaymentScreen()),
-                          );
+                              // snackBar("you are connected");
+
+                              //  cartScreen.currentState!.popUntil((route) => route.isFirst);
+
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  content: Text("somthing wrong"),
+                                  duration: const Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          }
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 8.sp),

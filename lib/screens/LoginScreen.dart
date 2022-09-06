@@ -7,6 +7,8 @@ import 'package:sizer/sizer.dart';
 import '../services/Services.dart';
 
 class LoginScreen extends StatefulWidget {
+   GlobalKey<NavigatorState> screen;
+   LoginScreen(this.screen);
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -212,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => VerificationScreen(phoneNumber: _phone,)),
+                                      builder: (context) => VerificationScreen(phoneNumber: _phone, screen: widget.screen,)),
                                 );
                           }
                           // Navigator.push(

@@ -14,7 +14,7 @@ class OrderAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 15.h,
+      height: 13.h,
       width: 100.w,
       decoration: BoxDecoration(color: Colors.white),
       child: Stack(

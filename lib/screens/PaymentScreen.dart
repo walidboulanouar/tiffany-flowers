@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ecomerceapp/widgets/WebViewExample.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,9 @@ import '../widgets/PaymentTotalCard.dart';
 import '../widgets/TotalCard.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  String url;
+  int shpping;
+   PaymentScreen({Key? key, required this.url,required this.shpping}) : super(key: key);
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -81,13 +84,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         children: [
                           Container(
                               height: 2.5.h,
-                              child: Image.asset("assets/images/visacard.png")),
+                              child: Image.asset("assets/images/visa.png")),
                           SizedBox(
                             width: 3.w,
                           ),
                           Container(
                               height: 2.5.h,
-                              child: Image.asset("assets/images/visacard.png")),
+                              child: Image.asset("assets/images/mastercard@2x.png")),
                         ],
                       ),
                     ),
@@ -133,9 +136,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   Padding(
                      padding:  EdgeInsets.symmetric(horizontal: 5.sp, vertical:5.sp),
                     child: PaymentTotalCard(
-                      shipping_cost: 50,
+                      shipping_cost: widget.shpping,
                       subTotal: cartProvider.subTotal(),
-                      total: cartProvider.Total()+50,
+                      total: cartProvider.Total()+widget.shpping,
                     
 
                     ),
@@ -145,11 +148,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     EdgeInsets.symmetric(horizontal: 20.sp, vertical: 14.sp),
                 child: TextButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) =>  Checkout()),
-                    //     );
+                     sqlService.deleteCartItems(cartProvider);
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  WebViewExample(url: widget.url,)),
+                        );
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.sp),

@@ -55,7 +55,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     
-    
+    print(productProvider.categoryproducts);
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: Container(

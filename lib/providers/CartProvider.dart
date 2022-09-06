@@ -13,8 +13,18 @@ class CartProvider with ChangeNotifier {
     _items = list;
     notifyListeners();
   }
+  deleteItems(){
+    _items.clear();
+  }
 
   int get count => _items.length;
+  int  itemCount(){
+    int count = 0;
+    _items.forEach((item) {
+      count += item.count;
+    });
+    return count;
+  }
 
   addToCart(CartItem item) {
    
@@ -38,7 +48,8 @@ class CartProvider with ChangeNotifier {
   int Total() {
     int total = subTotal();
     _items.forEach((item) {
-      total += subTotal()~/5;
+      total += (subTotal()*0.05).toInt() ;
+      
     });
     return total;
   }

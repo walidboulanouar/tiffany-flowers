@@ -14,10 +14,10 @@ import '../services/Services.dart';
 import 'HomeScreen.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  final List<Category> categories;
+  // final List<Category> categories;
   final GlobalKey<NavigatorState> categoriesScreen;
   CategoriesScreen(
-      {Key? key, required this.categories, required this.categoriesScreen})
+      {Key? key,required this.categoriesScreen})
       : super(key: key);
 
   @override
@@ -30,6 +30,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   
   @override
   Widget build(BuildContext context) {
+     CategoriesProvider categoriesProvider =
+        Provider.of<CategoriesProvider>(context);
     
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     
@@ -87,7 +89,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     // childAspectRatio: 3 / 2,
                     crossAxisSpacing: 1.sp,
                     mainAxisSpacing: 8.sp),
-                itemCount: widget.categories.length,
+                itemCount: categoriesProvider.categories.length,
                 itemBuilder: (BuildContext ctx, index) {
                   return InkWell(
                     onTap: () {    
@@ -96,8 +98,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
                               (CategoryDetailsScreen(
-                              catId: widget.categories[index].id,
-                            name: widget.categories[index].name.toString(),
+                              catId: categoriesProvider.categories[index].id,
+                            name: categoriesProvider.categories[index].name.toString(),
                           )),
                         ),
                       );
@@ -107,8 +109,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       // changeWidget(CategoryDetailsScreen(categories: []), 1);
                     },
                     child: ImageCard(
-                        image: widget.categories[index].image,
-                        title: widget.categories[index].name),
+                        image: categoriesProvider.categories[index].image,
+                        title: categoriesProvider.categories[index].name),
                   );
                 }),
           ),

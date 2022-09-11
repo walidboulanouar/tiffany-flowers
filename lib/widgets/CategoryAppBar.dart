@@ -58,19 +58,19 @@ class CategoryAppBar extends StatelessWidget {
             backgroundColor: Color.fromARGB(0, 250, 249, 249),
             actions: [
               Badge(
-                  position: BadgePosition.topEnd(top: 9, end: -17),
+                  position: BadgePosition.topEnd(top: 7, end: -9),
                   toAnimate: false,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
                   badgeContent: Text(
-                    "12",
+                    "0",
                     style: TextStyle(color: Colors.white, fontSize: 4.sp),
                   ),
                   
                       child: Container(
                         margin: EdgeInsets.only(bottom:20),
-                        width:5.w,height:5.w,
+                        width:7.w,height:7.w,
                         child: IconButton(
                           icon:
                               Icon(Icons.notifications,size: 15.sp,color: Color(0xff73BFBD)),
@@ -84,7 +84,7 @@ class CategoryAppBar extends StatelessWidget {
                 SizedBox(width: 8.w,),
                 
                 Badge(
-                  position: BadgePosition.topEnd(top: 7, end: -16),
+                  position: BadgePosition.topEnd(top: 5, end: -11),
                   toAnimate: false,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
@@ -101,7 +101,7 @@ class CategoryAppBar extends StatelessWidget {
                   ),
                    child: Container(
                     margin: EdgeInsets.only(bottom:20),
-                        width:5.w,height:5.w,
+                        width:7.w,height:7.w,
                         child: IconButton(
                           icon:
                               Icon(Icons.shopping_cart_outlined,size: 15.sp,color: Color(0xff73BFBD)),

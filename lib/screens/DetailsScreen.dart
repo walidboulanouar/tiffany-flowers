@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ecomerceapp/models/FeatureValue.dart';
 import 'package:ecomerceapp/screens/CategoryDetailsScreen.dart';
@@ -6,6 +7,7 @@ import 'package:ecomerceapp/widgets/DetailsAppBar.dart';
 import 'package:ecomerceapp/widgets/ImageCard.dart';
 import 'package:ecomerceapp/widgets/NoLoppingSlider.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
@@ -16,12 +18,15 @@ import '../models/Feature.dart';
 import '../providers/CartProvider.dart';
 import '../providers/IndexProvider.dart';
 import '../providers/ProductProvider.dart';
+import '../providers/WishListProvider.dart';
 import '../services/Services.dart';
 import '../services/SqlService.dart';
 import '../widgets/CountButton.dart';
 import '../widgets/MyColorPicker.dart';
 import '../widgets/ProductScrollWidget.dart';
 import '../widgets/ScrollWidget.dart';
+import 'HomeScreen.dart';
+import 'LoginScreen.dart';
 
 class DetailsScreen extends StatefulWidget {
   int productId;
@@ -113,33 +118,32 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     var sqlService = SqlService();
 
-    
+    WishListProvider wlProvider = Provider.of<WishListProvider>(context);
+
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-    
+
     List<Color> colors = [];
     List<FeatureValue> size = [];
     if (productProvider.selectedProduct != null) {
       List<Feature> colors1 = productProvider.selectedProduct!.features!
           .where((feature) => feature.name == "colors")
           .toList();
-      if(colors1.isNotEmpty){
-        colors =
-          colors1[0].values.map((val) => Color(int.parse(val.value))).toList();
+      if (colors1.isNotEmpty) {
+        colors = colors1[0]
+            .values
+            .map((val) => Color(int.parse(val.value)))
+            .toList();
       }
       List<Feature> size1 = productProvider.selectedProduct!.features!
           .where((feature) => feature.name == "size")
           .toList();
-          print(size1);
+      print(size1);
       size = size1[0].values;
-      
-    
     }
 
     int sizePrice = size.isNotEmpty ? size[selectedValue].price : 0;
-
-    
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -191,9 +195,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.sp),
                         child: Text(
-                          textAlign:TextAlign.center,
+                          textAlign: TextAlign.center,
                           productProvider.selectedProduct != null
-                              ? productProvider.selectedProduct!.name
+                              ? productProvider.selectedProduct!.name.toLowerCase()
                               : "",
                           style: TextStyle(
                               fontSize: 12.sp, color: Color(0xffD8AA6B)),
@@ -287,7 +291,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 height: 5.h,
                                 width: 60.w,
                                 child: MyColorPicker(
-                                  
                                     onSelectColor: (value) {
                                       setState(() {
                                         _color = value;
@@ -371,7 +374,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 child: Text(
                                     productProvider.selectedProduct != null
                                         ? productProvider
-                                            .selectedProduct!.description
+                                            .selectedProduct!.description.toLowerCase()
                                         : "",
                                     style: TextStyle(
                                         height: 2,
@@ -463,14 +466,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 text: TextSpan(
                                     text: productProvider.selectedProduct !=
                                             null
-                                        ? ((productProvider.selectedProduct!
-                                                        .price +
-                                                    sizePrice +
-                                                    productProvider
-                                                            .selectedProduct!
-                                                            .price /
-                                                        5) *
-                                                indexProvider.productCount)
+                                        ? (((productProvider.selectedProduct!
+                                                            .price +
+                                                        sizePrice) *
+                                                    _productCount) +
+                                                ((productProvider
+                                                                .selectedProduct!
+                                                                .price +
+                                                            sizePrice) *
+                                                        _productCount) *
+                                                    0.05)
                                             .toString()
                                         : "",
                                     style: TextStyle(
@@ -517,7 +522,39 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         Size(35.w, 10.sp)),
                                     backgroundColor: MaterialStateProperty.all(
                                         Color(0xff73BFBD))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  sqlService.saveProduct(
+                                      productProvider.selectedProduct!.id,
+                                      wlProvider);
+                                  showGeneralDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    pageBuilder: (context, animation,
+                                        secondaryAnimation) {
+                                      return SafeArea(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height,
+                                            padding: EdgeInsets.all(20),
+                                            color: Colors.transparent,
+                                            child: Center(
+                                              child: Lottie.asset(
+                                                  "assets/images/wishlist.json"),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                                 child: Text("Add To Wishlist",
                                     style: TextStyle(
                                       fontSize: 8.sp,
@@ -558,14 +595,43 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               .toString(),
                                           price: productProvider
                                               .selectedProduct!.price,
-                                          size: size.isNotEmpty?size[selectedValue].value:"",
+                                          size: size.isNotEmpty
+                                              ? size[selectedValue].value
+                                              : "standart",
                                           sizePrice: sizePrice),
                                       cartProvider);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-
-                                      SnackBar(
-                                         behavior: SnackBarBehavior.floating,
-                                        content: Text("Added to Cart")));
+                                  AwesomeDialog(
+                                    btnCancelText: 'Continue Shopping',
+                                    btnOkText: "Check Out",
+                                    btnOkColor: Color(0xffD8AA6B),
+                                    btnCancelColor: Color(0xff73BFBD),
+                                    context: context,
+                                    dialogType: DialogType.SUCCES,
+                                    animType: AnimType.RIGHSLIDE,
+                                    title: 'Your Order Has Been Added',
+                                    titleTextStyle: TextStyle(
+                                      color: Color(0xffD8AA6B),
+                                      fontSize: 11.sp,
+                                    ),
+                                    desc: 'Successfully Added To Cart',
+                                    descTextStyle: TextStyle(
+                                      color: Color(0xff73BFBD),
+                                      fontSize: 8.5.sp,
+                                    ),
+                                    btnCancelOnPress: () {},
+                                    buttonsTextStyle: TextStyle(
+                                      fontSize: 7.2.sp,
+                                    ),
+                                    btnOkOnPress: () {
+                                      cartScreen.currentState!
+                                          .popUntil((route) => route.isFirst);
+                                      indexProvider.setCurrentIndex(4);
+                                    },
+                                  ).show();
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //     SnackBar(
+                                  //         behavior: SnackBarBehavior.floating,
+                                  //         content: Text("Added to Cart")));
                                 },
                                 icon: Text("Add To Cart",
                                     style: TextStyle(
@@ -596,18 +662,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ? ProductScrollWidget(
                               children: productProvider
                                   .selectedProduct!.product_related!
-                              // productProvider.selectedProduct != null &&
-                              //         productProvider
-                              //                 .selectedProduct!.product_related !=
-                              //             null
-                              //     ? productProvider
-                              //         .selectedProduct!.product_related!
-                              //         .map((rp) => Category(
-                              //             image: rp.images[0],
-                              //             name: rp.name,
-                              //             id: rp.id))
-                              //         .toList()
-                              //     : []
+                              
                               )
                           : Container(),
                     ),

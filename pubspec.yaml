@@ -64,6 +64,8 @@ dependencies:
   restart_app: ^1.1.0+1
   video_player: ^2.4.7
   cached_network_image: ^3.2.1
+  lottie: ^1.4.2
+  flutter_svg: ^1.1.4
  
   # flutter_multi_carousel: ^1.0.3
   
@@ -76,7 +78,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/homelogo.png"
+  image_path: "assets/images/favicon-white-background.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   
 

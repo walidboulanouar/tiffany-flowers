@@ -59,7 +59,7 @@ void Function() myfc;
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
                   badgeContent: Text(
-                    "12",
+                    "0",
                     style: TextStyle(color: Colors.white, fontSize: 4.3.sp),
                   ),
                   

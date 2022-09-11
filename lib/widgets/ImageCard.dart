@@ -12,7 +12,7 @@ class ImageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
+        Flexible(
           child: Card(
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -31,7 +31,7 @@ class ImageCard extends StatelessWidget {
                   ),
                 ),
         errorWidget: (context, url, error) => Container(
-          height: 9.h,
+          height: 24.h,
           width: 20.h,
           child: Icon(Icons.error)),
      )
@@ -65,12 +65,24 @@ class ImageCard extends StatelessWidget {
         title != null
             ? Container(
                 // color: Colors.red,
+                width: 30.w,
+                 constraints:  BoxConstraints(minHeight: 0, maxHeight:2.h),
+                  
+                  // child: Text(
+                  //    overflow: TextOverflow.ellipsis,
+                  //   widget.name.toLowerCase(),
+                  //     style: TextStyle(
+                  //       fontSize: 10.sp,
+                  //       color: Color(0xff73BFBD),
+                  //     )),
+                
 
                 margin: EdgeInsets.only(top: 0.3.h),
                 child: Center(
                   child: Text(title!.toLowerCase(),
+                  overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 8.sp,
+                        fontSize: 9.sp,
                         color: Color(0xffD8AA6B),
                       )),
                 ),

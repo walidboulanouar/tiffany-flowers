@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecomerceapp/providers/CartProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,10 +26,25 @@ class CartCard extends StatelessWidget {
             child: Container(
               height: 17.h,
               width: 12.h,
-              child: Image.network(
-                item.image,
-                fit: BoxFit.fill,
-              ),
+              child:CachedNetworkImage(
+        imageUrl: item.image,
+        progressIndicatorBuilder: (context, url, downloadProgress) => 
+                Container(
+
+                  height: 9.h,
+                  width: 9.h,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      
+                      color: Color(0xff73BFBD),
+                      value: downloadProgress.progress),
+                  ),
+                ),
+        errorWidget: (context, url, error) => Container(
+          height: 24.h,
+          width: 20.h,
+          child: Icon(Icons.error)),
+     ),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),

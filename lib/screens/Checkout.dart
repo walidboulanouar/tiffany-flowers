@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ecomerceapp/providers/LoadingProvider.dart';
+import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:ecomerceapp/services/Services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -112,7 +113,7 @@ class _CheckoutState extends State<Checkout> {
     return _dividersIndexes;
   }
 
-  String selectedValue = "Happy Birthday";
+  String? selectedValue;
   final _formKey = GlobalKey<FormState>();
 
   String? _receiver_adress;
@@ -223,6 +224,7 @@ class _CheckoutState extends State<Checkout> {
                       height: 5.h,
                       color: Color.fromARGB(255, 249, 249, 249),
                       child: TextFormField(
+                        
                         style: TextStyle(color: Color(0xff73BFBD)),
                         enabled: false,
                         initialValue: userProvider.user!.phone.toString(),
@@ -312,6 +314,7 @@ class _CheckoutState extends State<Checkout> {
                       height: 5.h,
                       color: Color.fromARGB(255, 249, 249, 249),
                       child: TextFormField(
+                        style: TextStyle(color: Color(0xff73BFBD)),
                         validator: validateText,
                         keyboardType: TextInputType.streetAddress,
                         onSaved: (String? val) {
@@ -350,6 +353,7 @@ class _CheckoutState extends State<Checkout> {
                       height: 5.h,
                       color: Color.fromARGB(255, 249, 249, 249),
                       child: TextFormField(
+                        style: TextStyle(color: Color(0xff73BFBD)),
                         validator: validateText,
                         keyboardType: TextInputType.streetAddress,
                         onSaved: (String? val) {
@@ -388,6 +392,7 @@ class _CheckoutState extends State<Checkout> {
                       height: 5.h,
                       color: Color.fromARGB(255, 249, 249, 249),
                       child: TextFormField(
+                        style: TextStyle(color: Color(0xff73BFBD)),
                         validator: validateMobile,
                         keyboardType: TextInputType.phone,
                         onSaved: (String? val) {
@@ -396,7 +401,7 @@ class _CheckoutState extends State<Checkout> {
                           });
                         },
                         decoration: InputDecoration(
-                            hintText: '+212 xx xxx x xx',
+                            hintText: '+971 xxx xxx xxx',
                             hintStyle: TextStyle(color: Color(0xff73BFBD)),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -477,6 +482,7 @@ class _CheckoutState extends State<Checkout> {
                       height: 8.h,
                       color: Color.fromARGB(255, 249, 249, 249),
                       child: TextFormField(
+                        style: TextStyle(color: Color(0xff73BFBD)),
                         maxLines: 5,
                         validator: validateText,
                         keyboardType: TextInputType.text,
@@ -507,62 +513,31 @@ class _CheckoutState extends State<Checkout> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            // const spinkit = SpinKitRotatingCircle(
-                            //   color: Colors.white,
-                            //   size: 50.0,
-                            // );
-                            // loadingProvider.loading
-                            //     ? 
-showGeneralDialog(
-      context: context,
-      barrierDismissible: false,
-      // transitionDuration: Duration(milliseconds: 2000),
-      // transitionBuilder: (context, animation, secondaryAnimation, child) {
-      //   return FadeTransition(
-      //     opacity: animation,
-      //     child: ScaleTransition(
-      //       scale: animation,
-      //       child: child,
-      //     ),
-      //   );
-      // },
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return SafeArea(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.all(20),
-            color: Colors.transparent,
-            child: Center(
-              child:SpinKitWave(
-                                          // duration: const Duration(seconds: 10),
-                                          color: Color(0xff73BFBD),
-                                          size: 50.0,
-                                        ),
-            ),
-          ),
-        );
-      },
-    );
                             
-                                // showDialog(
-                                //     barrierDismissible: false,
-                                //     context: context,
-                                //     builder: (_) => AlertDialog(
-                                //       // backgroundColor: Colors.transparent,
-                                //       // title: Text('Dialog Title'),
-                                //       content: Container(
-                                //         height: double.infinity,
-                                //         width: double.infinity,
-                                //         child: SpinKitRotatingCircle(
-                                //           // duration: const Duration(seconds: 10),
-                                //           color: Colors.red,
-                                //           size: 50.0,
-                                //         ),
-                                //       ),
-                                //     ));
-                                // : null;
-                            // bool isloading=true;
+                            showGeneralDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return SafeArea(
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+                                    padding: EdgeInsets.all(20),
+                                    color: Colors.transparent,
+                                    child: Center(
+                                      child: SpinKitWave(
+                                        // duration: const Duration(seconds: 10),
+                                        color: Color(0xff73BFBD),
+                                        size: 50.0,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+
+                            
                             Response response = await addOrder(
                               userProvider.user!,
                               cartProvider.subTotal(),
@@ -572,7 +547,7 @@ showGeneralDialog(
                               userProvider.user!.phone,
                               _receiver_phone!,
                               _addt_addr_info!,
-                              selectedValue,
+                              selectedValue??'NONE',
                               _phrase!,
                               cartProvider.items,
                               cities[selectedValue2]['city'],
@@ -590,6 +565,8 @@ showGeneralDialog(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => PaymentScreen(
+                                      subTotal: cartProvider.subTotal(),
+                                      screen: cartScreen,
                                           shpping: cities[selectedValue2]
                                               ['price'],
                                           url: jsonData['result']
@@ -602,6 +579,12 @@ showGeneralDialog(
                               //  cartScreen.currentState!.popUntil((route) => route.isFirst);
 
                             } else {
+                              print(response);
+                              Navigator.of(context, rootNavigator: true)
+                                      .canPop()
+                                  ? Navigator.of(context, rootNavigator: true)
+                                      .pop()
+                                  : null;
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   behavior: SnackBarBehavior.floating,
@@ -652,7 +635,7 @@ showGeneralDialog(
 //                   SizedBox(
 //                     height: 1.h,
 //                   ),
-                  
+
 //                   Padding(
 //                     padding:  EdgeInsets.only(left:25.sp),
 //                     child: Text("Receiver Address",
@@ -668,22 +651,22 @@ showGeneralDialog(
 //                     height: 5.h,
 //                     child: TextFormField(
 //                       decoration:  InputDecoration(
-                        
+
 //                           enabledBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                             borderSide: BorderSide(width: 0.05),
-                            
+
 //                           ),
 //                           focusedBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                            borderSide: BorderSide(width: 0.05),
-                            
+
 //                           )),
 //                     ),
 //                   ),
 //                   Padding(
 //                     padding:  EdgeInsets.only(left:25.sp),
-//                     child: Text("Additional Address Info", 
+//                     child: Text("Additional Address Info",
 //                     style: TextStyle(
 //                       color: Color(0xffD8AA6B),
 //                       fontSize: 10.sp,
@@ -695,16 +678,16 @@ showGeneralDialog(
 //                      height: 5.h,
 //                     child: TextFormField(
 //                       decoration:  InputDecoration(
-                        
+
 //                           enabledBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                             borderSide: BorderSide(width: 0.05),
-                            
+
 //                           ),
 //                           focusedBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                            borderSide: BorderSide(width: 0.05),
-                            
+
 //                           )),
 //                     ),
 //                   ),
@@ -721,16 +704,16 @@ showGeneralDialog(
 //                     height: 5.h,
 //                     child: TextFormField(
 //                       decoration:  InputDecoration(
-                        
+
 //                           enabledBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                             borderSide: BorderSide(width: 0.05),
-                            
+
 //                           ),
 //                           focusedBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                            borderSide: BorderSide(width: 0.05),
-                            
+
 //                           )),
 //                     ),
 //                   ),
@@ -747,16 +730,16 @@ showGeneralDialog(
 //                      height: 5.h,
 //                     child: TextFormField(
 //                       decoration:  InputDecoration(
-                        
+
 //                           enabledBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                             borderSide: BorderSide(width: 0.05),
-                            
+
 //                           ),
 //                           focusedBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                            borderSide: BorderSide(width: 0.05),
-                            
+
 //                           )),
 //                     ),
 //                   ),
@@ -818,16 +801,16 @@ showGeneralDialog(
 //                     child: TextFormField(
 //                       maxLines: 5,
 //                       decoration:  InputDecoration(
-                        
+
 //                           enabledBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                             borderSide: BorderSide(width: 0.05),
-                            
+
 //                           ),
 //                           focusedBorder: OutlineInputBorder(
 //                             borderRadius: BorderRadius.circular(10),
 //                            borderSide: BorderSide(width: 0.05),
-                            
+
 //                           )),
 //                     ),
 //                   ),

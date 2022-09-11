@@ -93,51 +93,67 @@ class CustomAppBar extends StatelessWidget {
                     height: 20.h,
                     width: 35.w,
                     child: Image.asset("assets/images/Logo.png")),
-                    SizedBox(width: 10.w,),
-                Badge(
-                  position: BadgePosition.topEnd(top: 5, end: -22),
-                  toAnimate: false,
-                  shape: BadgeShape.circle,
-                  badgeColor: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  badgeContent: Container(
-                     height: 5.sp,
-                    width: 5.sp,
-                    child: FittedBox(
-                      child: Text(
-                        wlProvider.count.toString(),
-                        style: TextStyle(color: Colors.white, fontSize: 10.sp),
-                      ),
-                    ),
-                  ),
-                  
-                      child: Container(
-                        margin: EdgeInsets.only(bottom:20),
-                        width:5.w,height:5.w,
-                        child: IconButton(
-                          icon:
-                              Icon(Icons.favorite,size: 5.5.w,color: Color(0xff73BFBD)),
-                          onPressed: () {
+                    SizedBox(width: 7.w,),
+                InkWell(
+                  onTap: (){
                            mainScreen.currentState!.push(
                       
-                        MaterialPageRoute( 
-                          builder: (BuildContext context) =>
-                              (WishListScreen(
-                            
-                           
-                          )),
-                        ),
+                          MaterialPageRoute( 
+                            builder: (BuildContext context) =>
+                                (WishListScreen(
+                              
+                             
+                            )),
+                          ),
                       );
-                    
-                     
-                          },
-                          color: Colors.white,
+                  },
+                  child: Badge(
+                    position: BadgePosition.topEnd(top: -2, end: -15),
+                    toAnimate: false,
+                    shape: BadgeShape.circle,
+                    badgeColor: Colors.red,
+                    borderRadius: BorderRadius.circular(8),
+                    badgeContent: Container(
+                       height: 5.sp,
+                      width: 5.sp,
+                      child: FittedBox(
+                        child: Text(
+                          wlProvider.count.toString(),
+                          style: TextStyle(color: Colors.white, fontSize: 10.sp),
                         ),
                       ),
-                   
-                  
+                    ),
+                    
+                        child: Container(
+                          margin: EdgeInsets.only(bottom:8),
+                          width:5.w,height:5.w,
+                          child: Icon(
+                            
+                                Icons.favorite,size: 5.5.w,color: Color(0xff73BFBD),
+                            // onPressed: () {
+                              // print("tap");
+                        //        mainScreen.currentState!.push(
+                        
+                        //     MaterialPageRoute( 
+                        //       builder: (BuildContext context) =>
+                        //           (WishListScreen(
+                              
+                             
+                        //       )),
+                        //     ),
+                        // );
+                                          
+                                           
+                            // }
+                            // ,
+                            // color: Colors.white,
+                          ),
+                        ),
+                     
+                    
+                  ),
                 ),
-                SizedBox(width:5.w),
+                SizedBox(width:7.w),
                 Badge(
                   position: BadgePosition.topEnd(top: 5, end: -18),
                   toAnimate: false,
@@ -145,7 +161,7 @@ class CustomAppBar extends StatelessWidget {
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
                   badgeContent: Text(
-                    "12",
+                    "0",
                     style: TextStyle(color: Colors.white, fontSize: 4.sp),
                   ),
                    child: Container(
@@ -153,7 +169,7 @@ class CustomAppBar extends StatelessWidget {
                         width:5.w,height:5.w,
                         child: IconButton(
                           icon:
-                              Icon(Icons.notifications,size: 5.w,color: Color(0xff73BFBD)),
+                              Icon(Icons.notifications,size: 5.5.w,color: Color(0xff73BFBD)),
                           onPressed: () {},
                           color: Colors.white,
                         ),

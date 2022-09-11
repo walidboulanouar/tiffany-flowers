@@ -18,11 +18,14 @@ class Order {
   String addtAddr;
   String selectedMsg;
   String phrase;
+   String city;
+
   String orderImg;
   Order({
 
     required this.id,
     required this.orderId,
+     required this.city,
     required this.userId,
     required this.orderImg,
     required this.status,
@@ -44,6 +47,7 @@ class Order {
         orderId = json['order_id']??"test",
         orderImg=json['order_img'],
         userId = json['user_id'],
+         city= json['city'],
         subTotal = double.parse(json['sub_total']),
         status = json['status'],
         startDate = json['start_date'],

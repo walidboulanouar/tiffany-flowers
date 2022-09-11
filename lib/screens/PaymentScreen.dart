@@ -1,5 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:ecomerceapp/widgets/WebViewExample.dart';
+import 'package:ecomerceapp/widgets/WebViewWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +17,9 @@ import '../widgets/TotalCard.dart';
 class PaymentScreen extends StatefulWidget {
   String url;
   int shpping;
-   PaymentScreen({Key? key, required this.url,required this.shpping}) : super(key: key);
+  int subTotal;
+  GlobalKey<NavigatorState> screen;
+   PaymentScreen({Key? key, required this.subTotal,required this.url,required this.shpping,required this.screen}) : super(key: key);
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -137,8 +139,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                      padding:  EdgeInsets.symmetric(horizontal: 5.sp, vertical:5.sp),
                     child: PaymentTotalCard(
                       shipping_cost: widget.shpping,
-                      subTotal: cartProvider.subTotal(),
-                      total: cartProvider.Total()+widget.shpping,
+                      subTotal: widget.subTotal,
+                      total: (widget.subTotal+widget.shpping+widget.subTotal*0.05).toInt(),
                     
 
                     ),
@@ -152,7 +154,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  WebViewExample(url: widget.url,)),
+                              builder: (context) =>  WebViewExample(url: widget.url,screen: widget.screen,)),
                         );
                   },
                   child: Padding(

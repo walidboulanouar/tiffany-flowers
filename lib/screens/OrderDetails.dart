@@ -221,8 +221,8 @@ class _OrderDetailsState extends State<OrderDetails> {
               SizedBox(
                 height: 4.h,
               ),
-              ItemName(widget.order.addtAddr),
-              ItemContent("test"),
+              ItemName("Additional Address Info"),
+              ItemContent(widget.order.addtAddr),
               SizedBox(
                 height: 4.h,
               ),
@@ -267,9 +267,9 @@ class _OrderDetailsState extends State<OrderDetails> {
                   itemCount: orderItems.length,
                   itemBuilder: (_, index) {
                     return OrderDetailCard(
-                      image: orderItems[index].itemImg,
+                      image: orderItems[index].image,
                       price: orderItems[index].price,
-                      quantity: orderItems[index].quantity,
+                      quantity: orderItems[index].count,
                        name: orderItems[index].name,
                     );
                   }),

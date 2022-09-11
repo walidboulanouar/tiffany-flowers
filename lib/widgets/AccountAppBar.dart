@@ -47,7 +47,7 @@ class AccountAppBar extends StatelessWidget {
                 badgeColor: Colors.red,
                 borderRadius: BorderRadius.circular(8),
                 badgeContent: Text(
-                  "12",
+                  "0",
                   style: TextStyle(color: Colors.white, fontSize: 4.sp),
                 ),
                 child: Container(

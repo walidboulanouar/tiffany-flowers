@@ -128,18 +128,13 @@ class _OrderToggleState extends State<OrderToggle> {
                       itemBuilder: (_, index) {
                         return InkWell(
                             onTap: () {
+                              
                               Navigator.of(context, rootNavigator: true).push(
                                 MaterialPageRoute(
                                   builder: (_) => OrderDetails(order: widget.completed[index],),
                                 ),
                               );
-                              //  Navigator.p(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (BuildContext context) =>
-                              //         (OrderDetails()),
-                              //   ),
-                              // );
+                              
                             },
                             child:
                             // Text(widget.completed[index].orderId)

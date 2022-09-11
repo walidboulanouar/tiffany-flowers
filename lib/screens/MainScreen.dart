@@ -81,7 +81,7 @@ List<Product> mostViewProducts=sortedProducts.length > 10
         CustomAppBar(),
         Flexible(
           child: ListView(
-            padding: EdgeInsets.only(top: 0.sp,bottom: 25.sp,left:0.sp,right:0.sp),
+            padding: EdgeInsets.only(top: 0.sp,bottom: 40.sp,left:0.sp,right:0.sp),
              children: [
             CarouselImage(banners: bannerProvider.banners),
             TextTitle(
@@ -108,14 +108,14 @@ List<Product> mostViewProducts=sortedProducts.length > 10
               title: "New Items",
             ),
             Container(
-              height: 19.h,
+              height: 24.h,
               child: ProductScrollWidget(children: newProducts),
             ),
             TextTitle(
               title: "Mostview Products",
             ),
             Container(
-              height: 19.h,
+              height: 24.h,
               child: ProductScrollWidget(children: mostViewProducts),
             ),
           ]),

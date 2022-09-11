@@ -37,7 +37,7 @@ class ProductScrollWidget extends StatelessWidget {
                 indexProvider.setCurrentIndex(1);
               }:null,
               child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 8.sp),
+                  // margin: EdgeInsets.symmetric(horizontal: 8.sp),
                   child: ImageCard(
                     image: children[index].images[0],
                     title: children[index].name,

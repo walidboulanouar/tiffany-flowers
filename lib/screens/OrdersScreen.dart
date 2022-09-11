@@ -133,7 +133,7 @@ getOrders(userProvider.user!.id, orderProvider);
                       completed: completed, canceled: canceled, pending: pending)),
             ),
           )
-          :Container(),
+          :Center(child: Text("No Order Yet"),),
         ],
       ),
     );

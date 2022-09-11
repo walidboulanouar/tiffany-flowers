@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -29,10 +30,25 @@ class PaymentCard extends StatelessWidget {
             child: Container(
               height: 10.h,
               width: 15.w,
-              child: Image.network(
-                image,
-                fit: BoxFit.fill,
-              ),
+              child: CachedNetworkImage(
+        imageUrl: image,
+        progressIndicatorBuilder: (context, url, downloadProgress) => 
+                Container(
+
+                  height: 9.h,
+                  width: 9.h,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      
+                      color: Color(0xff73BFBD),
+                      value: downloadProgress.progress),
+                  ),
+                ),
+        errorWidget: (context, url, error) => Container(
+          height: 24.h,
+          width: 20.h,
+          child: Icon(Icons.error)),
+     )
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
@@ -45,10 +61,14 @@ class PaymentCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                
+                Container(
+                  width: 60.w,
+                  constraints:  BoxConstraints(minHeight: 0, maxHeight:4.h),
                   padding: EdgeInsets.only(left: 8.sp, top: 4.sp),
                   child: Text(
-                    name,
+                     overflow: TextOverflow.ellipsis,
+                    name.toLowerCase(),
                     style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),

@@ -73,7 +73,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         body: Column(
           children: [
             Container(
-              height: 15.h,
+              height: 13.h,
               width: 100.w,
               decoration: BoxDecoration(color: Colors.white),
               child: Stack(
@@ -163,9 +163,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 30),
                           child: PinCodeTextField(
+                            textStyle: TextStyle(color: Colors.white),
+                            errorTextSpace: 25,
                             appContext: context,
                             pastedTextStyle: TextStyle(
-                              color: Colors.green.shade600,
+                              color: Color(0xff73BFBD),
                               fontWeight: FontWeight.bold,
                             ),
                             length: 4,
@@ -177,18 +179,26 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             blinkWhenObscuring: true,
                             animationType: AnimationType.fade,
                             validator: (v) {
-                              if (v!.length < 3) {
+                              if (v!.length < 4) {
                                 return "Enter a four digit code";
                               } else {
                                 return null;
                               }
                             },
                             pinTheme: PinTheme(
+                              borderWidth: 0,
+                              selectedFillColor: Color(0xff73BFBD),
+                              disabledColor: Color(0xffD8AA6B),
+                              errorBorderColor: Color(0xffD8AA6B),
+                              selectedColor: Color(0xff73BFBD),
+                              activeFillColor: Color(0xff73BFBD),
+                              activeColor: Color(0xff73BFBD),
+                              inactiveFillColor: Color(0xffD8AA6B),
                               shape: PinCodeFieldShape.box,
                               borderRadius: BorderRadius.circular(5),
                               fieldHeight: 50,
                               fieldWidth: 40,
-                              activeFillColor: Colors.white,
+                              // activeFillColor: Colors.white,
                             ),
                             cursorColor: Colors.black,
                             animationDuration:
@@ -205,13 +215,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               )
                             ],
                             onCompleted: (v) {
-                              debugPrint("Completed");
+                              // debugPrint("Completed");
                             },
                             // onTap: () {
                             //   print("Pressed");
                             // },
                             onChanged: (value) {
-                              debugPrint(value);
+                              // debugPrint(value);
                               setState(() {
                                 currentText = value;
                               });
@@ -231,7 +241,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             ? "*Please fill up all the cells properly"
                             : "",
                         style: const TextStyle(
-                            color: Colors.red,
+                            // color: Color(0xff73BFBD),
                             fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
@@ -239,41 +249,20 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     const Text(
-                    //       "Didn't receive the code? ",
-                    //       style: TextStyle(color: Colors.black54, fontSize: 15),
-                    //     ),
-                    //     TextButton(
-                    //       onPressed: () => snackBar("OTP resend!!"),
-                    //       child: const Text(
-                    //         "RESEND",
-                    //         style: TextStyle(
-                    //             color: Color(0xFF91D3B3),
-                    //             fontWeight: FontWeight.bold,
-                    //             fontSize: 16),
-                    //       ),
-                    //     )
-                    //   ],
-                    // ),
-                    // const SizedBox(
-                    //   height: 8,
-                    // ),
+
                     Container(
                       margin:
                           EdgeInsets.symmetric(vertical: 1.h, horizontal: 10.w),
                       decoration: BoxDecoration(
-                          color: Colors.green.shade300,
+                          color: Color(0xff73BFBD),
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.green.shade200,
+                                color: Color.fromARGB(255, 193, 228, 227),
                                 offset: const Offset(1, -2),
                                 blurRadius: 5),
                             BoxShadow(
-                                color: Colors.green.shade200,
+                                color: Color.fromARGB(255, 193, 228, 227),
                                 offset: const Offset(-1, 2),
                                 blurRadius: 5)
                           ]),
@@ -281,83 +270,88 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         height: 50,
                         child: TextButton(
                           onPressed: () async {
-                            formKey.currentState!.validate();
-showGeneralDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              // transitionDuration: Duration(milliseconds: 2000),
-                              // transitionBuilder: (context, animation, secondaryAnimation, child) {
-                              //   return FadeTransition(
-                              //     opacity: animation,
-                              //     child: ScaleTransition(
-                              //       scale: animation,
-                              //       child: child,
-                              //     ),
-                              //   );
-                              // },
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) {
-                                return SafeArea(
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
-                                    padding: EdgeInsets.all(20),
-                                    color: Colors.transparent,
-                                    child: Center(
-                                      child: SpinKitWave(
-                                        // duration: const Duration(seconds: 10),
-                                        color: Color(0xff73BFBD),
-                                        size: 50.0,
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              showGeneralDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                // transitionDuration: Duration(milliseconds: 2000),
+                                // transitionBuilder: (context, animation, secondaryAnimation, child) {
+                                //   return FadeTransition(
+                                //     opacity: animation,
+                                //     child: ScaleTransition(
+                                //       scale: animation,
+                                //       child: child,
+                                //     ),
+                                //   );
+                                // },
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
+                                  return SafeArea(
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      padding: EdgeInsets.all(20),
+                                      color: Colors.transparent,
+                                      child: Center(
+                                        child: SpinKitWave(
+                                          // duration: const Duration(seconds: 10),
+                                          color: Color(0xff73BFBD),
+                                          size: 50.0,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            );
-                            Response response = await verifyPhone(
-                                widget.phoneNumber!, int.parse(currentText));
-                            
-                            if (response.statusCode == 200) {
-                              // print(response.data['data']);
-                              sqlService.saveUser(
-                                  User.fromJson(response.data['data']),
-                                  userProvider);
-                              Navigator.of(context, rootNavigator: true)
-                                      .canPop()
-                                  ? Navigator.of(context, rootNavigator: true)
-                                      .pop()
-                                  : null;
-                              snackBar("you are connected");
-                              if(widget.screen==orderScreen){
-                                Navigator.popUntil(context, (route) => route.isFirst);
-                              }else{
-                                widget.screen.currentState!
-                                  .popUntil((route) => route.isFirst);
-                              }
-                              
+                                  );
+                                },
+                              );
+                              Response response = await verifyPhone(
+                                  widget.phoneNumber!, int.parse(currentText));
+                              print(response.statusCode);
 
-                              indexProvider.setCurrentIndex(2);
-                            } else {
-                               Navigator.of(context, rootNavigator: true)
-                                      .canPop()
-                                  ? Navigator.of(context, rootNavigator: true)
-                                      .pop()
-                                  : null;
-                              snackBar("something wrong return and try again");
+                              if (response.statusCode == 200) {
+                                // print(response.data['data']);
+                                sqlService.saveUser(
+                                    User.fromJson(response.data['data']),
+                                    userProvider);
+                                Navigator.of(context, rootNavigator: true)
+                                        .canPop()
+                                    ? Navigator.of(context, rootNavigator: true)
+                                        .pop()
+                                    : null;
+                                snackBar("you are connected");
+                                // if (widget.screen == orderScreen) {
+                                //   Navigator.popUntil(
+                                //       context, (route) => route.isFirst);
+                                // } else {
+                                  Navigator.of(context, rootNavigator: true)
+                                      .popUntil((route) => route.isFirst);
+                                // }
+
+                                indexProvider.setCurrentIndex(2);
+                              } else {
+                                Navigator.of(context, rootNavigator: true)
+                                        .canPop()
+                                    ? Navigator.of(context, rootNavigator: true)
+                                        .pop()
+                                    : null;
+                                snackBar(
+                                    "something wrong return and try again");
+                              }
+                              // conditions for validating
+                              // if (currentText.length != 4 || currentText != "1234") {
+                              //   errorController!.add(ErrorAnimationType
+                              //       .shake); // Triggering error shake animation
+                              //   setState(() => hasError = true);
+                              // } else {
+                              //   setState(
+                              //     () {
+                              //       hasError = false;
+                              //       snackBar("OTP Verified!!");
+                              //     },
+                              //   );
+                              // }
                             }
-                            // conditions for validating
-                            // if (currentText.length != 4 || currentText != "1234") {
-                            //   errorController!.add(ErrorAnimationType
-                            //       .shake); // Triggering error shake animation
-                            //   setState(() => hasError = true);
-                            // } else {
-                            //   setState(
-                            //     () {
-                            //       hasError = false;
-                            //       snackBar("OTP Verified!!");
-                            //     },
-                            //   );
-                            // }
                           },
                           child: Center(
                               child: Text(
@@ -375,7 +369,12 @@ showGeneralDialog(
                     ),
                     Center(
                         child: TextButton(
-                      child: const Text("Clear"),
+                      child: const Text(
+                        "Clear",
+                        style: TextStyle(
+                          color: Color(0xffD8AA6B),
+                        ),
+                      ),
                       onPressed: () {
                         textEditingController.clear();
                       },

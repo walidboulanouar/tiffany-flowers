@@ -6,6 +6,7 @@ import 'package:ecomerceapp/screens/WishListScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:badges/badges.dart';
@@ -49,7 +50,7 @@ class AccountScreen extends StatelessWidget {
             child: ListView(
 
                 // Remove padding
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.only(bottom: 10.h),
                 children: [
                   // SizedBox(
                   //   height: 0.8.h,
@@ -59,11 +60,8 @@ class AccountScreen extends StatelessWidget {
                     height: 1.h,
                   ),
                   ListTile(
-                    leading: Image.asset("assets/images/Group 40338.png"),
-                    //  ImageIcon(
-                    //   AssetImage("assets/images/Group 40338.png"),
-                    //   color: Color(0xff73BFBD),
-                    // ),
+                    leading:  Image.asset("assets/images/Group 40338.png"),
+                    
                     title: Text(
                       'Home',
                       style: TextStyle(fontSize: 11.sp),
@@ -80,10 +78,7 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Group 38731.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                    leading: SvgPicture.asset("assets/images/icon (2).svg"),
                     title: Text('My Orders', style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
                     contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -97,10 +92,7 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Group 40337.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                   leading: SvgPicture.asset("assets/images/icon (3).svg"),
                     title:
                         Text('Categories', style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
@@ -115,10 +107,9 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Group 43.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                    leading:
+                    SvgPicture.asset("assets/images/icon (1).svg"),
+                    
                     title: Text('My Cart', style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
                     contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -150,10 +141,7 @@ class AccountScreen extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Icon awesome-heart.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                    leading: SvgPicture.asset("assets/images/icon (8).svg"),
                     title: Text('Wish List', style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
                     contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -196,11 +184,7 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage(
-                          "assets/images/3844474_gear_setting_settings_wheel_icon.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                      leading: SvgPicture.asset("assets/images/icon (10).svg"),
                     title: Text(
                       'App Language',
                       style: TextStyle(fontSize: 11.sp),
@@ -221,11 +205,7 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage(
-                          "assets/images/Icon material-info-outline.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                      leading: SvgPicture.asset("assets/images/icon (9).svg"),
                     title: Text('About', style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
                     contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -242,10 +222,7 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Group 40340.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                      leading: SvgPicture.asset("assets/images/icon (5).svg"),
                     title: Text('Terms & Conditions',
                         style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
@@ -263,10 +240,7 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Group 40342.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                      leading: SvgPicture.asset("assets/images/icon (6).svg"),
                     title: Text('Privacy Policy',
                         style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
@@ -278,21 +252,18 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                   ListTile(
-                    leading: ImageIcon(
-                      AssetImage("assets/images/Group 40344.png"),
-                      color: Color(0xff73BFBD),
-                    ),
+                     leading: SvgPicture.asset("assets/images/icon (7).svg"),
                     title:
                         Text('Contact Us', style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,
                     contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                     textColor: Color(0xffD8AA6B),
                     onTap: () {
-                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>  ContactUs()),
-                      );
+                      //  Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) =>  ContactUs()),
+                      // );
                       
                     },
                     hoverColor: Color(0xff73BFBD),
@@ -300,14 +271,16 @@ class AccountScreen extends StatelessWidget {
                     selectedTileColor: Color(0xff73BFBD),
                   ),
                    userProvider.user!=null?ListTile(
-                    leading: Padding(
-                      padding:  EdgeInsets.only(left: 4.sp),
-                      child: ImageIcon(
-                        size:15,
-                        AssetImage("assets/images/logout.png"),
-                        color: Color(0xff73BFBD),
-                      ),
-                    ),
+                    leading: SvgPicture.asset("assets/images/Iconly-Light-Outline-Logout.svg"),
+                    // leading: Padding(
+                    //   padding:  EdgeInsets.only(left: 4.sp),
+
+                    //   child: ImageIcon(
+                    //     size:15,
+                    //     AssetImage("assets/images/Iconly-Light-Outline-Logout.svg"),
+                    //     color: Color(0xff73BFBD),
+                    //   ),
+                    // ),
                     title: Text('Sign out',
                         style: TextStyle(fontSize: 11.sp)),
                     minLeadingWidth: 5,

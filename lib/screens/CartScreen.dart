@@ -4,11 +4,12 @@ import 'package:ecomerceapp/screens/Checkout.dart';
 import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:ecomerceapp/widgets/CartAppBar.dart';
 import 'package:ecomerceapp/widgets/CartCard.dart';
-import 'package:ecomerceapp/widgets/WebViewExample.dart';
+import 'package:ecomerceapp/widgets/WebViewWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../models/CartItem.dart';
 import '../providers/IndexProvider.dart';
 import '../providers/UserProvider.dart';
 import '../services/Services.dart';
@@ -16,6 +17,7 @@ import '../services/SqlService.dart';
 import '../widgets/OrderToggle.dart';
 import '../widgets/TotalCard.dart';
 import 'LoginScreen.dart';
+import 'RegistrationScreen.dart';
 import 'VerificationScreen.dart';
 
 class CartScreen extends StatefulWidget {
@@ -45,6 +47,13 @@ class _CartScreenState extends State<CartScreen> {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
+    for(CartItem item in cartProvider.items){
+      print(item.color);
+      print(item.count);
+      print(item.size);
+     print(item.sizePrice); 
+    }
+    
     
     return Scaffold(
       floatingActionButton: Container(
@@ -144,6 +153,10 @@ class _CartScreenState extends State<CartScreen> {
                           //           );
                           userProvider.user == null
                               ? AwesomeDialog(
+                                titleTextStyle: TextStyle(color: Color(0xff73BFBD),),
+                                descTextStyle: TextStyle(color: Color(0xffD8AA6B),),
+                                btnOkColor:Color(0xff73BFBD),
+                                btnCancelColor: Color(0xffD8AA6B),
                                   btnOkText: "Sign In",
                                   context: context,
                                   dialogType: DialogType.WARNING,
@@ -152,11 +165,12 @@ class _CartScreenState extends State<CartScreen> {
                                   desc: 'This Action Require Sign in ',
                                   btnCancelOnPress: () {},
                                   btnOkOnPress: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen(cartScreen)),
-                                    );
+                                    Navigator.of(context, rootNavigator: true).push(
+                                MaterialPageRoute(
+                                  builder: (_) => RegistrationScreen(cartScreen),
+                                ),
+                              );
+                                    
                                   },
                                 ).show()
                               : (Navigator.push(

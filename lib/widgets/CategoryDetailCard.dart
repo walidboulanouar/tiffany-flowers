@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -44,154 +46,208 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
     var sqlService = SqlService();
     WishListProvider wlProvider = Provider.of<WishListProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
-    return Card(
-      // color: Colors.red,
-      margin: EdgeInsets.symmetric(horizontal: 10.sp),
-      child: Column(
-        children: [
-          Container(
-            height: 25.h,
-            child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.network(
-                widget.image,
-                fit: BoxFit.cover,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              elevation: 0,
-              margin: EdgeInsets.only(
-                  left: 8.sp, right: 8.sp, bottom: 3.sp, top: 5.sp),
-            ),
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: 8.sp,
-              ),
-              Container(
-                width: 38.w,
+    return Container(
+      //     decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(10),
+      //   color: Colors.white,
+      //   // boxShadow: [
+      //   //   BoxShadow(color: Color.fromARGB(255, 224, 221, 221), spreadRadius: 3),
+      //   // ],
+      // ),
+      height: 40.h,
+      child:
+      
+       Card(
+        elevation: 3,
+        // shadowColor: Color.fromARGB(31, 9, 7, 7),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        // color: Colors.red,
+        margin: EdgeInsets.symmetric(horizontal: 10.sp),
+        child: Column(
+          children: [
+            Container(
+              // padding: EdgeInsets.all(0),
+              // color: Colors.red,
+              height: 23.h,
+              child: Card(
+               
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                child: CachedNetworkImage(
+                  imageUrl: widget.image,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Container(
+                    height: 9.h,
+                    width: 9.h,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                          color: Color(0xff73BFBD),
+                          value: downloadProgress.progress),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                      height: 9.h, width: 20.h, child: Icon(Icons.error)),
+                ),
                 
-                child: FittedBox(
+                elevation: 0,
+                margin: EdgeInsets.only(
+                    left: 8.sp, right: 8.sp, bottom: 3.sp, top: 5.sp),
+              ),
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 8.sp,
+                ),
+                Container(
+                  width: 38.w,
+                  constraints: BoxConstraints(minHeight: 0, maxHeight: 4.h),
                   child: Text(
-                    
-                    widget.name.toLowerCase(),
+                      overflow: TextOverflow.ellipsis,
+                      widget.name.toLowerCase(),
                       style: TextStyle(
-                        fontSize: 8.sp,
+                        fontSize: 10.sp,
                         color: Color(0xff73BFBD),
                       )),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: 8.sp,
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 4.sp),
-                child: RichText(
-                  text: TextSpan(
-                      text: widget.price.toString(),
-                      style: TextStyle(
-                          fontFamily: "Lucida Calligraphy",
-                          fontSize: 12.sp,
-                          color: Color(0xffD8AA6B)),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: ' AED',
-                          style: TextStyle(
-                              fontSize: 8.sp, color: Color(0xffD8AA6B)),
-                        ),
-                      ]),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 8.sp,
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                width: 8.sp,
-              ),
-              Expanded(
-                child: TextButton.icon(
-                  style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(12.w, 20.sp)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      )),
-                      fixedSize: MaterialStateProperty.all(Size(27.w, 20.sp)),
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff73BFBD))),
-                  onPressed: () {
-                     Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      (DetailsScreen(
-                                   productId: widget.id,
-                                  )),
+                Padding(
+                  padding: EdgeInsets.only(top: 4.sp),
+                  child: RichText(
+                    text: TextSpan(
+                        text: widget.price.toString(),
+                        style: TextStyle(
+                            fontFamily: "Lucida Calligraphy",
+                            fontSize: 12.sp,
+                            color: Color(0xffD8AA6B)),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: ' AED',
+                            style: TextStyle(
+                                fontSize: 8.sp, color: Color(0xffD8AA6B)),
+                          ),
+                        ]),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 8.sp,
+                ),
+                Expanded(
+                  child: TextButton.icon(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(Size(12.w, 20.sp)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        )),
+                        fixedSize: MaterialStateProperty.all(Size(27.w, 20.sp)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xff73BFBD))),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => (DetailsScreen(
+                            productId: widget.id,
+                          )),
+                        ),
+                      );
+                      // sqlService.addToCart(
+                      //     CartItem(
+                      //         productId: widget.id,
+                      //         name: widget.name,
+                      //         color: 0xffD8AA6B,
+                      //         count: 1,
+                      //         image: widget.image.toString(),
+                      //         price: widget.price,
+                      //         size: "small",
+                      //         sizePrice: 20),
+                      //     cartProvider);
+                      // ScaffoldMessenger.of(context)
+                      //     .showSnackBar(SnackBar(
+                      //        behavior: SnackBarBehavior.floating,
+                      //       content: Text("Added to Cart")));
+                    },
+                    icon: Text("Add To Cart",
+                        style: TextStyle(
+                          fontSize: 6.sp,
+                          color: Colors.white,
+                        )),
+                    label: Icon(Icons.add, size: 8.sp, color: Colors.white),
+                  ),
+                ),
+                !wlProvider.wishList.contains(widget.id)
+                    ? IconButton(
+                        onPressed: () {
+                          sqlService.saveProduct(widget.id, wlProvider);
+                          showGeneralDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return SafeArea(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+                                    padding: EdgeInsets.all(20),
+                                    color: Colors.transparent,
+                                    child: Center(
+                                      child: Lottie.asset(
+                                          "assets/images/wishlist.json"),
+                                    ),
+                                  ),
                                 ),
                               );
-                    // sqlService.addToCart(
-                    //     CartItem(
-                    //         productId: widget.id,
-                    //         name: widget.name,
-                    //         color: 0xffD8AA6B,
-                    //         count: 1,
-                    //         image: widget.image.toString(),
-                    //         price: widget.price,
-                    //         size: "small",
-                    //         sizePrice: 20),
-                    //     cartProvider);
-                    // ScaffoldMessenger.of(context)
-                    //     .showSnackBar(SnackBar(
-                    //        behavior: SnackBarBehavior.floating,
-                    //       content: Text("Added to Cart")));
-                  },
-                  icon: Text("Add To Cart",
-                      style: TextStyle(
-                        fontSize: 7.sp,
-                        color: Colors.white,
-                      )),
-                  label: Icon(Icons.add, size: 10.sp, color: Colors.white),
-                ),
-              ),
-              !wlProvider.wishList.contains(widget.id)
-                  ? IconButton(
-                      onPressed: () {
-                        sqlService.saveProduct(widget.id, wlProvider);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                               behavior: SnackBarBehavior.floating,
-                              content: Text("added to wishlist")));
-                      },
-                      icon: Icon(
-                        Icons.favorite_border,
-                        size: 14.sp,
-                        color: Colors.red,
-                      ))
-                  : IconButton(
-                      onPressed: () {
-                        sqlService.deleteProduct(widget.id, wlProvider);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                               behavior: SnackBarBehavior.floating,
-                              content: Text("removed from  wishlist")));
-                      },
-                      icon: Icon(
-                        Icons.favorite,
-                        size: 14.sp,
-                        color: Colors.red,
-                      ))
-            ],
-          )
-        ],
+                            },
+                          );
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //     SnackBar(
+                          //        behavior: SnackBarBehavior.floating,
+                          //       content: Text("added to wishlist")));
+                        },
+                        icon: Icon(
+                          Icons.favorite_border,
+                          size: 14.sp,
+                          color: Colors.red,
+                        ))
+                    : IconButton(
+                        onPressed: () {
+                          sqlService.deleteProduct(widget.id, wlProvider);
+                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //     behavior: SnackBarBehavior.floating,
+                          //     content: Text("removed from  wishlist")));
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          size: 14.sp,
+                          color: Colors.red,
+                        ))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
 
@@ -27,7 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
       DeviceOrientation.portraitUp,
     ]);
 
-    _controller = VideoPlayerController.asset("assets/videos/TiffanyIntro.mp4");
+    _controller = VideoPlayerController.asset(
+      videoPlayerOptions:VideoPlayerOptions(),
+      "assets/videos/Final.mp4");
+   
     _controller!.initialize().then((_) {
       _controller!.setLooping(false);
       // Timer(Duration(milliseconds: 100), () {
@@ -60,7 +64,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return AnimatedOpacity(
       opacity: _visible ? 1.0 : 0.0,
       duration: Duration(milliseconds: 1000),
-      child: VideoPlayer(_controller!),
+      child: AspectRatio(
+        aspectRatio: _controller!.value.aspectRatio,
+        child: VideoPlayer(_controller!))
+      
+      
     );
   }
 
@@ -79,9 +87,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Center(
         child: Stack(
           children: <Widget>[
+            VideoPlayer(_controller!),
             _getVideoBackground(),
           ],
         ),

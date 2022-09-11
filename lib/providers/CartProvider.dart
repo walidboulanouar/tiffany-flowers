@@ -46,11 +46,11 @@ class CartProvider with ChangeNotifier {
   }
 
   int Total() {
-    int total = subTotal();
-    _items.forEach((item) {
-      total += (subTotal()*0.05).toInt() ;
+    
+    
+      int total = (subTotal()+subTotal()*0.05).toInt() ;
       
-    });
+    
     return total;
   }
 

@@ -83,12 +83,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           ),
           Flexible(
             child: GridView.builder(
-                padding: EdgeInsets.all(0),
+                padding: EdgeInsets.only(top: 0,bottom: 40.sp),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 150,
-                    // childAspectRatio: 3 / 2,
+                    maxCrossAxisExtent: 170,
+                    childAspectRatio: 0.7,
                     crossAxisSpacing: 1.sp,
-                    mainAxisSpacing: 8.sp),
+                    mainAxisSpacing: 10.sp),
                 itemCount: categoriesProvider.categories.length,
                 itemBuilder: (BuildContext ctx, index) {
                   return InkWell(
@@ -108,9 +108,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       // _categoriesScreen.currentState?.pushNamed('/categorydetails');
                       // changeWidget(CategoryDetailsScreen(categories: []), 1);
                     },
-                    child: ImageCard(
-                        image: categoriesProvider.categories[index].image,
-                        title: categoriesProvider.categories[index].name),
+                    child: Container(
+                      // color: Colors.red,
+                      // height: 40.h,
+                      child: ImageCard(
+                          image: categoriesProvider.categories[index].image,
+                          title: categoriesProvider.categories[index].name),
+                    ),
                   );
                 }),
           ),

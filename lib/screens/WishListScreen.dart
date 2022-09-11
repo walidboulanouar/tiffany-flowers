@@ -92,7 +92,7 @@ class _WishListScreenState extends State<WishListScreen> {
             child: active
                 ? StaggeredGridView.countBuilder(
                     shrinkWrap: true,
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.only(top:0,bottom: 20.sp),
                     crossAxisCount: 2,
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,

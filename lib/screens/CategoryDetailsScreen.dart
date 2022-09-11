@@ -1,5 +1,6 @@
 import 'package:ecomerceapp/providers/ProductProvider.dart';
 import 'package:ecomerceapp/providers/WishListProvider.dart';
+import 'package:ecomerceapp/screens/CategoriesScreen.dart';
 import 'package:ecomerceapp/services/SqlService.dart';
 import 'package:ecomerceapp/widgets/CategoryAppBar.dart';
 import 'package:ecomerceapp/widgets/CategoryDetailCard.dart';
@@ -15,6 +16,7 @@ import '../providers/CategoriesProvider.dart';
 import '../services/Services.dart';
 import '../widgets/CategoryDetailCardTwo.dart';
 import 'DetailsScreen.dart';
+import 'HomeScreen.dart';
 
 class CategoryDetailsScreen extends StatefulWidget {
   final int catId;
@@ -87,7 +89,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
             child: active
                 ? StaggeredGridView.countBuilder(
                     shrinkWrap: true,
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.only(bottom: 20.sp,top: 0),
                     crossAxisCount: 2,
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,
@@ -152,6 +154,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                     shrinkWrap: true,
                     padding: EdgeInsets.all(0),
                     crossAxisCount: 2,
+                   
                     crossAxisSpacing: 5.sp,
                     mainAxisSpacing: 15.sp,
                     itemCount: productProvider.categoryproducts.length + 1,

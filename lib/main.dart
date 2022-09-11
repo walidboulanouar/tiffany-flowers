@@ -17,6 +17,7 @@ import 'providers/OrderProvider.dart';
 import 'providers/ProductProvider.dart';
 import 'providers/UserProvider.dart';
 import 'screens/CategoryDetailsScreen.dart';
+import 'screens/RegistrationScreen.dart';
 import 'screens/SplashScreen.dart';
 
 void main() {
@@ -50,11 +51,11 @@ class MyApp extends StatelessWidget {
           
           
           theme: ThemeData(fontFamily: "Lucida Calligraphy"),
-             title: 'Flutter Demo',
+             title: 'Tiffany',
              
              initialRoute: '/',
              routes: {
-          '/':(context)=> const SplashScreen(),
+          '/':(context)=> SplashScreen(),
           // '/categorydetails':(context)=> CategoryDetailsScreen(categories:[
                  
                   

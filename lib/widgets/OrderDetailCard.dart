@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,10 +28,25 @@ class OrderDetailCard extends StatelessWidget {
             child: Container(
               height: 13.h,
               width: 10.h,
-              child: Image.network(
-                image,
-                fit: BoxFit.fill,
-              ),
+              child: CachedNetworkImage(
+        imageUrl:image,
+        progressIndicatorBuilder: (context, url, downloadProgress) => 
+                Container(
+
+                  height: 9.h,
+                  width: 9.h,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      
+                      color: Color(0xff73BFBD),
+                      value: downloadProgress.progress),
+                  ),
+                ),
+        errorWidget: (context, url, error) => Container(
+          height: 24.h,
+          width: 20.h,
+          child: Icon(Icons.error)),
+     ),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
@@ -43,11 +59,22 @@ class OrderDetailCard extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 8.sp, top: 8.sp),
+                
+                // Padding(
+                //   padding: EdgeInsets.only(left: 8.sp, top: 8.sp),
+                //   child: Text(
+                //     name,
+                //     style: TextStyle(fontSize: 9.sp, color: Color(0xff73BFBD)),
+                //   ),
+                // ),
+                Container(
+                  width: 42.w,
+                  constraints:  BoxConstraints(minHeight: 0, maxHeight:4.h),
+                   padding: EdgeInsets.only(left: 8.sp, top: 8.sp),
                   child: Text(
-                    name,
-                    style: TextStyle(fontSize: 9.sp, color: Color(0xff73BFBD)),
+                     overflow: TextOverflow.ellipsis,
+                    name.toLowerCase(),
+                    style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
                 // SizedBox(height: 1.h),
@@ -91,7 +118,7 @@ class OrderDetailCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(7.0),
                             )),
                             fixedSize:
-                                MaterialStateProperty.all(Size(15.w, 20.sp)),
+                                MaterialStateProperty.all(Size(17.w, 20.sp)),
                             backgroundColor:
                                 MaterialStateProperty.all(Color(0xff73BFBD))),
                         onPressed: () {},

@@ -9,8 +9,8 @@ class OrderItem {
   int orderId;
   int productId;
   String name;
-   String itemImg;
-  int quantity;
+   String image;
+  int count;
   double price;
   
   double sizePrice;
@@ -21,11 +21,11 @@ class OrderItem {
     required this.id,
     required this.orderId,
     required this.name,
-    required this.itemImg,
+    required this.image,
     required this.color,
     required this.price,
     required this.productId,
-    required this.quantity,
+    required this.count,
     required this.size,
     required this.sizePrice,
    
@@ -36,11 +36,11 @@ class OrderItem {
       : id = json['id'],
         orderId = json['order_id'],
         name = json['name'],
-        itemImg = json['item_img'],
+        image = json['item_img'],
         color = json['color'],
         price = double.parse(json['price']),
         productId = json['product_id'],
-        quantity = json['quantity'],
+        count = json['quantity'],
         size = json['size'],
         sizePrice = double.parse(json['size_price'])
         ;

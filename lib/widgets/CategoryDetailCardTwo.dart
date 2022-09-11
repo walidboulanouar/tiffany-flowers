@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -35,6 +37,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
     WishListProvider  wlProvider = Provider.of<WishListProvider>(context);
      CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Card(
+      
       margin: EdgeInsets.symmetric(horizontal: 10.sp),
       color: Colors.white,
       child: Row(
@@ -44,11 +47,26 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Container(
               height: 18.h,
-              width: 12.h,
-              child: Image.network(
-                widget.image,
-                fit: BoxFit.fill,
-              ),
+              width: 25.w,
+              child:CachedNetworkImage(
+        imageUrl: widget.image,
+        progressIndicatorBuilder: (context, url, downloadProgress) => 
+                Container(
+
+                  height: 9.h,
+                  width: 9.h,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      
+                      color: Color(0xff73BFBD),
+                      value: downloadProgress.progress),
+                  ),
+                ),
+        errorWidget: (context, url, error) => Container(
+          height: 9.h,
+          width: 20.h,
+          child: Icon(Icons.error)),
+     ),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
@@ -57,117 +75,145 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
             margin: EdgeInsets.only(
                 left: 8.sp, right: 8.sp, bottom: 8.sp, top: 8.sp),
           ),
-          Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 8.sp),
-                  child: Text(
-                    widget.name.toLowerCase(),
-                    style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
-                  ),
-                ),
-                SizedBox(height: 1.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.sp),
-                  child: RichText(
-                    text: TextSpan(
-                        text: widget.price.toString(),
-                        style: TextStyle(
-                            fontFamily: "Lucida Calligraphy",
-                            fontSize: 12.sp,
-                            color: Color(0xffD8AA6B)),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: ' AED',
-                            style: TextStyle(
-                                fontSize: 8.sp, color: Color(0xffD8AA6B)),
-                          ),
-                        ]),
-                  ),
-                ),
-                // SizedBox(height: 1.h),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 8.sp,
+          Flexible(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 2.h),
+                  Container(
+                    padding: EdgeInsets.only(left: 8.sp),
+                    constraints:  BoxConstraints(minHeight: 0, maxHeight:2.h),
+                  width: 50.w, 
+                                 // child: Text(
+                  //    overflow: TextOverflow.ellipsis,
+                  //   widget.name.toLowerCase(),
+                  //     style: TextStyle(
+                  //       fontSize: 10.sp,
+                  //       color: Color(0xff73BFBD),
+                  //     )),
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      widget.name.toLowerCase(),
+                      style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                     ),
-                    TextButton.icon(
-                      style: ButtonStyle(
-                          minimumSize:
-                              MaterialStateProperty.all(Size(12.w, 20.sp)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          )),
-                          fixedSize:
-                              MaterialStateProperty.all(Size(25.w, 20.sp)),
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xff73BFBD))),
-                      onPressed: () {
-                        Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      (DetailsScreen(
-                                   productId: widget.id,
-                                  )),
+                  ),
+                  SizedBox(height: 2.h),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.sp),
+                    child: RichText(
+                      text: TextSpan(
+                          text: widget.price.toString(),
+                          style: TextStyle(
+                              fontFamily: "Lucida Calligraphy",
+                              fontSize: 12.sp,
+                              color: Color(0xffD8AA6B)),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: ' AED',
+                              style: TextStyle(
+                                  fontSize: 8.sp, color: Color(0xffD8AA6B)),
+                            ),
+                          ]),
+                    ),
+                  ),
+                  SizedBox(height: 2.h),
+                  Container(
+                    // color: Colors.red,
+
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 8.sp,
+                        ),
+                        TextButton.icon(
+                          style: ButtonStyle(
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(12.w, 20.sp)),
+                              shape:
+                                  MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              )),
+                              fixedSize:
+                                  MaterialStateProperty.all(Size(25.w, 20.sp)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff73BFBD))),
+                          onPressed: () {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          (DetailsScreen(
+                                       productId: widget.id,
+                                      )),
+                                    ),
+                                  );
+                        
+                          },
+                          icon: Text("Add To Cart",
+                              style: TextStyle(
+                                fontSize: 6.sp,
+                                color: Colors.white,
+                              )),
+                          label: Icon(Icons.add, size: 8.sp, color: Colors.white),
+                        ),
+                         !wlProvider.wishList.contains(widget.id)?Flexible(
+                           child: IconButton(
+                                               onPressed: () {
+                                                 sqlService.saveProduct(widget.id, wlProvider);
+                           showGeneralDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return SafeArea(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+                                    padding: EdgeInsets.all(20),
+                                    color: Colors.transparent,
+                                    child: Center(
+                                      child: Lottie.asset(
+                                          "assets/images/wishlist.json"),
+                                    ),
+                                  ),
                                 ),
                               );
-                    //     sqlService.addToCart(
-                    //     CartItem(
-                    //         productId: widget.id,
-                    //         name: widget.name,
-                    //         color: 0xffD8AA6B,
-                    //         count: 1,
-                    //         image: widget.image.toString(),
-                    //         price: widget.price,
-                    //         size: "small",
-                    //         sizePrice: 20),
-                    //     cartProvider);
-                    // ScaffoldMessenger.of(context)
-                    //     .showSnackBar(SnackBar(
-                    //        behavior: SnackBarBehavior.floating,
-                    //       content: Text("Added to Cart")));
-                      },
-                      icon: Text("Add To Cart",
-                          style: TextStyle(
-                            fontSize: 7.sp,
-                            color: Colors.white,
-                          )),
-                      label: Icon(Icons.add, size: 10.sp, color: Colors.white),
+                            },
+                          );
+                                               },
+                                               icon: Icon(
+                                                 Icons.favorite_border,
+                                                 size: 14.sp,
+                                                 color: Colors.red,
+                                               )),
+                         ):
+                      Flexible(
+                        child: IconButton(
+                        onPressed: () {
+                          sqlService.deleteProduct(widget.id, wlProvider);
+                          //  ScaffoldMessenger.of(context).showSnackBar(
+                          //         SnackBar(
+                          //            behavior: SnackBarBehavior.floating,
+                          //           content: Text("removed from  wishlist")));
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          size: 14.sp,
+                          color: Colors.red,
+                        )),
+                      )
+                      ],
                     ),
-                     !wlProvider.wishList.contains(widget.id)?IconButton(
-                  onPressed: () {
-                    sqlService.saveProduct(widget.id, wlProvider);
-                     ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                               behavior: SnackBarBehavior.floating,
-                              content: Text("added to wishlist")));
-                  },
-                  icon: Icon(
-                    Icons.favorite_border,
-                    size: 14.sp,
-                    color: Colors.red,
-                  )):
-                  IconButton(
-                  onPressed: () {
-                    sqlService.deleteProduct(widget.id, wlProvider);
-                     ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                               behavior: SnackBarBehavior.floating,
-                              content: Text("removed from  wishlist")));
-                  },
-                  icon: Icon(
-                    Icons.favorite,
-                    size: 14.sp,
-                    color: Colors.red,
-                  ))
-                  ],
-                )
-              ]),
+                  )
+                ]),
+          ),
         ],
       ),
     );

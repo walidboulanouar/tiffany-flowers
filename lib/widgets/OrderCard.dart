@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecomerceapp/models/OrderItem.dart';
+import 'package:ecomerceapp/screens/ReorderScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -45,10 +47,25 @@ class _OrderCardState extends State<OrderCard> {
                 ? Container(
                     height: 12.h,
                     width: 12.h,
-                    child: Image.network(
-                      widget.order.orderImg,
-                      fit: BoxFit.fill,
-                    ),
+                    child:CachedNetworkImage(
+        imageUrl: widget.order.orderImg,
+        progressIndicatorBuilder: (context, url, downloadProgress) => 
+                Container(
+
+                  height: 9.h,
+                  width: 9.h,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      
+                      color: Color(0xff73BFBD),
+                      value: downloadProgress.progress),
+                  ),
+                ),
+        errorWidget: (context, url, error) => Container(
+          height: 24.h,
+          width: 20.h,
+          child: Icon(Icons.error)),
+     ),
                   )
                 : Container(
                     height: 12.h,
@@ -103,7 +120,13 @@ class _OrderCardState extends State<OrderCard> {
                         color: Colors.transparent, // button color
                         child: InkWell(
                           // splashColor: Colors.green, // splash color
-                          onTap: () {}, // button pressed
+                          onTap: () {
+                            Navigator.of(context, rootNavigator: true).push(
+                                MaterialPageRoute(
+                                  builder: (_) => ReorderScreen(order:widget.order,),
+                                ),
+                              );
+                          }, // button pressed
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[

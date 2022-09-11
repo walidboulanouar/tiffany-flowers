@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import '../models/Banner.dart' as b;
+
 class CarouselImage extends StatefulWidget {
   List<b.Banner> banners;
-  CarouselImage({Key? key,required this.banners}) : super(key: key);
+  CarouselImage({Key? key, required this.banners}) : super(key: key);
 
   @override
   State<CarouselImage> createState() => _CarouselImageState();
@@ -14,11 +16,10 @@ class CarouselImage extends StatefulWidget {
 class _CarouselImageState extends State<CarouselImage> {
   CarouselController carouselController = CarouselController();
   int currentIndexPage = 0;
-   
 
   @override
   Widget build(BuildContext context) {
-    List<String> featuredImages =widget.banners.map((e) => e.image).toList();
+    List<String> featuredImages = widget.banners.map((e) => e.image).toList();
     return Container(
       // decoration:BoxDecoration(border: Border.all(color: Colors.red),),
       width: 100.w,
@@ -41,11 +42,24 @@ class _CarouselImageState extends State<CarouselImage> {
                 autoPlay: false,
               ),
               items: featuredImages.map((featuredImage) {
-                return Image(
-                  image: NetworkImage(featuredImage),
-                  height: double.infinity,
-                  width: double.infinity,
+                return FittedBox(
                   fit: BoxFit.fill,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: CachedNetworkImage(
+                    imageUrl: featuredImage,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Container(
+                      height: 9.h,
+                      width: 9.h,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                            color: Color(0xff73BFBD),
+                            value: downloadProgress.progress),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                        height: 24.h, width: 20.h, child: Icon(Icons.error)),
+                  ),
                 );
               }).toList(),
             ),
@@ -137,7 +151,7 @@ class _CarouselImageState extends State<CarouselImage> {
           ),
           Positioned(
             height: 10.h,
-            width:70.w,
+            width: 70.w,
             top: 8.h,
             left: 14.w,
             child: Column(
@@ -149,10 +163,11 @@ class _CarouselImageState extends State<CarouselImage> {
                     width: 100.w,
                     child: Text(
                       // textAlign:TextAlign.left,
-                      widget.banners.isNotEmpty?
-                      widget.banners[currentIndexPage].text:"",
+                      widget.banners.isNotEmpty
+                          ? widget.banners[currentIndexPage].text
+                          : "",
                       style: TextStyle(
-                       
+
                           // fontSize: 12.sp,
                           color: Colors.white,
                           // fontStyle: FontStyle.italic,
@@ -163,7 +178,6 @@ class _CarouselImageState extends State<CarouselImage> {
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
                       child: Container(
-                        
                         height: 3.h,
                         width: 18.w,
                         decoration: BoxDecoration(
@@ -172,34 +186,32 @@ class _CarouselImageState extends State<CarouselImage> {
                         ),
                         child: Center(
                             child: FittedBox(
-                              child: Container(
-                                height: 10.sp,
-                                child: Text(
-                                                        "View More",
-                                                        style: TextStyle(fontSize: 5.sp, color: Colors.white),
-                                                      ),
-                              ),
-                            )),
+                          child: Container(
+                            height: 10.sp,
+                            child: Text(
+                              "View More",
+                              style: TextStyle(
+                                  fontSize: 5.sp, color: Colors.white),
+                            ),
+                          ),
+                        )),
                       ),
                     ),
                   )
                 ]),
           ),
           Positioned(
-            bottom: 2.h,
-            left: 40.w,
-              child: 
-              featuredImages.length!=0?
-              DotsIndicator(
-            dotsCount: featuredImages.length,
-            position: double.parse(currentIndexPage.toString()),
-            decorator: DotsDecorator(
-              color: Colors.white, // Inactive color
-              activeColor: Colors.black
-            ),
-          ):
-          Container()
-          )
+              bottom: 2.h,
+              left: 40.w,
+              child: featuredImages.length != 0
+                  ? DotsIndicator(
+                      dotsCount: featuredImages.length,
+                      position: double.parse(currentIndexPage.toString()),
+                      decorator: DotsDecorator(
+                          color: Colors.white, // Inactive color
+                          activeColor: Colors.black),
+                    )
+                  : Container())
         ],
       ),
     );

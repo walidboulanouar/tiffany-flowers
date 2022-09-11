@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: TextFormField(
                         validator: validateName,
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.name,
                         onSaved: (String? val) {
                           setState(() {
                             _firstName = val;
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: TextFormField(
                         validator: validateName,
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.name,
                         onSaved: (String? val) {
                           setState(() {
                             _lastName = val;
@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: TextFormField(
                         validator: validateEmail,
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.emailAddress,
                         onSaved: (String? val) {
                           setState(() {
                             _email = val;
@@ -187,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'phone number',
-                            hintText: '+212xxxxxx'),
+                            hintText: '+971 xxx xxx xxx'),
                       ),
                     ),
                     Container(

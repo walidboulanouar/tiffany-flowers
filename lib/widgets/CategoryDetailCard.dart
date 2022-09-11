@@ -91,7 +91,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                     ),
                   ),
                   errorWidget: (context, url, error) => Container(
-                      height: 9.h, width: 20.h, child: Icon(Icons.error)),
+                      height: 9.h, width: 20.h, child: Image.asset("assets/images/errorimage.png")),
                 ),
                 
                 elevation: 0,

@@ -45,27 +45,28 @@ class _OrderCardState extends State<OrderCard> {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: widget.order.orderImg != null
                 ? Container(
-                    height: 12.h,
-                    width: 12.h,
-                    child:CachedNetworkImage(
-        imageUrl: widget.order.orderImg,
-        progressIndicatorBuilder: (context, url, downloadProgress) => 
-                Container(
-
-                  height: 9.h,
-                  width: 9.h,
-                  child: Center(
-                    child: CircularProgressIndicator(
+                    height: 14.h,
+                    width: 10.h,
+                    child:FittedBox(
+                      fit: BoxFit.cover,
+                      child: CachedNetworkImage(
+                            imageUrl: widget.order.orderImg,
+                            progressIndicatorBuilder: (context, url, downloadProgress) => 
+                                    Container(
+                    
+                                      height: 9.h,
+                                      width: 9.h,
+                                      child: CircularProgressIndicator(
                       
                       color: Color(0xff73BFBD),
                       value: downloadProgress.progress),
-                  ),
-                ),
-        errorWidget: (context, url, error) => Container(
-          height: 24.h,
-          width: 20.h,
-          child: Icon(Icons.error)),
-     ),
+                                    ),
+                            errorWidget: (context, url, error) => Container(
+                              height: 24.h,
+                              width: 20.h,
+                              child: Image.asset("assets/images/errorimage.png")),
+                         ),
+                    ),
                   )
                 : Container(
                     height: 12.h,
@@ -109,7 +110,7 @@ class _OrderCardState extends State<OrderCard> {
             ),
           ]),
           SizedBox(
-            width: 20.w,
+            width: 21.w,
           ),
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             widget.reorder

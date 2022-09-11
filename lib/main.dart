@@ -51,15 +51,12 @@ class MyApp extends StatelessWidget {
           
           
           theme: ThemeData(fontFamily: "Lucida Calligraphy"),
-             title: 'Tiffany',
+             title: 'Tiffany Flowers',
              
              initialRoute: '/',
              routes: {
           '/':(context)=> SplashScreen(),
-          // '/categorydetails':(context)=> CategoryDetailsScreen(categories:[
-                 
-                  
-          //       ],),
+          
           
              },
            ),

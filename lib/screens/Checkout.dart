@@ -43,7 +43,6 @@ class _CheckoutState extends State<Checkout> {
     "Happy New Year",
     "Meri Christmass",
     "Happy Mother Day",
-    "Example Here"
   ];
   final List<Map<String, dynamic>> cities = [
     {"city": "Abu Dhabi", "price": 150},
@@ -219,25 +218,30 @@ class _CheckoutState extends State<Checkout> {
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 249, 249, 249),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                       margin: EdgeInsets.symmetric(
                           horizontal: 25.sp, vertical: 10.sp),
                       height: 5.h,
-                      color: Color.fromARGB(255, 249, 249, 249),
+                      
+                      // color: Color.fromARGB(255, 249, 249, 249),
                       child: TextFormField(
-                        
                         style: TextStyle(color: Color(0xff73BFBD)),
                         enabled: false,
                         initialValue: userProvider.user!.phone.toString(),
                         keyboardType: TextInputType.phone,
                         onSaved: (String? val) {},
-                        decoration: InputDecoration(
+                         decoration: InputDecoration(
+                            hintStyle: TextStyle(color: Color(0xff73BFBD)),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(width: 0.0001),
+                              borderSide: BorderSide(width: 0.001),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(width: 0.0001),
+                              borderSide: BorderSide(width: 0.001),
                             )),
                       ),
                     ),
@@ -255,20 +259,27 @@ class _CheckoutState extends State<Checkout> {
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 249, 249, 249),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                       margin: EdgeInsets.symmetric(
                           horizontal: 25.sp, vertical: 10.sp),
                       height: 5.h,
-                      color: Color.fromARGB(255, 249, 249, 249),
+                      
                       child: Container(
                         width: 100.w,
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2(
-                            // dropdownWidth:0.w-20.sp,
-                            // barrierDismissible:false,
+                            dropdownDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            dropdownWidth: 83.w,
+                            
                             iconSize: 25.sp,
                             iconEnabledColor: Color(0xff73BFBD),
 
-                            dropdownElevation: 0,
+                            dropdownElevation: 2,
 
                             isExpanded: true,
                             hint: Text(
@@ -427,17 +438,24 @@ class _CheckoutState extends State<Checkout> {
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 249, 249, 249),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       margin: EdgeInsets.symmetric(
                           horizontal: 25.sp, vertical: 10.sp),
                       height: 5.h,
-                      color: Color.fromARGB(255, 249, 249, 249),
                       child: Container(
                         width: 100.w,
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2(
                             iconSize: 25.sp,
+                            dropdownDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            dropdownWidth: 83.w,
                             iconEnabledColor: Color(0xff73BFBD),
-                            dropdownElevation: 0,
+                            dropdownElevation: 2,
                             isExpanded: true,
                             hint: Text(
                               '  Select Your Massage',
@@ -513,7 +531,7 @@ class _CheckoutState extends State<Checkout> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            
+
                             showGeneralDialog(
                               context: context,
                               barrierDismissible: false,
@@ -537,7 +555,6 @@ class _CheckoutState extends State<Checkout> {
                               },
                             );
 
-                            
                             Response response = await addOrder(
                               userProvider.user!,
                               cartProvider.subTotal(),
@@ -547,7 +564,7 @@ class _CheckoutState extends State<Checkout> {
                               userProvider.user!.phone,
                               _receiver_phone!,
                               _addt_addr_info!,
-                              selectedValue??'NONE',
+                              selectedValue ?? 'NONE',
                               _phrase!,
                               cartProvider.items,
                               cities[selectedValue2]['city'],
@@ -565,8 +582,8 @@ class _CheckoutState extends State<Checkout> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => PaymentScreen(
-                                      subTotal: cartProvider.subTotal(),
-                                      screen: cartScreen,
+                                          subTotal: cartProvider.subTotal(),
+                                          screen: cartScreen,
                                           shpping: cities[selectedValue2]
                                               ['price'],
                                           url: jsonData['result']

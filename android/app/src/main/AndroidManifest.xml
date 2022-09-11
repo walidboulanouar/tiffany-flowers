@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ecomerceapp2">
+    package="com.bigbang.tiffanyflowers">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Provide required visibility configuration for API level 30 and above -->
@@ -16,7 +16,7 @@
   
 </queries>
    <application
-        android:label="Tiffany"
+        android:label="Tiffany Flowers"
         android:name="${applicationName}"
         android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/launcher_icon">

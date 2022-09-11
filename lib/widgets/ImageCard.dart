@@ -32,8 +32,8 @@ class ImageCard extends StatelessWidget {
                 ),
         errorWidget: (context, url, error) => Container(
           height: 24.h,
-          width: 20.h,
-          child: Icon(Icons.error)),
+          width: 18.h,
+          child: Image.asset("assets/images/errorimage.png")),
      )
             //  Image.network(
             //  loadingBuilder: (BuildContext context, Widget child,

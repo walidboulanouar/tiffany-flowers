@@ -1,4 +1,4 @@
-package com.example.ecomerceapp2
+package com.bigbang.tiffanyflowers
 
 import io.flutter.embedding.android.FlutterActivity
 

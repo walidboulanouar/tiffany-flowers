@@ -58,7 +58,7 @@ class _CarouselImageState extends State<CarouselImage> {
                       ),
                     ),
                     errorWidget: (context, url, error) => Container(
-                        height: 24.h, width: 20.h, child: Icon(Icons.error)),
+                        height: 24.h, width: 20.h, child: Image.asset("assets/images/errorimage.png")),
                   ),
                 );
               }).toList(),

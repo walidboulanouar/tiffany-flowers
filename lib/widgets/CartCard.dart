@@ -26,25 +26,26 @@ class CartCard extends StatelessWidget {
             child: Container(
               height: 17.h,
               width: 12.h,
-              child:CachedNetworkImage(
-        imageUrl: item.image,
-        progressIndicatorBuilder: (context, url, downloadProgress) => 
-                Container(
-
-                  height: 9.h,
-                  width: 9.h,
-                  child: Center(
+              child:FittedBox(
+                fit: BoxFit.cover,
+                child: CachedNetworkImage(
+                      imageUrl: item.image,
+                      progressIndicatorBuilder: (context, url, downloadProgress) => 
+                  Container(
+              
+                    height: 9.h,
+                    width: 9.h,
                     child: CircularProgressIndicator(
                       
                       color: Color(0xff73BFBD),
                       value: downloadProgress.progress),
                   ),
-                ),
-        errorWidget: (context, url, error) => Container(
-          height: 24.h,
-          width: 20.h,
-          child: Icon(Icons.error)),
-     ),
+                      errorWidget: (context, url, error) => Container(
+                        height: 24.h,
+                        width: 20.h,
+                        child: Image.asset("assets/images/errorimage.png")),
+                   ),
+              ),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
@@ -92,7 +93,7 @@ class CartCard extends StatelessWidget {
                           ]),
                     ),
                   ),
-                  SizedBox(width: 20.w),
+                  SizedBox(width: 12.w),
                   Container(
                     width: 24.w,
                     padding: EdgeInsets.symmetric(horizontal: 2.sp),

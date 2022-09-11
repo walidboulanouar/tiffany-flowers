@@ -65,7 +65,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
         errorWidget: (context, url, error) => Container(
           height: 9.h,
           width: 20.h,
-          child: Icon(Icons.error)),
+          child: Image.asset("assets/images/errorimage.png")),
      ),
             ),
             shape: RoundedRectangleBorder(

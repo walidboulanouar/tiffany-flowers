@@ -317,12 +317,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       // width:100.w,
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton2(
-                          // dropdownWidth:0.w-20.sp,
+                          dropdownDecoration: BoxDecoration(
+
+                            borderRadius:  BorderRadius.circular(10),
+                          ),
+                          
+                          dropdownWidth:83.w,
+                          
                           // barrierDismissible:false,
                           iconSize: 25.sp,
                           iconEnabledColor: Color(0xff73BFBD),
 
-                          dropdownElevation: 0,
+                          dropdownElevation: 1,
 
                           isExpanded: true,
                           hint: Text(

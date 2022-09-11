@@ -263,13 +263,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   ? Navigator.of(context, rootNavigator: true)
                                       .pop()
                                   : null;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  behavior: SnackBarBehavior.floating,
-                                  content: Text("user doesn't exists"),
-                                  duration: const Duration(seconds: 2),
-                                ),
-                              );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Color(0xffD8AA6B),
+                                    behavior: SnackBarBehavior.floating,
+                                    content: Text(
+                                      "user doesn't exists",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
+                              
                             }
                                   // Navigator.push(
                                   //   context,
@@ -560,13 +567,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   ? Navigator.of(context, rootNavigator: true)
                                       .pop()
                                   : null;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  behavior: SnackBarBehavior.floating,
-                                  content: Text("User Already exists with this phone number"),
-                                  duration: const Duration(seconds: 2),
-                                ),
-                              );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Color(0xffD8AA6B),
+                                    behavior: SnackBarBehavior.floating,
+                                    content: Text(
+                                      "User Already exists with this phone number",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
+                              
                             }
                                  
                                 }

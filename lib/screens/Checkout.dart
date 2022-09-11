@@ -591,9 +591,7 @@ class _CheckoutState extends State<Checkout> {
                                         )),
                               );
 
-                              // snackBar("you are connected");
-
-                              //  cartScreen.currentState!.popUntil((route) => route.isFirst);
+                              
 
                             } else {
                               print(response);
@@ -602,13 +600,20 @@ class _CheckoutState extends State<Checkout> {
                                   ? Navigator.of(context, rootNavigator: true)
                                       .pop()
                                   : null;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  behavior: SnackBarBehavior.floating,
-                                  content: Text("somthing wrong"),
-                                  duration: const Duration(seconds: 2),
-                                ),
-                              );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Color(0xffD8AA6B),
+                                    behavior: SnackBarBehavior.floating,
+                                    content: Text(
+                                      "somthing wrong",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
+                              
                             }
                           }
                         },

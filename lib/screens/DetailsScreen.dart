@@ -634,10 +634,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       indexProvider.setCurrentIndex(4);
                                     },
                                   ).show();
-                                  // ScaffoldMessenger.of(context).showSnackBar(
-                                  //     SnackBar(
-                                  //         behavior: SnackBarBehavior.floating,
-                                  //         content: Text("Added to Cart")));
+                                  
                                 },
                                 icon: Text("Add To Cart",
                                     style: TextStyle(

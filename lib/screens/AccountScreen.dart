@@ -294,8 +294,9 @@ class AccountScreen extends StatelessWidget {
                       orderProvider.removeOrders();
                        ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        backgroundColor: Color(0xffD8AA6B),
         behavior: SnackBarBehavior.floating,
-        content: Text("You are log out"),
+        content: Text("You are log out",style: TextStyle(color: Colors.white,),),
         duration: const Duration(seconds: 2),
       ),
     );

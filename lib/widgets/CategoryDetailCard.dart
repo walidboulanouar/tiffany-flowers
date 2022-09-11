@@ -170,21 +170,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                           )),
                         ),
                       );
-                      // sqlService.addToCart(
-                      //     CartItem(
-                      //         productId: widget.id,
-                      //         name: widget.name,
-                      //         color: 0xffD8AA6B,
-                      //         count: 1,
-                      //         image: widget.image.toString(),
-                      //         price: widget.price,
-                      //         size: "small",
-                      //         sizePrice: 20),
-                      //     cartProvider);
-                      // ScaffoldMessenger.of(context)
-                      //     .showSnackBar(SnackBar(
-                      //        behavior: SnackBarBehavior.floating,
-                      //       content: Text("Added to Cart")));
+                      
                     },
                     icon: Text("Add To Cart",
                         style: TextStyle(
@@ -222,10 +208,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                               );
                             },
                           );
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //     SnackBar(
-                          //        behavior: SnackBarBehavior.floating,
-                          //       content: Text("added to wishlist")));
+                         
                         },
                         icon: Icon(
                           Icons.favorite_border,
@@ -235,9 +218,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                     : IconButton(
                         onPressed: () {
                           sqlService.deleteProduct(widget.id, wlProvider);
-                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          //     behavior: SnackBarBehavior.floating,
-                          //     content: Text("removed from  wishlist")));
+                          
                         },
                         icon: Icon(
                           Icons.favorite,

@@ -198,10 +198,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                         child: IconButton(
                         onPressed: () {
                           sqlService.deleteProduct(widget.id, wlProvider);
-                          //  ScaffoldMessenger.of(context).showSnackBar(
-                          //         SnackBar(
-                          //            behavior: SnackBarBehavior.floating,
-                          //           content: Text("removed from  wishlist")));
+                          
                         },
                         icon: Icon(
                           Icons.favorite,

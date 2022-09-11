@@ -52,15 +52,22 @@ class _VerificationScreenState extends State<VerificationScreen> {
     super.dispose();
   }
 
-  // snackBar Widget
+  
   snackBar(String? message) {
     return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        content: Text(message!),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+                                  SnackBar(
+                                    backgroundColor: Color(0xffD8AA6B),
+                                    behavior: SnackBarBehavior.floating,
+                                    content: Text(
+                                      message!,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
+    
   }
 
   @override
@@ -131,6 +138,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       child: Text(
                         'Phone Number Verification',
                         style: TextStyle(
+                          color: Color(0xff73BFBD),
                             fontWeight: FontWeight.bold, fontSize: 22),
                         textAlign: TextAlign.center,
                       ),
@@ -140,17 +148,20 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           horizontal: 30.0, vertical: 8),
                       child: RichText(
                         text: TextSpan(
+                          style: const TextStyle(
+                                      color:Color(0xffA7A7A7),
+                                      
+                                      fontSize: 15),
                             text: "Enter the code sent to ",
                             children: [
                               TextSpan(
                                   text: "${widget.phoneNumber}",
                                   style: const TextStyle(
-                                      color: Colors.black,
+                                      color: Color(0xffD8AA6B),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15)),
                             ],
-                            style: const TextStyle(
-                                color: Colors.black54, fontSize: 15)),
+                            ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -338,19 +349,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 snackBar(
                                     "something wrong return and try again");
                               }
-                              // conditions for validating
-                              // if (currentText.length != 4 || currentText != "1234") {
-                              //   errorController!.add(ErrorAnimationType
-                              //       .shake); // Triggering error shake animation
-                              //   setState(() => hasError = true);
-                              // } else {
-                              //   setState(
-                              //     () {
-                              //       hasError = false;
-                              //       snackBar("OTP Verified!!");
-                              //     },
-                              //   );
-                              // }
+                             
                             }
                           },
                           child: Center(

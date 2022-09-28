@@ -100,24 +100,29 @@ class PaymentCard extends StatelessWidget {
                             color: Color.fromARGB(86, 80, 80, 80))),
                   ),
                   SizedBox(
-                    width: 10.w,
+                    width: 8.w,
                   ),
-                  Padding(
+                  Container(
+                    width: 20.w,
                     padding: EdgeInsets.only(left: 8.sp),
-                    child: RichText(
-                      text: TextSpan(
-                          text: price.toString(),
-                          style: TextStyle(
-                              fontFamily: "Lucida Calligraphy",
-                              fontSize: 12.sp,
-                              color: Color(0xffD8AA6B)),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'AED',
-                              style: TextStyle(
-                                  fontSize: 8.sp, color: Color(0xffD8AA6B)),
-                            ),
-                          ]),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: RichText(
+                        text: TextSpan(
+                            text: price.toString(),
+                            
+                            style: TextStyle(
+                                fontFamily: "Lucida Calligraphy",
+                                fontSize: 8.sp,
+                                color: Color(0xffD8AA6B)),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'AED',
+                                style: TextStyle(
+                                    fontSize: 6.sp, color: Color(0xffD8AA6B)),
+                              ),
+                            ]),
+                      ),
                     ),
                   ),
                 ]),

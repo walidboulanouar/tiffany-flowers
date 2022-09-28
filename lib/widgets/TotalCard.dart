@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -34,12 +36,12 @@ class TotalCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 13.sp),
                   child: Text(
-                    "subTotal",
+                    LocaleKeys.Subtotal.tr(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
                 SizedBox(
-                  width: 40.w,
+                  width: 30.w,
                 ),
                 Text(
                   cartProvider.subTotal().toString()+" AED",
@@ -63,14 +65,14 @@ class TotalCard extends StatelessWidget {
                     ),
                     child: RichText(
                       text: TextSpan(
-                          text: 'Total ',
+                          text: LocaleKeys.Total.tr(),
                           style: TextStyle(
                               fontFamily: "Lucida Calligraphy",
                               fontSize: 14.sp,
                               color: Color(0xff73BFBD)),
                           children: <TextSpan>[
                             TextSpan(
-                              text: '(Include Tax)',
+                              text: ' (${LocaleKeys.IncludeTax.tr()}) ',
                               style: TextStyle(
                                   fontSize: 10.sp, color: Color(0xff73BFBD)),
                             ),

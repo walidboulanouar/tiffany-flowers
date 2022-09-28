@@ -1,6 +1,8 @@
-import 'package:ecomerceapp/screens/CategoriesScreen.dart';
+import 'package:easy_localization/easy_localization.dart'  hide TextDirection;
+import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:ecomerceapp/services/Services.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -75,52 +77,55 @@ List<Product> mostViewProducts=sortedProducts.length > 10
     List<Category> categories = categoriesProvider.categories.length > 10
         ? categoriesProvider.categories.sublist(0, 10)
         : categoriesProvider.categories;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CustomAppBar(),
-        Flexible(
-          child: ListView(
-            padding: EdgeInsets.only(top: 0.sp,bottom: 40.sp,left:0.sp,right:0.sp),
-             children: [
-            CarouselImage(banners: bannerProvider.banners),
-            TextTitle(
-              title: "Categories",
-            ),
-            Container(
-              height: 24.h,
-              child: ScrollWidget(children: categories),
-            ),
-            Center(
-                child: InkWell(
-              onTap: () {
-                categoriesScreen.currentState!
-                    .popUntil((route) => route.isFirst);
-                indexProvider.setCurrentIndex(1);
-              },
-              child: Container(
-                margin: EdgeInsets.only(top: 10.sp),
-                child: Text("View All",
-                    style: TextStyle(fontSize: 7.sp, color: Color(0xffB5B5B5))),
+    return  Directionality(
+      textDirection: TextDirection.ltr,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomAppBar(),
+          Flexible(
+            child: ListView(
+              padding: EdgeInsets.only(top: 0.sp,bottom: 40.sp,left:0.sp,right:0.sp),
+               children: [
+              CarouselImage(banners: bannerProvider.banners),
+              TextTitle(
+                title: LocaleKeys.Categories,
               ),
-            )),
-            TextTitle(
-              title: "New Items",
-            ),
-            Container(
-              height: 24.h,
-              child: ProductScrollWidget(children: newProducts),
-            ),
-            TextTitle(
-              title: "Mostview Products",
-            ),
-            Container(
-              height: 24.h,
-              child: ProductScrollWidget(children: mostViewProducts),
-            ),
-          ]),
-        ),
-      ],
+              Container(
+                height: 24.h,
+                child: ScrollWidget(children: categories),
+              ),
+              Center(
+                  child: InkWell(
+                onTap: () {
+                  categoriesScreen.currentState!
+                      .popUntil((route) => route.isFirst);
+                  indexProvider.setCurrentIndex(1);
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 10.sp),
+                  child: Text(LocaleKeys.View_All,
+                      style: TextStyle(fontSize: 7.sp, color: Color(0xffB5B5B5))).tr(),
+                ),
+              )),
+              TextTitle(
+                title: LocaleKeys.New_itm,
+              ),
+              Container(
+                height: 24.h,
+                child: ProductScrollWidget(children: newProducts),
+              ),
+              TextTitle(
+                title: LocaleKeys.Most_view_pro,
+              ),
+              Container(
+                height: 24.h,
+                child: ProductScrollWidget(children: mostViewProducts),
+              ),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 }

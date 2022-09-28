@@ -1,0 +1,134 @@
+{
+    "CATEGORIES":"الأصناف",
+    "New_itm":"منتجات جديدة",
+    "Most_view_pro":"المنتجات الأكثر مشاهدة",
+    "View_More":"عرض المزيد",
+    "View_All": "عرض الكل",
+    "HOME":"الرئيسية",
+    "ACCOUNT":"الحساب",
+    "CART":"السلة",
+    
+    "ORDERS":"الطلبات",
+    "MyAccount":"حسابي",
+    "Home":"الرئيسية",
+    "MyOrders":"طلباتي",
+    "Categories":"الأصناف",
+    "MyCart":"سلتي",
+    "WishList":"المفضلة",
+    "AboutUs":"من نحن؟",
+    "TermsConditions":"الأحكام والشروط",
+    "PrivacyPolicy":"سياسة الخصوصية",
+    "ContactUs":"اتصل بنا",
+   
+    "Cart":"السلة",
+    "Subtotal":"المجموع الفرعي",
+    "Total":"المجموع",
+    "IncludeTax ":"تشمل الضريبة",
+    "Checkout":"الدفع",
+    "Categouries":"الأصناف",
+    "Completed":"منجز",
+    "Pennding":"قيد الانتظار",
+    "Canceled":"ملغاة",
+    "Re_Order":"إعادة الطلب",
+    "App_Lan":"لغة التطبيق",
+    "Eng":"الإنجليزية",
+    "Arab":"العربية",
+    "EmptyCart":"عربة التسوق الخاصة بك فارغة ابدأ الإضافة إلى عربة التسوق",
+"Add_To_Cart":"أضف إلى السلة",
+"AvailableOptions":"الخيارات المتاحة",
+"Color":"اللون",
+"About":"وصف",
+"PriceUnit":"سعر الوحدة",
+"TotalPrice":"السعر الكلي",
+"AddToWishlist":"أضف إلى المفضلة",
+"RelatedProducts":"منتجات ذات صله",
+"Details":"التفاصيل",
+"OrderID":"رقم الطلب",
+"OrderStartDate":"تاريخ بدء الطلب",
+"OrderEndDate":"تاريخ انتهاء الطلب",
+"OrderStatus":"حالة الطلب",
+"PaymentMethod":"طرق الدفع",
+"ReceiverAddress":"عنوان المستلم",
+"AdditionalAddressInfo":"معلومات العنوان الإضافية",
+
+"ReceiverPhoneNumber":"رقم هاتف المستلم",
+"SelectedMessage":"الرسالة المختارة",
+
+"PhraseOnTheFlowerBouquet":"عبارة على باقة الورد",
+"ItemsDetails":"تفاصيل المنتجات",
+"OrderDetails":"تفاصيل الطلب",
+"ShippingInfo":"معلومات الشحن",
+"YourPhoneNumber":"*رقم هاتفك",
+"SelectReceiverCity":"حدد مدينة المتلقي",
+"SelectYourMessage":"حدد رسالتك",
+"PutAPhrase":"ضع عبارة على باقة الورد",
+"Yourmessagehere":"رسالتك هنا",
+"Somthingwrong":"هناك شيء خاطئ",
+"Pleaseentermobilenumber":"الرجاء إدخال رقم الهاتف المحمول",
+"Pleaseentervalidmobilenumber":"الرجاء إدخال رقم هاتف محمول صحيح",
+"Pleaseenteravalidinput":"الرجاء إدخال شيء صحيح",
+"CreditCard":"بطاقة الائتمان",
+"Myorder":"طلبي",
+"Shippingcost":"تكلفة الشحن",
+"Tax":"الضريبة",
+"PayNow":"ادفع الآن",
+"Payment":"الدفع",
+
+"Sign_out":"تسجيل الخروج",
+"Youarelogout":"لقد قمت بتسجيل الخروج",
+"NoOrderYet":"لا يوجد طلب حتى الآن",
+"SignIn":"تسجيل الدخول",
+"SignInRequired":"مطلوب تسجيل الدخول",
+"ThisActionRequire":"تتطلب هذه العملية تسجيل الدخول ",
+"TheTotalshould":"يجب أن يكون المجموع أكثر من 250",
+"RemovedfromCart":"تمت إزالته من السلة ",
+"Pleaseenteranemailaddress":"الرجاء إدخال عنوان البريد الإلكتروني",
+"Validemailaddress":"يرجى إدخال عنوان البريد الإلكتروني الصحيح",
+"Enteryourname":"أدخل اسمك من فضلك",
+"FirstName":"الاسم الشخصي",
+"Enteryourfirst":"أدخل اسمك الشخصي",
+"LastName":"الإسم العائلي",
+"EnterYourlast":"ادخل إسمك العائلي",
+"Email":"البريد الإلكتروني",
+"phonenumber":"رقم الهاتف",
+"Cancel":"إلغاء",
+"Login":"تسجيل الدخول",
+"SignUp":"اشتراك",
+"Userdoesntexists":"المستخدم غير موجود",
+"UserAlready":"المستخدم برقم الهاتف هذا موجود بالفعل",
+"PhoneNumberVerification":"التحقق من رقم الهاتف",
+"Enterthecodesent":"أدخل الرمز المرسل إلى ",
+"Enterfourdigitcode":"أدخل رمزًا مكونًا من أربعة أرقام",
+"Pleasefillcells":"يرجى ملء جميع الخلايا بشكل صحيح",
+"Youareconnected":"أنت متصل الآن",
+"somethingwrongagain":"شيء خاطئ حاول مرة أخرى",
+"VERIFY":"تحقق",
+"Clear":"مسح",
+"SuccessfullyAddedToCart":"تم الإضافة بنجاح إلى السلة",
+"YourOrderHasBeenAdded":"تمت إضافة طلبك",
+"CheckOut":"الدفع",
+"ContinueShopping":"مواصلة التسوق"
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }

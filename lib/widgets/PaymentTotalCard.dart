@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sizer/sizer.dart';
+
+import '../translations/locale_keys.g.dart';
 
 class PaymentTotalCard extends StatelessWidget {
   int shipping_cost;
@@ -29,12 +32,12 @@ class PaymentTotalCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
-                    "subTotal",
+                    LocaleKeys.Subtotal.tr(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
                 SizedBox(
-                  width: 50.w,
+                  width: 41.w,
                 ),
                 Text(
                   subTotal.toString()
@@ -51,12 +54,12 @@ class PaymentTotalCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
-                    "Shipping cost",
+                   LocaleKeys.Shippingcost.tr(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
                 SizedBox(
-                  width: 41.w,
+                  width: 45.w,
                 ),
                 Text(
                   shipping_cost. toString(),
@@ -72,12 +75,12 @@ class PaymentTotalCard extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
-                    "Tax",
+                    LocaleKeys.Tax.tr(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
                 SizedBox(
-                  width: 58.w,
+                  width: 52.w,
                 ),
                 Text(
                   "5%",
@@ -100,14 +103,14 @@ class PaymentTotalCard extends StatelessWidget {
                     ),
                     child: RichText(
                       text: TextSpan(
-                          text: 'Total ',
+                          text: LocaleKeys.Total.tr(),
                           style: TextStyle(
                               fontFamily: "Lucida Calligraphy",
                               fontSize: 14.sp,
                               color: Color(0xff73BFBD)),
                           children: <TextSpan>[
                             TextSpan(
-                              text: '(Include Tax)',
+                              text: '( ${LocaleKeys.IncludeTax.tr()})',
                               style: TextStyle(
                                   fontSize: 10.sp, color: Color(0xff73BFBD)),
                             ),

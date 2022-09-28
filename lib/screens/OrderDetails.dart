@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
@@ -45,240 +47,243 @@ class _OrderDetailsState extends State<OrderDetails> {
   }
   Widget build(BuildContext context) {
     print(widget.order.endDate);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          OrderAppBar(
-            myfc: () {
-              Navigator.of(context).pop();
-            },
-            title: "Order Details",
-          ),
-          SizedBox(
-            height: 2.h,
-          ),
-          Flexible(
-            // height: 70.h,
-            child: ListView(padding: EdgeInsets.all(0), children: [
-              SizedBox(
-                height: 2.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Order ID",
-                    style: TextStyle(
-                      color: Color(0xffD8AA6B),
-                      fontSize: 9.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 35.w,
-                  ),
-                  Text(
-                    widget.order.orderId,
-                    style: TextStyle(
-                      color: Color(0xff505050),
-                      fontSize: 10.sp,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Order Start Date",
-                    style: TextStyle(
-                      color: Color(0xffD8AA6B),
-                      fontSize: 9.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 30.w,
-                  ),
-                  Text(
-                    widget.order.startDate,
-                    style: TextStyle(
-                      color: Color(0xffB9B9B9),
-                      fontSize: 9.sp,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Order End Date",
-                    style: TextStyle(
-                      color: Color(0xffD8AA6B),
-                      fontSize: 9.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 32.w,
-                  ),
-                  Text(
-                    widget.order.endDate!=null?widget.order.endDate.toString():"",
-                    style: TextStyle(
-                      color: Color(0xffB9B9B9),
-                      fontSize: 9.sp,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Order Status",
-                    style: TextStyle(
-                      color: Color(0xffD8AA6B),
-                      fontSize: 9.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 38.w,
-                  ),
-                  Text(
-                    widget.order.status,
-                    style: TextStyle(
-                      color: Color(0xff73BFBD),
-                      fontSize: 10.sp,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  Text(
-                    "Payment Method",
-                    style: TextStyle(
-                      color: Color(0xffD8AA6B),
-                      fontSize: 9.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 32.w,
-                  ),
-                  Container(
-                    width: 20.w,
-                    margin: EdgeInsets.only(right: 6.sp),
-                    child: Row(
-                      children: [
-                        Container(
-                            height: 2.5.h,
-                            child: Image.asset("assets/images/visa.png")),
-                        SizedBox(
-                          width: 3.w,
-                        ),
-                        Container(
-                            height: 2.5.h,
-                            child:
-                                Image.asset("assets/images/mastercard@2x.png")),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              ItemName("Receiver Address"),
-              ItemContent(widget.order.receiverAddr),
-              SizedBox(
-                height: 4.h,
-              ),
-              ItemName("Additional Address Info"),
-              ItemContent(widget.order.addtAddr),
-              SizedBox(
-                height: 4.h,
-              ),
-              ItemName("Receiver Phone Number"),
-              ItemContent(widget.order.receiverPhoneNumber),
-              SizedBox(
-                height: 4.h,
-              ),
-              ItemName("Selected Message"),
-              ItemContent(widget.order.selectedMsg),
-              SizedBox(
-                height: 4.h,
-              ),
-              ItemName("Phrase On The Flower Bouquet"),
-              ItemContent(widget.order.phrase),
-              SizedBox(
-                height: 5.h,
-              ),
-              Divider(
-                color: Colors.black,
-                indent: 25.w,
-                endIndent: 25.w,
-              ),
-              SizedBox(
-                height: 3.h,
-              ),
-              Center(
-                  child: Text(
-                "Items Details",
-                style: TextStyle(
-                  color: Color(0xff73BFBD),
-                  fontSize: 13.sp,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            OrderAppBar(
+              myfc: () {
+                Navigator.of(context).pop();
+              },
+              title: LocaleKeys.OrderDetails.tr(),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Flexible(
+              // height: 70.h,
+              child: ListView(padding: EdgeInsets.all(0), children: [
+                SizedBox(
+                  height: 2.h,
                 ),
-              )),
-              SizedBox(
-                height: 4.h,
-              ),
-              ListView.builder(
-                  physics: ScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(0),
-                  itemCount: orderItems.length,
-                  itemBuilder: (_, index) {
-                    return OrderDetailCard(
-                      image: orderItems[index].image,
-                      price: orderItems[index].price,
-                      quantity: orderItems[index].count,
-                       name: orderItems[index].name,
-                    );
-                  }),
-              SizedBox(
-                height: 2.h,
-              ),
-            ]),
-          ),
-        ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      LocaleKeys.OrderID.tr(),
+                      style: TextStyle(
+                        color: Color(0xffD8AA6B),
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 35.w,
+                    ),
+                    Text(
+                      widget.order.orderId,
+                      style: TextStyle(
+                        color: Color(0xff505050),
+                        fontSize: 10.sp,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      LocaleKeys.OrderStartDate.tr(),
+                      style: TextStyle(
+                        color: Color(0xffD8AA6B),
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 30.w,
+                    ),
+                    Text(
+                      widget.order.startDate,
+                      style: TextStyle(
+                        color: Color(0xffB9B9B9),
+                        fontSize: 9.sp,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      LocaleKeys.OrderEndDate.tr(),
+                      style: TextStyle(
+                        color: Color(0xffD8AA6B),
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 32.w,
+                    ),
+                    Text(
+                      widget.order.endDate!=null?widget.order.endDate.toString():"",
+                      style: TextStyle(
+                        color: Color(0xffB9B9B9),
+                        fontSize: 9.sp,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      LocaleKeys.OrderStatus.tr(),
+                      style: TextStyle(
+                        color: Color(0xffD8AA6B),
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 38.w,
+                    ),
+                    Text(
+                      widget.order.status,
+                      style: TextStyle(
+                        color: Color(0xff73BFBD),
+                        fontSize: 10.sp,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                     LocaleKeys.PaymentMethod.tr(),
+                      style: TextStyle(
+                        color: Color(0xffD8AA6B),
+                        fontSize: 9.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 32.w,
+                    ),
+                    Container(
+                      width: 20.w,
+                      margin: EdgeInsets.only(right: 6.sp),
+                      child: Row(
+                        children: [
+                          Container(
+                              height: 2.5.h,
+                              child: Image.asset("assets/images/visa.png")),
+                          SizedBox(
+                            width: 3.w,
+                          ),
+                          Container(
+                              height: 2.5.h,
+                              child:
+                                  Image.asset("assets/images/mastercard@2x.png")),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                ItemName(LocaleKeys.ReceiverAddress.tr(),),
+                ItemContent(widget.order.receiverAddr),
+                SizedBox(
+                  height: 4.h,
+                ),
+                ItemName(LocaleKeys.AdditionalAddressInfo.tr(),),
+                ItemContent(widget.order.addtAddr),
+                SizedBox(
+                  height: 4.h,
+                ),
+                ItemName(LocaleKeys.ReceiverPhoneNumber.tr(),),
+                ItemContent(widget.order.receiverPhoneNumber),
+                SizedBox(
+                  height: 4.h,
+                ),
+                ItemName(LocaleKeys.SelectedMessage.tr(),),
+                ItemContent(widget.order.selectedMsg),
+                SizedBox(
+                  height: 4.h,
+                ),
+                ItemName(LocaleKeys.PhraseOnTheFlowerBouquet.tr(),),
+                ItemContent(widget.order.phrase),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Divider(
+                  color: Colors.black,
+                  indent: 25.w,
+                  endIndent: 25.w,
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
+                Center(
+                    child: Text(
+                  LocaleKeys.ItemsDetails.tr(),
+                  style: TextStyle(
+                    color: Color(0xff73BFBD),
+                    fontSize: 13.sp,
+                  ),
+                )),
+                SizedBox(
+                  height: 4.h,
+                ),
+                ListView.builder(
+                    physics: ScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.all(0),
+                    itemCount: orderItems.length,
+                    itemBuilder: (_, index) {
+                      return OrderDetailCard(
+                        image: orderItems[index].image,
+                        price: orderItems[index].price,
+                        quantity: orderItems[index].count,
+                         name: orderItems[index].name,
+                      );
+                    }),
+                SizedBox(
+                  height: 2.h,
+                ),
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }

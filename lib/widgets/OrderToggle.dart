@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecomerceapp/screens/CartScreen.dart';
 import 'package:ecomerceapp/screens/OrderDetails.dart';
 import 'package:ecomerceapp/widgets/OrderCard.dart';
@@ -14,6 +15,7 @@ import 'package:sizer/sizer.dart';
 
 import '../models/Order.dart';
 import '../screens/HomeScreen.dart';
+import '../translations/locale_keys.g.dart';
 
 class OrderToggle extends StatefulWidget {
   List<Order> completed;
@@ -38,7 +40,7 @@ class _OrderToggleState extends State<OrderToggle> {
     Color(0xffD8AA6B),
     Color(0xffA7A7A7)
   ];
-  List<String> _listTextTabToggle = ["Completed", "Pennding", "Canceled"];
+  List<String> _listTextTabToggle = [LocaleKeys.Completed.tr(), LocaleKeys.Pennding.tr(), LocaleKeys.Canceled.tr()];
   Color _selectedBgColor = Color(0xff73BFBD);
   bool _reOrder = true;
   void _changeBgColor(int index) {
@@ -188,13 +190,7 @@ class _OrderToggleState extends State<OrderToggle> {
                                   builder: (_) => OrderDetails(order: widget.canceled[index],),
                                 ),
                               );
-                              //  Navigator.p(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (BuildContext context) =>
-                              //         (OrderDetails()),
-                              //   ),
-                              // );
+                             
                             },
                             child:
                             

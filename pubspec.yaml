@@ -57,16 +57,15 @@ dependencies:
   webview_flutter: ^3.0.4
   flutter_spinkit: ^5.1.0
   intl: ^0.17.0
-  pull_to_refresh: ^2.0.0
-  flutter_localizations: 
-    sdk: flutter         
+  pull_to_refresh: ^2.0.0        
   flutter_phoenix: ^1.1.0
   restart_app: ^1.1.0+1
   video_player: ^2.4.7
   cached_network_image: ^3.2.1
   lottie: ^1.4.2
   flutter_svg: ^1.1.4
- 
+  easy_localization: ^3.0.1
+  
   # flutter_multi_carousel: ^1.0.3
   
   
@@ -79,7 +78,7 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/logotiffany.png"
+  image_path: "assets/images/tiffanylogo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   
 
@@ -105,6 +104,7 @@ flutter:
   assets:
    - assets/images/
    - assets/videos/
+   - assets/translations/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

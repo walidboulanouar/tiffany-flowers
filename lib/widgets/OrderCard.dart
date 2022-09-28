@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecomerceapp/models/OrderItem.dart';
 import 'package:ecomerceapp/screens/ReorderScreen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import '../models/Order.dart';
 import '../providers/OrderProvider.dart';
 import '../services/Services.dart';
+import '../translations/locale_keys.g.dart';
 
 class OrderCard extends StatefulWidget {
   Color orderColor;
@@ -148,7 +150,7 @@ class _OrderCardState extends State<OrderCard> {
                                 ),
 
                                 child: FittedBox(
-                                    child: Text("Re-Order",
+                                    child: Text(LocaleKeys.Re_Order.tr(),
                                         style: TextStyle(
                                             fontSize: 7.sp,
                                             color: Colors.white))),

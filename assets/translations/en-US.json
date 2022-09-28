@@ -1,0 +1,231 @@
+{
+"CATEGORIES":"CATEGORIES",
+"New_itm":"New Items",
+"Most_view_pro":"Most View Products",
+"View_More":"View More",
+"View_All": "View All",
+"HOME":"HOME",
+"ACCOUNT":"ACCOUNT",
+"CART":"CART",
+
+"ORDERS":"ORDERS",
+"MyAccount":"My Account",
+"Home":"Home",
+"MyOrders":"My Orders",
+"Categories":"Categories",
+"MyCart":"My Cart",
+"WishList":"Wish List",
+"AboutUs":"About Us",
+"TermsConditions":"Terms & Conditions",
+"PrivacyPolicy":"Privacy Policy",
+"ContactUs":"Contact Us",
+
+"Cart":"Cart",
+"Subtotal":"Subtotal",
+"Total":"Total",
+"IncludeTax ":"IncludeTax",
+"Checkout":"Checkout",
+"Categouries":"Categouries",
+"Completed":"Completed",
+"Pennding":"Pennding",
+"Canceled":"Canceled",
+"Re_Order":"Re-Order",
+"App_Lan":"App Language",
+"Eng":"English",
+"Arab":"Arabic",
+"EmptyCart":"Your Cart Is Empty Start Adding to The Cart",
+"Add_To_Cart":"Add To Cart",
+"AvailableOptions":"Available Options",
+"Color":"Color",
+"About":"About",
+"PriceUnit":"Price Unit",
+"TotalPrice":"Total Price",
+"AddToWishlist":"Add To Wishlist",
+"RelatedProducts":"Related Products",
+"Details":"Details",
+"OrderID":"Order ID",
+"OrderStartDate":"Order Start Date",
+"OrderEndDate":"Order End Date",
+"OrderStatus":"Order Status",
+"PaymentMethod":"Payment Method",
+"ReceiverAddress":"Receiver Address",
+"AdditionalAddressInfo":"Additional Address Info",
+
+"ReceiverPhoneNumber":"Receiver Phone Number",
+"SelectedMessage":"Selected Massage",
+
+"PhraseOnTheFlowerBouquet":"Phrase On The Flower Bouquet",
+"ItemsDetails":"Items Details",
+"OrderDetails":"Order Details",
+"ShippingInfo":"Shipping Info",
+"YourPhoneNumber":"Your Phone Number*",
+"SelectReceiverCity":"Select Receiver City",
+"SelectYourMessage":"Select Your Message",
+"PutAPhrase":"Put A Phrase On The Flower Bouquet",
+"Yourmessagehere":"your message here",
+"Somthingwrong":"somthing wrong",
+"Pleaseentermobilenumber":"Please enter mobile number",
+"Pleaseentervalidmobilenumber":"Please enter valid mobile number",
+"Pleaseenteravalidinput":"Please enter a valid input",
+"CreditCard":"Credit Card",
+"Myorder":"My order",
+"Shippingcost":"Shipping cost",
+"Tax":"Tax",
+"PayNow":"Pay Now",
+"Payment":"payment",
+
+"Sign_out":"Sign out",
+"Youarelogout":"You are log out",
+"NoOrderYet":"No Order Yet",
+"SignIn":"Sign In",
+"SignInRequired":"Sign In Required",
+"ThisActionRequire":"This Action Require Sign in ",
+"TheTotalshould":"The Total should be more than 250",
+"RemovedfromCart":"removed from Cart",
+"Pleaseenteranemailaddress":"Please enter an email address",
+"Validemailaddress":"Please enter valid email address",
+"Enteryourname":"Please enter your name",
+"FirstName":"First Name",
+"Enteryourfirst":"Enter your first name",
+"LastName":"Last Name",
+"EnterYourlast":"Enter Your last name",
+"Email":"Email",
+"phonenumber":"phone number",
+
+"Login":"Login",
+"Cancel":"Cancel",
+
+
+"SignUp":"Sign Up",
+"Userdoesntexists":"user doesn't exists",
+"UserAlready":"User Already exists with this phone number",
+"PhoneNumberVerification":"Phone Number Verification",
+"Enterthecodesent":"Enter the code sent to ",
+"Enterfourdigitcode":"Enter a four digit code",
+"Pleasefillcells":"Please fill up all the cells properly",
+"Youareconnected":"You are connected",
+"somethingwrongagain":"something wrong return and try again",
+"VERIFY":"VERIFY",
+"Clear":"Clear",
+
+"SuccessfullyAddedToCart":"Successfully Added To Cart",
+"YourOrderHasBeenAdded":"Your Order Has Been Added",
+"CheckOut":"Check Out",
+"ContinueShopping":"Continue Shopping"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

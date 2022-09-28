@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:easy_localization/easy_localization.dart'  hide TextDirection;
+
 import 'package:ecomerceapp/screens/AccountScreen.dart';
 import 'package:ecomerceapp/screens/CartScreen.dart';
 import 'package:ecomerceapp/screens/CategoriesScreen.dart';
@@ -11,19 +13,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:restart_app/restart_app.dart';
+
 import 'package:sizer/sizer.dart';
 
-import '../models/Category.dart';
+
 
 import '../providers/CategoriesProvider.dart';
 import '../providers/IndexProvider.dart';
 import '../providers/UserProvider.dart';
-import '../providers/WishListProvider.dart';
+
 import '../services/Services.dart';
-import '../services/SqlService.dart';
-import 'CategoryDetailsScreen.dart';
-import 'LoginScreen.dart';
+
+import '../translations/locale_keys.g.dart';
+
 import 'RegistrationScreen.dart';
 
 var orderScreen = GlobalKey<NavigatorState>();
@@ -31,6 +33,46 @@ final categoriesScreen = GlobalKey<NavigatorState>();
 final mainScreen = GlobalKey<NavigatorState>();
 final accountScreen = GlobalKey<NavigatorState>();
 final cartScreen = GlobalKey<NavigatorState>();
+ List<Widget> pages = [
+    Navigator(
+      key: orderScreen,
+      onGenerateRoute: (route) => MaterialPageRoute(
+          settings: route,
+          builder: (context) => OrdersScreen(
+                key: UniqueKey(),
+              )),
+    ),
+    Navigator(
+      key: categoriesScreen,
+      onGenerateRoute: (route) => MaterialPageRoute(
+        settings: route,
+        builder: (context) => CategoriesScreen(
+          categoriesScreen: categoriesScreen,
+        ),
+      ),
+    ),
+    Navigator(
+      key: mainScreen,
+      onGenerateRoute: (route) => MaterialPageRoute(
+        settings: route,
+        builder: (context) => MainScreen(),
+      ),
+    ),
+    Navigator(
+      key: accountScreen,
+      onGenerateRoute: (route) => MaterialPageRoute(
+        settings: route,
+        builder: (context) => AccountScreen(),
+      ),
+    ),
+    Navigator(
+      key: cartScreen,
+      onGenerateRoute: (route) => MaterialPageRoute(
+        settings: route,
+        builder: (context) => CartScreen(),
+      ),
+    ),
+  ];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -83,8 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             orderScreen = GlobalKey<NavigatorState>();
           });
-          _pages.removeAt(0);
-          _pages.insert(
+          pages.removeAt(0);
+          pages.insert(
             0,
             Navigator(
               key: orderScreen,
@@ -103,7 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
           pv.setCurrentIndex(val);
           if (userProvider.user == null) {
             AwesomeDialog(
-              btnOkText: "Sign In",
+              btnCancelText: LocaleKeys.Cancel.tr(),
+              btnOkText: LocaleKeys.SignIn.tr(),
               context: context,
               titleTextStyle: TextStyle(
                 color: Color(0xff73BFBD),
@@ -111,18 +154,16 @@ class _HomeScreenState extends State<HomeScreen> {
               descTextStyle: TextStyle(
                 color: Color(0xffD8AA6B),
               ),
+              buttonsTextStyle: TextStyle(fontSize: 8.sp),
               btnOkColor: Color(0xff73BFBD),
               btnCancelColor: Color(0xffD8AA6B),
               dialogType: DialogType.WARNING,
               animType: AnimType.RIGHSLIDE,
-              title: 'Sign In Required',
-              desc: 'This Action Require Sign in ',
+              title:LocaleKeys.SignInRequired.tr(),
+              desc:LocaleKeys.ThisActionRequire.tr(),
               btnCancelOnPress: () {},
               btnOkOnPress: () {
-                // orderScreen.currentState!.push(
-                //     MaterialPageRoute(
-                //       builder: (context) => LoginScreen(orderScreen)),
-                // );
+                
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -131,54 +172,14 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ).show();
           }
-          // setState(() => pageIndex = index
-          // );
+         
         }
         pv.setCurrentIndex(val);
       }
     }
   }
 
-  List<Widget> _pages = [
-    Navigator(
-      key: orderScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-          settings: route,
-          builder: (context) => OrdersScreen(
-                key: UniqueKey(),
-              )),
-    ),
-    Navigator(
-      key: categoriesScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => CategoriesScreen(
-          categoriesScreen: categoriesScreen,
-        ),
-      ),
-    ),
-    Navigator(
-      key: mainScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => MainScreen(),
-      ),
-    ),
-    Navigator(
-      key: accountScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => AccountScreen(),
-      ),
-    ),
-    Navigator(
-      key: cartScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => CartScreen(),
-      ),
-    ),
-  ];
+ 
 
   
   DateTime? currentBackPressTime;
@@ -250,50 +251,53 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         floatingActionButtonLocation:
             FloatingActionButtonLocation.miniCenterDocked,
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedFontSize: 5.sp,
-          unselectedFontSize: 5.sp,
-          showUnselectedLabels: true,
-          unselectedItemColor: Color(0xff73BFBD),
-          selectedItemColor: Color(0xffD8AA6B),
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt_rounded),
-              label: 'ORDERS',
-              backgroundColor: Colors.white,
-            ),
-            BottomNavigationBarItem(
-                icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: SvgPicture.asset(
-                      color: indexProvider.currentIndex == 1
-                          ? Color(0xffD8AA6B)
-                          : Color(0xff73BFBD),
-                      "assets/images/icon (3).svg"),
-                ),
-                label: 'CATEGORIES',
-                backgroundColor: Colors.white),
-            BottomNavigationBarItem(
-                icon: Container(height: 15.sp),
-                label: 'HOME',
-                backgroundColor: Colors.white),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outlined),
-                label: 'ACCOUNT',
-                backgroundColor: Colors.white),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined),
-                label: 'cart',
-                backgroundColor: Colors.white),
-          ],
-          currentIndex: indexProvider.currentIndex,
-          onTap: (val) => _onTap(val, context, indexProvider),
+        bottomNavigationBar: Directionality(
+          textDirection: TextDirection.ltr,
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedFontSize: 5.sp,
+            unselectedFontSize: 5.sp,
+            showUnselectedLabels: true,
+            unselectedItemColor: Color(0xff73BFBD),
+            selectedItemColor: Color(0xffD8AA6B),
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.list_alt_rounded),
+                label: LocaleKeys.ORDERS.tr(),
+                backgroundColor: Colors.white,
+              ),
+              BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: SvgPicture.asset(
+                        color: indexProvider.currentIndex == 1
+                            ? Color(0xffD8AA6B)
+                            : Color(0xff73BFBD),
+                        "assets/images/icon (3).svg"),
+                  ),
+                  label: LocaleKeys.CATEGORIES.tr(),
+                  backgroundColor: Colors.white),
+              BottomNavigationBarItem(
+                  icon: Container(height: 15.sp),
+                  label: LocaleKeys.HOME.tr(),
+                  backgroundColor: Colors.white),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outlined),
+                  label:LocaleKeys.ACCOUNT.tr(),
+                  backgroundColor: Colors.white),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart_outlined),
+                  label: LocaleKeys.CART.tr(),
+                  backgroundColor: Colors.white),
+            ],
+            currentIndex: indexProvider.currentIndex,
+            onTap: (val) => _onTap(val, context, indexProvider),
+          ),
         ),
         extendBodyBehindAppBar: true,
         body: IndexedStack(
           index: indexProvider.currentIndex,
-          children: _pages,
+          children: pages,
         ),
       ),
     );

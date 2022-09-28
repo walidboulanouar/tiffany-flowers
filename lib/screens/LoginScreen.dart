@@ -1,5 +1,4 @@
-import 'package:badges/badges.dart';
-import 'package:ecomerceapp/screens/HomeScreen.dart';
+
 import 'package:ecomerceapp/screens/VerificationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -213,8 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       builder: (context) => VerificationScreen(phoneNumber: _phone, screen: widget.screen,)),
                                 );
                           }
-                          // Navigator.push(
-                          //     context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                        
                         },
                         child: Text(
                           'Send',

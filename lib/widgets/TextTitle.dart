@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,7 +14,7 @@ class TextTitle extends StatelessWidget {
       margin: EdgeInsets.only(top: 2.h),
       child: Center(
         
-        child: Text(title, style: TextStyle(fontSize: 14.sp,color:  Color(0xff73BFBD),)),
+        child: Text(title, style: TextStyle(fontSize: 14.sp,color:  Color(0xff73BFBD),)).tr(),
       ),
     );
   }

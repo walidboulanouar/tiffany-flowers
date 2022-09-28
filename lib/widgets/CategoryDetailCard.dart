@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -158,7 +160,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                                 RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         )),
-                        fixedSize: MaterialStateProperty.all(Size(27.w, 20.sp)),
+                        fixedSize: MaterialStateProperty.all(Size(27.w, 23.sp)),
                         backgroundColor:
                             MaterialStateProperty.all(Color(0xff73BFBD))),
                     onPressed: () {
@@ -172,7 +174,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                       );
                       
                     },
-                    icon: Text("Add To Cart",
+                    icon: Text(LocaleKeys.Add_To_Cart.tr(),
                         style: TextStyle(
                           fontSize: 6.sp,
                           color: Colors.white,

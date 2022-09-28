@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import '../providers/CartProvider.dart';
 import '../providers/WishListProvider.dart';
 import '../screens/DetailsScreen.dart';
 import '../services/SqlService.dart';
+import '../translations/locale_keys.g.dart';
 
 class CategoryDetailCardTwo extends StatefulWidget {
   int id;
@@ -136,7 +138,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                                 borderRadius: BorderRadius.circular(5.0),
                               )),
                               fixedSize:
-                                  MaterialStateProperty.all(Size(25.w, 20.sp)),
+                                  MaterialStateProperty.all(Size(25.w, 23.sp)),
                               backgroundColor:
                                   MaterialStateProperty.all(Color(0xff73BFBD))),
                           onPressed: () {
@@ -151,7 +153,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                                   );
                         
                           },
-                          icon: Text("Add To Cart",
+                          icon: Text(LocaleKeys.Add_To_Cart.tr(),
                               style: TextStyle(
                                 fontSize: 6.sp,
                                 color: Colors.white,

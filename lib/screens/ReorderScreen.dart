@@ -299,7 +299,7 @@ class ItemContent extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               "  " + content,
-              style: TextStyle(color: Color(0xff73BFBD)),
+              style: TextStyle(color: Color(0xff73BFBD),fontSize: 10.sp),
             )));
   }
 }

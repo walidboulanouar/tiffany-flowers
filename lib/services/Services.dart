@@ -187,6 +187,19 @@ Future<Response> verifyPhone(
       ));
   return response;
 }
+Future<Response> deleteAccount(
+  String phone,
+  
+) async {
+  Response response = await dio.delete('/user/${phone}',
+      
+    options: Options(
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+      ));
+  return response;
+}
 
 openWhatsap() async {
   var whatsapp = "+971557971021";

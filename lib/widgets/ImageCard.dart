@@ -14,6 +14,7 @@ class ImageCard extends StatelessWidget {
       children: [
         Flexible(
           child: Card(
+            
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: CachedNetworkImage(
@@ -31,30 +32,11 @@ class ImageCard extends StatelessWidget {
                   ),
                 ),
         errorWidget: (context, url, error) => Container(
-          height: 24.h,
+          height: 20.h,
           width: 18.h,
           child: Image.asset("assets/images/errorimage.png")),
      )
-            //  Image.network(
-            //  loadingBuilder: (BuildContext context, Widget child,
-            //       ImageChunkEvent? loadingProgress) {
-            //     if (loadingProgress == null) return child;
-            //     return Container(
-            //       height: 8.h,
-            //       width: 8.h,
-            //       child: Center(
-            //         child: CircularProgressIndicator(
-            //           value: loadingProgress.expectedTotalBytes != null
-            //               ? loadingProgress.cumulativeBytesLoaded /
-            //                   loadingProgress.expectedTotalBytes!
-            //               : null,
-            //         ),
-            //       ),
-            //     );
-            //   },
-            //  image,
-            //   fit: BoxFit.fill,
-            // ),
+            
            , shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
@@ -66,21 +48,17 @@ class ImageCard extends StatelessWidget {
             ? Container(
                 // color: Colors.red,
                 width: 30.w,
+                height: 5.h,
                  constraints:  BoxConstraints(minHeight: 0, maxHeight:2.h),
                   
-                  // child: Text(
-                  //    overflow: TextOverflow.ellipsis,
-                  //   widget.name.toLowerCase(),
-                  //     style: TextStyle(
-                  //       fontSize: 10.sp,
-                  //       color: Color(0xff73BFBD),
-                  //     )),
+                 
                 
 
                 margin: EdgeInsets.only(top: 0.3.h),
-                child: Center(
-                  child: Text(title!.toLowerCase(),
-                  overflow: TextOverflow.ellipsis,
+                child: Padding(
+                  padding:  EdgeInsets.only(left:title!.length>15?0.0:6.sp),
+                  child: Text(title!.length>15?title!.toLowerCase().substring(0,14)+"..":title!.toLowerCase(),
+                  overflow: TextOverflow.visible,
                       style: TextStyle(
                         fontSize: 9.sp,
                         color: Color(0xffD8AA6B),
@@ -91,6 +69,7 @@ class ImageCard extends StatelessWidget {
                 height: 0,
                 width: 0,
               ),
+              SizedBox(height: 6.sp,)
       ],
     );
   }

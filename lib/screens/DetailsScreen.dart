@@ -328,7 +328,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             dropdownWidth:83.w,
                             
                             // barrierDismissible:false,
-                            iconSize: 25.sp,
+                            iconSize: 15.sp,
                             iconEnabledColor: Color(0xff73BFBD),
     
                             dropdownElevation: 1,
@@ -337,7 +337,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             hint: Text(
                               'Size',
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 10,
                                 color: Color(0xff73BFBD),
                               ),
                             ),
@@ -352,9 +352,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 selectedValue = value as int;
                               });
                             },
-                            buttonHeight: 40,
-                            buttonWidth: 140,
-                            itemHeight: 40,
+                            buttonHeight: 30.sp,
+                            buttonWidth: 140.sp,
+                            itemHeight: 30.sp,
                             itemPadding: EdgeInsets.symmetric(horizontal: 8.sp),
                           ),
                         ),

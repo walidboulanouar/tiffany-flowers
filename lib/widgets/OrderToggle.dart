@@ -84,7 +84,8 @@ class _OrderToggleState extends State<OrderToggle> {
 
               // width in percent
 
-              width: 25.w,
+              width: 100.w>600?10.w:25.w,
+              // width: 100.w/4,
 
               borderRadius: 100,
 
@@ -96,12 +97,12 @@ class _OrderToggleState extends State<OrderToggle> {
 
               selectedTextStyle: TextStyle(
                   color: Colors.white,
-                  fontSize: 12,
+                  fontSize: 8.sp,
                   fontWeight: FontWeight.w700),
 
               unSelectedTextStyle: TextStyle(
                   color: Color(0xffB9B9B9),
-                  fontSize: 12,
+                  fontSize: 8.sp,
                   fontWeight: FontWeight.w500),
 
               labels: _listTextTabToggle,

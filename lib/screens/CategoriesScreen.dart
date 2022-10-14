@@ -77,7 +77,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               child: GridView.builder(
                   padding: EdgeInsets.only(top: 0,bottom: 40.sp),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 170,
+                      maxCrossAxisExtent: 40.w,
                       childAspectRatio: 0.7,
                       crossAxisSpacing: 1.sp,
                       mainAxisSpacing: 10.sp),

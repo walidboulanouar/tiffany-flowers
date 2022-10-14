@@ -165,7 +165,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       padding: EdgeInsets.symmetric(vertical: 8.sp),
                       child: Text(
                         LocaleKeys.PayNow.tr(),
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white,fontSize: 12.sp),
                       ),
                     ),
                     style: ButtonStyle(

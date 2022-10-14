@@ -117,7 +117,7 @@ class _OrderCardState extends State<OrderCard> {
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             widget.reorder
                 ? SizedBox.fromSize(
-                    size: Size(8.h, 8.h), // button width and height
+                    size: Size(45.sp, 45.sp), // button width and height
                     child: ClipOval(
                       child: Material(
                         color: Colors.transparent, // button color

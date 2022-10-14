@@ -105,7 +105,7 @@ List<Product> mostViewProducts=sortedProducts.length > 10
                 child: Container(
                   margin: EdgeInsets.only(top: 10.sp),
                   child: Text(LocaleKeys.View_All,
-                      style: TextStyle(fontSize: 7.sp, color: Color(0xffB5B5B5))).tr(),
+                      style: TextStyle(fontSize: 10.sp, color: Color(0xffB5B5B5))).tr(),
                 ),
               )),
               TextTitle(

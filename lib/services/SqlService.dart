@@ -66,6 +66,13 @@ class SqlService {
       await txn.rawDelete('DELETE FROM Product WHERE id = ?', [id]);
     });
   }
+  void clearWishList( WishListProvider wishListProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      wishListProvider.wishListProducts=[];
+      await txn.rawDelete('DELETE FROM Product');
+    });
+  }
 
   void deleteUser(UserProvider userProvider) async {
     var dbClient = await db;

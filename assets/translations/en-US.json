@@ -111,7 +111,13 @@
 "SuccessfullyAddedToCart":"Successfully Added To Cart",
 "YourOrderHasBeenAdded":"Your Order Has Been Added",
 "CheckOut":"Check Out",
-"ContinueShopping":"Continue Shopping"
+"ContinueShopping":"Continue Shopping",
+"DeleteAccount":"Delete Account",
+"Delete":"Delete",
+"sure":"Are You Sure?",
+"ProcessCannotBeUndone":"Do You Really Want To Delete All Your Records ? This Process Cannot Be Undone"
+
+
 
 
 

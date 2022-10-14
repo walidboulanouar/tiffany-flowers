@@ -149,9 +149,11 @@ class _HomeScreenState extends State<HomeScreen> {
               btnOkText: LocaleKeys.SignIn.tr(),
               context: context,
               titleTextStyle: TextStyle(
+                fontSize: 10.sp,
                 color: Color(0xff73BFBD),
               ),
               descTextStyle: TextStyle(
+                fontSize: 8.sp,
                 color: Color(0xffD8AA6B),
               ),
               buttonsTextStyle: TextStyle(fontSize: 8.sp),
@@ -255,39 +257,42 @@ class _HomeScreenState extends State<HomeScreen> {
           textDirection: TextDirection.ltr,
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            selectedFontSize: 5.sp,
-            unselectedFontSize: 5.sp,
+            iconSize: 15.sp,
+            selectedFontSize: 10.sp,
+            unselectedFontSize: 10.sp,
             showUnselectedLabels: true,
             unselectedItemColor: Color(0xff73BFBD),
             selectedItemColor: Color(0xffD8AA6B),
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt_rounded),
-                label: LocaleKeys.ORDERS.tr(),
+                label: LocaleKeys.ORDERS.tr().toLowerCase(),
                 backgroundColor: Colors.white,
               ),
               BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: SvgPicture.asset(
+                      height: 12.sp,
+                      width: 12.sp,
                         color: indexProvider.currentIndex == 1
                             ? Color(0xffD8AA6B)
                             : Color(0xff73BFBD),
                         "assets/images/icon (3).svg"),
                   ),
-                  label: LocaleKeys.CATEGORIES.tr(),
+                  label: LocaleKeys.CATEGORIES.tr().toLowerCase(),
                   backgroundColor: Colors.white),
               BottomNavigationBarItem(
                   icon: Container(height: 15.sp),
-                  label: LocaleKeys.HOME.tr(),
+                  label: LocaleKeys.HOME.tr().toLowerCase(),
                   backgroundColor: Colors.white),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person_outlined),
-                  label:LocaleKeys.ACCOUNT.tr(),
+                  label:LocaleKeys.ACCOUNT.tr().toLowerCase(),
                   backgroundColor: Colors.white),
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart_outlined),
-                  label: LocaleKeys.CART.tr(),
+                  label: LocaleKeys.CART.tr().toLowerCase(),
                   backgroundColor: Colors.white),
             ],
             currentIndex: indexProvider.currentIndex,

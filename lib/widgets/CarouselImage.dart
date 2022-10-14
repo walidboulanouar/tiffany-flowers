@@ -161,21 +161,23 @@ class _CarouselImageState extends State<CarouselImage> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      // color: Colors.red,
-                      height: 30.sp,
-                      width: 100.w,
-                      child: Text(
-                        // textAlign:TextAlign.left,
-                        widget.banners.isNotEmpty
-                            ? widget.banners[currentIndexPage].text
-                            : "",
-                        style: TextStyle(
-    
-                            // fontSize: 12.sp,
-                            color: Colors.white,
-                            // fontStyle: FontStyle.italic,
-                            fontFamily: "Lucida Calligraphy"),
+                    Flexible(
+                      child: Container(
+                        // color: Colors.red,
+                        height: 30.sp,
+                        width: 100.w,
+                        child: Text(
+                          // textAlign:TextAlign.left,
+                          widget.banners.isNotEmpty
+                              ? widget.banners[currentIndexPage].text
+                              : "",
+                          style: TextStyle(
+                        
+                              fontSize: 8.sp,
+                              color: Colors.white,
+                              // fontStyle: FontStyle.italic,
+                              fontFamily: "Lucida Calligraphy"),
+                        ),
                       ),
                     ),
                     Align(
@@ -191,11 +193,11 @@ class _CarouselImageState extends State<CarouselImage> {
                           child: Center(
                               child: FittedBox(
                             child: Container(
-                              height: 10.sp,
+                              height: 2.5.h,
                               child: Text(
                                 LocaleKeys.View_More,
                                 style: TextStyle(
-                                    fontSize: 5.sp, color: Colors.white),
+                                    fontSize: 6.sp, color: Colors.white),
                               ).tr(),
                             ),
                           )),

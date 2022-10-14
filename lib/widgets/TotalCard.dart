@@ -37,7 +37,7 @@ class TotalCard extends StatelessWidget {
                   padding: EdgeInsets.only(left: 13.sp),
                   child: Text(
                     LocaleKeys.Subtotal.tr(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,fontSize: 10.sp),
                   ),
                 ),
                 SizedBox(
@@ -45,7 +45,7 @@ class TotalCard extends StatelessWidget {
                 ),
                 Text(
                   cartProvider.subTotal().toString()+" AED",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white,fontSize: 10.sp),
                 )
               ],
             ),

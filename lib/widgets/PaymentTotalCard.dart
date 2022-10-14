@@ -33,7 +33,7 @@ class PaymentTotalCard extends StatelessWidget {
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
                     LocaleKeys.Subtotal.tr(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,fontSize: 10.sp),
                   ),
                 ),
                 SizedBox(
@@ -42,7 +42,7 @@ class PaymentTotalCard extends StatelessWidget {
                 Text(
                   subTotal.toString()
                   ,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white,fontSize: 8.sp),
                 )
               ],
             ),
@@ -55,7 +55,7 @@ class PaymentTotalCard extends StatelessWidget {
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
                    LocaleKeys.Shippingcost.tr(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,fontSize: 10.sp),
                   ),
                 ),
                 SizedBox(
@@ -63,7 +63,7 @@ class PaymentTotalCard extends StatelessWidget {
                 ),
                 Text(
                   shipping_cost. toString(),
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white,fontSize: 8.sp),
                 )
               ],
             ),
@@ -76,7 +76,7 @@ class PaymentTotalCard extends StatelessWidget {
                   padding: EdgeInsets.only(left: 10.sp),
                   child: Text(
                     LocaleKeys.Tax.tr(),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,fontSize: 10.sp),
                   ),
                 ),
                 SizedBox(
@@ -84,7 +84,7 @@ class PaymentTotalCard extends StatelessWidget {
                 ),
                 Text(
                   "5%",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white,fontSize: 8.sp),
                 )
               ],
             ),

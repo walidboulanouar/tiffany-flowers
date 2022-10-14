@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:ecomerceapp/widgets/CategoryAppBar.dart';
 import 'package:ecomerceapp/widgets/CategoryDetailCard.dart';
 import 'package:ecomerceapp/widgets/ImageCard.dart';
@@ -58,150 +60,153 @@ class _WishListScreenState extends State<WishListScreen> {
      
     
     
-    return Scaffold(
-      backgroundColor: Colors.white,
-      floatingActionButton: Container(
-        height: 6.h,
-        width: 6.h,
-        child: FloatingActionButton(
-          heroTag: Text("btn5"),
-          backgroundColor: Colors.green,
-          onPressed: () {
-            openWhatsap();
-          },
-          child: Icon(
-            Icons.whatsapp,
-            size: 25.sp,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        floatingActionButton: Container(
+          height: 6.h,
+          width: 6.h,
+          child: FloatingActionButton(
+            heroTag: Text("btn5"),
+            backgroundColor: Colors.green,
+            onPressed: () {
+              openWhatsap();
+            },
+            child: Icon(
+              Icons.whatsapp,
+              size: 25.sp,
+            ),
           ),
         ),
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CategoryAppBar(
-            myfc: (){
-              Navigator.of(context).pop();
-            },
-            title: "Wish List",
-          ),
-          // SizedBox(
-          //   height: 2.h,
-          // ),
-          // wlProvider.wishListProducts.length>0 ?
-          Flexible(
-            child: active
-                ? StaggeredGridView.countBuilder(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.only(top:0,bottom: 20.sp),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 5.sp,
-                    mainAxisSpacing: 15.sp,
-                    itemCount: wlProvider.wishListProducts.length + 1,
-                    itemBuilder: (BuildContext context, int index) => index == 0
-                        ? Wrap(children: [
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    active = true;
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.grid_view_outlined,
-                                  size: 14.sp,
-                                  color:
-                                      active ? active_color : in_active_color,
-                                )),
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    active = false;
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.list,
-                                  size: 22.sp,
-                                  color:
-                                      !active ? active_color : in_active_color,
-                                )),
-                          ])
-                        : InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      (DetailsScreen(productId:wlProvider.wishListProducts[index - 1].id,)),
-                                ),
-                              );
-                            },
-                            child: CategoryDetailCard(
-                              
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CategoryAppBar(
+              myfc: (){
+                Navigator.of(context).pop();
+              },
+              title: LocaleKeys.WishList.tr(),
+            ),
+            // SizedBox(
+            //   height: 2.h,
+            // ),
+            // wlProvider.wishListProducts.length>0 ?
+            Flexible(
+              child: active
+                  ? StaggeredGridView.countBuilder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.only(top:0,bottom: 20.sp),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5.sp,
+                      mainAxisSpacing: 15.sp,
+                      itemCount: wlProvider.wishListProducts.length + 1,
+                      itemBuilder: (BuildContext context, int index) => index == 0
+                          ? Wrap(children: [
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      active = true;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.grid_view_outlined,
+                                    size: 14.sp,
+                                    color:
+                                        active ? active_color : in_active_color,
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      active = false;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.list_alt_outlined,
+                                    size: 14.sp,
+                                    color:
+                                        !active ? active_color : in_active_color,
+                                  )),
+                            ])
+                          : InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        (DetailsScreen(productId:wlProvider.wishListProducts[index - 1].id,)),
+                                  ),
+                                );
+                              },
+                              child: CategoryDetailCard(
+                                
+                                id: wlProvider.wishListProducts[index - 1].id,
+                                name: wlProvider.wishListProducts[index - 1].name,
+                                image: wlProvider.wishListProducts[index - 1].images[0],
+                                price: wlProvider.wishListProducts[index - 1].price,
+                              ),
+                            ),
+                      staggeredTileBuilder: (int index) => StaggeredTile.count(
+                          index == 0 ? 2 : 1, index == 0 ? 0.21 : 1.45),
+                    )
+                  : StaggeredGridView.countBuilder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(0),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5.sp,
+                      mainAxisSpacing: 15.sp,
+                      itemCount: wlProvider.wishListProducts.length + 1,
+                      itemBuilder: (BuildContext context, int index) => index == 0
+                          ? Wrap(children: [
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      active = true;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.grid_view_outlined,
+                                    size: 14.sp,
+                                    color:
+                                        active ? active_color : in_active_color,
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      active = false;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.list_alt_outlined,
+                                    size: 14.sp,
+                                    color:
+                                        !active ? active_color : in_active_color,
+                                  )),
+                            ])
+                          : InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        (DetailsScreen(productId:wlProvider.wishListProducts[index - 1].id,)),
+                                  ),
+                                );
+                              },
+                              child: CategoryDetailCardTwo(
                               id: wlProvider.wishListProducts[index - 1].id,
-                              name: wlProvider.wishListProducts[index - 1].name,
-                              image: wlProvider.wishListProducts[index - 1].images[0],
-                              price: wlProvider.wishListProducts[index - 1].price,
+                                name: wlProvider.wishListProducts[index - 1].name,
+                                image: wlProvider.wishListProducts[index - 1].images[0],
+                                price: wlProvider.wishListProducts[index - 1].price,
+                              ),
                             ),
-                          ),
-                    staggeredTileBuilder: (int index) => StaggeredTile.count(
-                        index == 0 ? 2 : 1, index == 0 ? 0.21 : 1.45),
-                  )
-                : StaggeredGridView.countBuilder(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.all(0),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 5.sp,
-                    mainAxisSpacing: 15.sp,
-                    itemCount: wlProvider.wishListProducts.length + 1,
-                    itemBuilder: (BuildContext context, int index) => index == 0
-                        ? Wrap(children: [
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    active = true;
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.grid_view_outlined,
-                                  size: 14.sp,
-                                  color:
-                                      active ? active_color : in_active_color,
-                                )),
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    active = false;
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.list,
-                                  size: 22.sp,
-                                  color:
-                                      !active ? active_color : in_active_color,
-                                )),
-                          ])
-                        : InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      (DetailsScreen(productId:wlProvider.wishListProducts[index - 1].id,)),
-                                ),
-                              );
-                            },
-                            child: CategoryDetailCardTwo(
-                            id: wlProvider.wishListProducts[index - 1].id,
-                              name: wlProvider.wishListProducts[index - 1].name,
-                              image: wlProvider.wishListProducts[index - 1].images[0],
-                              price: wlProvider.wishListProducts[index - 1].price,
-                            ),
-                          ),
-                    staggeredTileBuilder: (int index) => StaggeredTile.count(
-                        index == 0 ? 2 : 2, index == 0 ? 0.21 : 0.8),
-                  ),
-          )
-          // :Container(height: 20.h,),
-        ],
+                      staggeredTileBuilder: (int index) => StaggeredTile.count(
+                          index == 0 ? 2 : 2, index == 0 ? 0.21 : 0.8),
+                    ),
+            )
+            // :Container(height: 20.h,),
+          ],
+        ),
       ),
     );
   }

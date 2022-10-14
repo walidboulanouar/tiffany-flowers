@@ -1,7 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecomerceapp/screens/AboutUs.dart';
 import 'package:ecomerceapp/screens/Checkout.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:ecomerceapp/services/Services.dart';
 import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:ecomerceapp/screens/WishListScreen.dart';
@@ -56,13 +58,17 @@ class _AccountScreenState extends State<AccountScreen> {
           Flexible(
             child: ListView(padding: EdgeInsets.only(bottom: 10.h), children: [
               SizedBox(
-                height: 1.h,
+                height: 8.sp,
               ),
               ListTile(
-                leading: Image.asset("assets/images/Group 40338.png"),
+                leading: Image.asset(
+                    fit: BoxFit.contain,
+                    width: 15.sp,
+                    height: 15.sp,
+                    "assets/images/Group 40338.png"),
                 title: Text(
                   LocaleKeys.Home.tr(),
-                  style: TextStyle(fontSize: 11.sp),
+                  style: TextStyle(fontSize: 13.sp),
                 ),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -75,10 +81,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (2).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (2).svg"),
                 title: Text(LocaleKeys.MyOrders.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -90,10 +100,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (3).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (3).svg"),
                 title: Text(LocaleKeys.Categories.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -106,10 +120,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (1).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (1).svg"),
                 title: Text(LocaleKeys.MyCart.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -121,18 +139,19 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
                 trailing: Container(
-                  height: 2.5.h,
-                  width: 2.5.h,
+                  height: 3.h,
+                  width: 3.h,
                   child: Badge(
                     position: BadgePosition.topEnd(top: 2, end: -2),
                     toAnimate: false,
                     shape: BadgeShape.circle,
                     badgeColor: Color(0xffFF7171),
                     borderRadius: BorderRadius.circular(18),
-                    badgeContent: FittedBox(
+                    badgeContent: Center(
                       child: Text(
                         cartProvider.count.toString(),
                         style: TextStyle(
+                          fontSize: 10,
                           color: Colors.white,
                         ),
                       ),
@@ -140,10 +159,14 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (8).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (8).svg"),
                 title: Text(LocaleKeys.WishList.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -179,11 +202,15 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (10).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (10).svg"),
                 title: Text(
                   LocaleKeys.App_Lan.tr(),
-                  style: TextStyle(fontSize: 11.sp),
+                  style: TextStyle(fontSize: 13.sp),
                 ),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -203,13 +230,13 @@ class _AccountScreenState extends State<AccountScreen> {
                                 ? LocaleKeys.Eng.tr()
                                 : LocaleKeys.Arab.tr(),
                             style: TextStyle(
-                                fontSize: 9.sp, color: Color(0xff73BFBD))),
+                                fontSize: 10.sp, color: Color(0xff73BFBD))),
                       ),
                       PopupMenuButton(
                         padding: EdgeInsets.zero,
                         icon: Icon(
                           Icons.arrow_drop_down_sharp,
-                          size: 32.sp,
+                          size: 25.sp,
                           color: Color(0xff73BFBD),
                         ),
                         onSelected: (value) {
@@ -224,33 +251,25 @@ class _AccountScreenState extends State<AccountScreen> {
                                 key: accountScreen,
                                 onGenerateRoute: (route) => MaterialPageRoute(
                                     settings: route,
-                                    builder: (context) =>
-                                        
-                                        AccountScreen(
+                                    builder: (context) => AccountScreen(
                                           key: UniqueKey(),
-                                        )
-                                    
-                                    ),
+                                        )),
                               ),
                             );
                           }
                           if (value == 1) {
                             context.setLocale(Locale('ar', 'AE'));
 
-                           pages.removeAt(3);
+                            pages.removeAt(3);
                             pages.insert(
                               3,
                               Navigator(
                                 key: accountScreen,
                                 onGenerateRoute: (route) => MaterialPageRoute(
                                     settings: route,
-                                    builder: (context) =>
-                                        
-                                        AccountScreen(
+                                    builder: (context) => AccountScreen(
                                           key: UniqueKey(),
-                                        )
-                                    
-                                    ),
+                                        )),
                               ),
                             );
                           }
@@ -259,6 +278,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           return [
                             PopupMenuItem(
                               textStyle: TextStyle(
+                                fontSize: 8.sp,
                                 color: Color(0xff73BFBD),
                               ),
                               child: Text(LocaleKeys.Eng.tr()),
@@ -266,6 +286,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                             PopupMenuItem(
                               textStyle: TextStyle(
+                                 fontSize: 8.sp,
                                 color: Color(0xff73BFBD),
                               ),
                               child: Text(LocaleKeys.Arab.tr()),
@@ -279,10 +300,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (9).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (9).svg"),
                 title: Text(LocaleKeys.AboutUs.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -296,10 +321,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (5).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (5).svg"),
                 title: Text(LocaleKeys.TermsConditions.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -311,10 +340,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (6).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (6).svg"),
                 title: Text(LocaleKeys.PrivacyPolicy.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -326,10 +359,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               ListTile(
-                leading: SvgPicture.asset("assets/images/icon (7).svg"),
+                leading: SvgPicture.asset(
+                    width: 15.sp, height: 15.sp, "assets/images/icon (7).svg"),
                 title: Text(LocaleKeys.ContactUs.tr(),
-                    style: TextStyle(fontSize: 11.sp)),
+                    style: TextStyle(fontSize: 13.sp)),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -341,17 +378,24 @@ class _AccountScreenState extends State<AccountScreen> {
                 dense: true,
                 selectedTileColor: Color(0xff73BFBD),
               ),
+              SizedBox(
+                height: 8.sp,
+              ),
               userProvider.user != null
                   ? ListTile(
                       leading: SvgPicture.asset(
+                          width: 15.sp,
+                          height: 15.sp,
                           "assets/images/Iconly-Light-Outline-Logout.svg"),
                       title: Text(LocaleKeys.Sign_out.tr(),
-                          style: TextStyle(fontSize: 11.sp)),
+                          style: TextStyle(fontSize: 13.sp)),
                       minLeadingWidth: 5,
                       contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                       textColor: Color.fromRGBO(216, 170, 107, 1),
                       onTap: () {
                         sqlService.deleteUser(userProvider);
+                        sqlService.clearWishList(wlProvider);
+                        sqlService.deleteCartItems(cartProvider);
 
                         orderProvider.removeOrders();
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -374,13 +418,58 @@ class _AccountScreenState extends State<AccountScreen> {
                       selectedTileColor: Color(0xff73BFBD),
                     )
                   : Container(),
+                  SizedBox(
+                height: 8.sp,
+              ),
+              userProvider.user != null?ListTile(
+                leading: SvgPicture.asset(
+                  color: Color(0xff73BFBD),
+                    width: 15.sp, height: 15.sp, "assets/images/delete-button.svg"),
+                title: Text(LocaleKeys.DeleteAccount.tr(),
+                    style: TextStyle(fontSize: 13.sp)),
+                minLeadingWidth: 5,
+                contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
+                textColor: Color(0xffD8AA6B),
+                onTap: ()  {
+                 AwesomeDialog(
+              btnCancelText: LocaleKeys.Cancel.tr(),
+              btnOkText: LocaleKeys.Delete.tr(),
+              context: context,
+              titleTextStyle: TextStyle(
+                fontSize: 10.sp,
+                color: Color(0xff73BFBD),
+              ),
+              descTextStyle: TextStyle(
+                fontSize: 8.sp,
+                color: Color(0xffD8AA6B),
+              ),
+              buttonsTextStyle: TextStyle(fontSize: 8.sp),
+              btnOkColor: Color(0xff73BFBD),
+              btnCancelColor: Color(0xffD8AA6B),
+              dialogType: DialogType.WARNING,
+              animType: AnimType.RIGHSLIDE,
+              title:LocaleKeys.sure.tr(),
+              desc:LocaleKeys.ProcessCannotBeUndone.tr(),
+              btnCancelOnPress: () {},
+              btnOkOnPress: () {
+                deleteAccount(userProvider.user!.phone);
+                sqlService.deleteUser(userProvider);
+                        sqlService.clearWishList(wlProvider);
+                        sqlService.deleteCartItems(cartProvider);
+              },
+            ).show();
+                },
+                hoverColor: Color(0xff73BFBD),
+                dense: true,
+                selectedTileColor: Color(0xff73BFBD),
+              ):Container(),
               SizedBox(
                 width: 100.h,
                 height: 3.h,
               ),
               InkWell(
                 onTap: () async {
-                  await launchUrl(Uri.parse('https://its.sy/'));
+                  await launchUrl(Uri.parse('https://www.its.ae/'));
                 },
                 child: Image.asset(
                   'assets/images/big-bang.png',

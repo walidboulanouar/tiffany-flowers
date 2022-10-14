@@ -110,7 +110,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 : Center(
                     child: Text(
                       LocaleKeys.NoOrderYet.tr(),
-                      style: TextStyle(color: Color(0xffD8AA6B)),
+                      style: TextStyle(color: Color(0xffD8AA6B),fontSize: 10.sp,),
                     ),
                   ),
           ],

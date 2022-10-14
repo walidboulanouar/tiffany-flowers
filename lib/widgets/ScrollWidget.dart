@@ -17,7 +17,7 @@ class ScrollWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     return ListView.builder(
-      padding: EdgeInsets.only(left: 8.sp,right:8.sp,top: 5.sp),
+      padding: EdgeInsets.only(left: 0.sp,right:0.sp,top: 5.sp),
         itemCount: children.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {

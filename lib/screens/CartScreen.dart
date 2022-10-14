@@ -158,6 +158,7 @@ class _CartScreenState extends State<CartScreen> {
                                         content: Text(
                                          LocaleKeys.TheTotalshould.tr(),
                                           style: TextStyle(
+                                            fontSize: 8.sp,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -172,9 +173,11 @@ class _CartScreenState extends State<CartScreen> {
               btnOkText: LocaleKeys.SignIn.tr(),
               context: context,
               titleTextStyle: TextStyle(
+                fontSize: 10.sp,
                 color: Color(0xff73BFBD),
               ),
               descTextStyle: TextStyle(
+                fontSize: 8.sp,
                 color: Color(0xffD8AA6B),
               ),
               buttonsTextStyle: TextStyle(fontSize: 8.sp),
@@ -205,7 +208,7 @@ class _CartScreenState extends State<CartScreen> {
                                   padding: EdgeInsets.symmetric(vertical: 8.sp),
                                   child: Text(
                                     LocaleKeys.Checkout.tr(),
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white,fontSize: 12.sp),
                                   ),
                                 ),
                                 style: ButtonStyle(
@@ -225,7 +228,9 @@ class _CartScreenState extends State<CartScreen> {
                   : Center(
                       child: Text(
                         LocaleKeys.EmptyCart.tr(),
-                        style: TextStyle(color: Color(0xff73BFBD)),
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          color: Color(0xff73BFBD)),
                       ),
                     ),
             ),

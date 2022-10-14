@@ -7,8 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
-
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -29,25 +27,23 @@ class _SplashScreenState extends State<SplashScreen> {
     ]);
 
     _controller = VideoPlayerController.asset(
-      videoPlayerOptions:VideoPlayerOptions(),
-      "assets/videos/Final.mp4");
-   
+        videoPlayerOptions: VideoPlayerOptions(), "assets/videos/Final.mp4");
+
     _controller!.initialize().then((_) {
       _controller!.setLooping(false);
       // Timer(Duration(milliseconds: 100), () {
-        setState(() {
-          _controller!.play();
-          _visible = true;
-        });
+      setState(() {
+        _controller!.play();
+        _visible = true;
       });
+    });
     // });
 
     Future.delayed(Duration(seconds: 9), () {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => HomeScreen()),
-          );
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
     });
   }
 
@@ -62,14 +58,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _getVideoBackground() {
     return AnimatedOpacity(
-      opacity: _visible ? 1.0 : 0.0,
-      duration: Duration(milliseconds: 1000),
-      child: AspectRatio(
+        opacity: _visible ? 1.0 : 0.0,
+        duration: Duration(milliseconds: 1000),
+        child: AspectRatio(
+            aspectRatio: 100.w / 100.h, child: VideoPlayer(_controller!)));
+  }
+
+  _getVideoBackground2() {
+    return AspectRatio(
         aspectRatio: _controller!.value.aspectRatio,
-        child: VideoPlayer(_controller!))
-      
-      
-    );
+        child: VideoPlayer(_controller!));
   }
 
   _getBackgroundColor() {
@@ -87,12 +85,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Center(
         child: Stack(
           children: <Widget>[
-            VideoPlayer(_controller!),
             _getVideoBackground(),
+
+            // VideoPlayer(_controller!)
+            100.w < 500 ? _getVideoBackground2() : Container(),
           ],
         ),
       ),

@@ -51,6 +51,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
               height: 18.h,
               width: 25.w,
               child:CachedNetworkImage(
+                fit: BoxFit.cover,
         imageUrl: widget.image,
         progressIndicatorBuilder: (context, url, downloadProgress) => 
                 Container(
@@ -85,7 +86,9 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                   SizedBox(height: 2.h),
                   Container(
                     padding: EdgeInsets.only(left: 8.sp),
+                    margin: EdgeInsets.only(bottom: 10.sp),
                     constraints:  BoxConstraints(minHeight: 0, maxHeight:2.h),
+                    height: 100.sp,
                   width: 50.w, 
                                  // child: Text(
                   //    overflow: TextOverflow.ellipsis,
@@ -95,7 +98,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                   //       color: Color(0xff73BFBD),
                   //     )),
                     child: Text(
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.visible,
                       widget.name.toLowerCase(),
                       style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                     ),
@@ -138,7 +141,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                                 borderRadius: BorderRadius.circular(5.0),
                               )),
                               fixedSize:
-                                  MaterialStateProperty.all(Size(25.w, 23.sp)),
+                                  MaterialStateProperty.all(Size(28.w, 23.sp)),
                               backgroundColor:
                                   MaterialStateProperty.all(Color(0xff73BFBD))),
                           onPressed: () {
@@ -155,10 +158,10 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                           },
                           icon: Text(LocaleKeys.Add_To_Cart.tr(),
                               style: TextStyle(
-                                fontSize: 6.sp,
+                                fontSize: 8.sp,
                                 color: Colors.white,
                               )),
-                          label: Icon(Icons.add, size: 8.sp, color: Colors.white),
+                          label: Icon(Icons.add, size: 12.sp, color: Colors.white),
                         ),
                          !wlProvider.wishList.contains(widget.id)?Flexible(
                            child: IconButton(

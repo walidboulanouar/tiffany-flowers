@@ -77,7 +77,7 @@ class OrderDetailCard extends StatelessWidget {
                     style: TextStyle(fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
-                // SizedBox(height: 1.h),
+                SizedBox(height: 5.sp),
                 Container(
                   height: 5.h,
                   // color: Colors.red,

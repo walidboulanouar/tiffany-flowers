@@ -49,17 +49,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
     WishListProvider wlProvider = Provider.of<WishListProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
-      //     decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(10),
-      //   color: Colors.white,
-      //   // boxShadow: [
-      //   //   BoxShadow(color: Color.fromARGB(255, 224, 221, 221), spreadRadius: 3),
-      //   // ],
-      // ),
-      height: 40.h,
-      child:
-      
-       Card(
+      child: Card(
         elevation: 3,
         // shadowColor: Color.fromARGB(31, 9, 7, 7),
         shape: RoundedRectangleBorder(
@@ -69,23 +59,22 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
         margin: EdgeInsets.symmetric(horizontal: 10.sp),
         child: Column(
           children: [
-            Container(
+            Flexible(
               // padding: EdgeInsets.all(0),
               // color: Colors.red,
-              height: 23.h,
+              // height: 23.h,
               child: Card(
-               
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
                 child: CachedNetworkImage(
                   imageUrl: widget.image,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       Container(
-                    height: 9.h,
-                    width: 9.h,
+                    height: 20.h,
+                    width: 20.h,
                     child: Center(
                       child: CircularProgressIndicator(
                           color: Color(0xff73BFBD),
@@ -93,9 +82,10 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                     ),
                   ),
                   errorWidget: (context, url, error) => Container(
-                      height: 9.h, width: 20.h, child: Image.asset("assets/images/errorimage.png")),
+                      height: 24.h,
+                      width: 20.h,
+                      child: Image.asset("assets/images/errorimage.png")),
                 ),
-                
                 elevation: 0,
                 margin: EdgeInsets.only(
                     left: 8.sp, right: 8.sp, bottom: 3.sp, top: 5.sp),
@@ -144,6 +134,9 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                 ),
               ],
             ),
+            SizedBox(
+              height: 8.sp,
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -172,14 +165,13 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                           )),
                         ),
                       );
-                      
                     },
                     icon: Text(LocaleKeys.Add_To_Cart.tr(),
                         style: TextStyle(
-                          fontSize: 6.sp,
+                          fontSize: 8.sp,
                           color: Colors.white,
                         )),
-                    label: Icon(Icons.add, size: 8.sp, color: Colors.white),
+                    label: Icon(Icons.add, size: 12.sp, color: Colors.white),
                   ),
                 ),
                 !wlProvider.wishList.contains(widget.id)
@@ -210,7 +202,6 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                               );
                             },
                           );
-                         
                         },
                         icon: Icon(
                           Icons.favorite_border,
@@ -220,7 +211,6 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                     : IconButton(
                         onPressed: () {
                           sqlService.deleteProduct(widget.id, wlProvider);
-                          
                         },
                         icon: Icon(
                           Icons.favorite,
@@ -228,7 +218,8 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                           color: Colors.red,
                         ))
               ],
-            )
+            ),
+            SizedBox(height: 2.h,)
           ],
         ),
       ),

@@ -107,7 +107,11 @@
 "SuccessfullyAddedToCart":"تم الإضافة بنجاح إلى السلة",
 "YourOrderHasBeenAdded":"تمت إضافة طلبك",
 "CheckOut":"الدفع",
-"ContinueShopping":"مواصلة التسوق"
+"ContinueShopping":"مواصلة التسوق",
+"DeleteAccount":"حذف الحساب",
+"Delete":"حذف",
+"sure":"هل أنت واثق؟",
+"ProcessCannotBeUndone":"هل تريد حقًا حذف جميع سجلاتك؟ لا يمكن التراجع عن هذه العملية"
 
     
     

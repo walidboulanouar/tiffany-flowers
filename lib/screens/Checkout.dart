@@ -232,7 +232,7 @@ class _CheckoutState extends State<Checkout> {
                         
                         // color: Color.fromARGB(255, 249, 249, 249),
                         child: TextFormField(
-                          style: TextStyle(color: Color(0xff73BFBD)),
+                          style: TextStyle(color: Color(0xff73BFBD),fontSize: 10.sp),
                           enabled: false,
                           initialValue: userProvider.user!.phone.toString(),
                           keyboardType: TextInputType.phone,
@@ -302,9 +302,9 @@ class _CheckoutState extends State<Checkout> {
                                   selectedValue2 = value as int;
                                 });
                               },
-                              buttonHeight: 40,
+                              buttonHeight: 30.sp,
                               buttonWidth: 140,
-                              itemHeight: 40,
+                              itemHeight: 30.sp,
                               itemPadding: EdgeInsets.symmetric(horizontal: 8.sp),
                             ),
                           ),
@@ -417,7 +417,7 @@ class _CheckoutState extends State<Checkout> {
                           },
                           decoration: InputDecoration(
                               hintText: '+971 xxx xxx xxx',
-                              hintStyle: TextStyle(color: Color(0xff73BFBD)),
+                              hintStyle: TextStyle(color: Color(0xff73BFBD),fontSize: 10.sp),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
@@ -464,7 +464,7 @@ class _CheckoutState extends State<Checkout> {
                               hint: Text(
                                 LocaleKeys.SelectYourMessage.tr(),
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 16,
                                   color: Color(0xffDCDCDC),
                                 ),
                               ),
@@ -477,9 +477,9 @@ class _CheckoutState extends State<Checkout> {
                                   selectedValue = value as String;
                                 });
                               },
-                              buttonHeight: 40,
+                              buttonHeight: 30.sp,
                               buttonWidth: 140,
-                              itemHeight: 40,
+                              itemHeight: 30.sp,
                               itemPadding: EdgeInsets.symmetric(horizontal: 8.sp),
                             ),
                           ),

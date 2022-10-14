@@ -105,5 +105,9 @@ abstract class  LocaleKeys {
   static const YourOrderHasBeenAdded = 'YourOrderHasBeenAdded';
   static const CheckOut = 'CheckOut';
   static const ContinueShopping = 'ContinueShopping';
+  static const DeleteAccount = 'DeleteAccount';
+  static const Delete = 'Delete';
+  static const sure = 'sure';
+  static const ProcessCannotBeUndone = 'ProcessCannotBeUndone';
 
 }

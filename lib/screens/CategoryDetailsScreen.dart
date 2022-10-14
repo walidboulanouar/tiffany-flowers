@@ -84,7 +84,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
               myfc: () {
                 Navigator.of(context).pop();
               },
-              title: widget.name.toString(),
+              title: widget.name.toString().toLowerCase(),
             ),
             
             Flexible(
@@ -105,7 +105,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                                     });
                                   },
                                   icon: Icon(
-                                    Icons.grid_view_outlined,
+                                    Icons.grid_view,
                                     size: 14.sp,
                                     color:
                                         active ? active_color : in_active_color,
@@ -117,8 +117,8 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                                     });
                                   },
                                   icon: Icon(
-                                    Icons.list,
-                                    size: 22.sp,
+                                    Icons.list_alt_outlined,
+                                    size: 14.sp,
                                     color:
                                         !active ? active_color : in_active_color,
                                   )),
@@ -181,8 +181,8 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                                     });
                                   },
                                   icon: Icon(
-                                    Icons.list,
-                                    size: 22.sp,
+                                    Icons.list_alt_outlined,
+                                    size: 14.sp,
                                     color:
                                         !active ? active_color : in_active_color,
                                   )),

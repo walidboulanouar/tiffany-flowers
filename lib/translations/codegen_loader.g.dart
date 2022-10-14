@@ -118,7 +118,11 @@ class CodegenLoader extends AssetLoader{
   "SuccessfullyAddedToCart": "تم الإضافة بنجاح إلى السلة",
   "YourOrderHasBeenAdded": "تمت إضافة طلبك",
   "CheckOut": "الدفع",
-  "ContinueShopping": "مواصلة التسوق"
+  "ContinueShopping": "مواصلة التسوق",
+  "DeleteAccount": "حذف الحساب",
+  "Delete": "حذف",
+  "sure": "هل أنت واثق؟",
+  "ProcessCannotBeUndone": "هل تريد حقًا حذف جميع سجلاتك؟ لا يمكن التراجع عن هذه العملية"
 };
 static const Map<String,dynamic> en_US = {
   "CATEGORIES": "CATEGORIES",
@@ -224,7 +228,11 @@ static const Map<String,dynamic> en_US = {
   "SuccessfullyAddedToCart": "Successfully Added To Cart",
   "YourOrderHasBeenAdded": "Your Order Has Been Added",
   "CheckOut": "Check Out",
-  "ContinueShopping": "Continue Shopping"
+  "ContinueShopping": "Continue Shopping",
+  "DeleteAccount": "Delete Account",
+  "Delete": "Delete",
+  "sure": "Are You Sure?",
+  "ProcessCannotBeUndone": "Do You Really Want To Delete All Your Records ? This Process Cannot Be Undone"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar_AE": ar_AE, "en_US": en_US};
 }

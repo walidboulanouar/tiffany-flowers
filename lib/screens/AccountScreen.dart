@@ -151,7 +151,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: Text(
                         cartProvider.count.toString(),
                         style: TextStyle(
-                          fontSize: 10,
+                          fontSize: 9,
                           color: Colors.white,
                         ),
                       ),
@@ -182,18 +182,20 @@ class _AccountScreenState extends State<AccountScreen> {
                 hoverColor: Color(0xff73BFBD),
                 dense: true,
                 trailing: Container(
-                  height: 2.5.h,
-                  width: 2.5.h,
+                  height: 3.h,
+                  width: 3.h,
                   child: Badge(
                     position: BadgePosition.topEnd(top: 2, end: -2),
                     toAnimate: false,
                     shape: BadgeShape.circle,
                     badgeColor: Color(0xffFF7171),
                     borderRadius: BorderRadius.circular(18),
-                    badgeContent: FittedBox(
+                    badgeContent: Center(
                       child: Text(
                         wlProvider.count.toString(),
                         style: TextStyle(
+                          overflow: TextOverflow.visible,
+                          fontSize: 9.sp,
                           color: Colors.white,
                         ),
                       ),

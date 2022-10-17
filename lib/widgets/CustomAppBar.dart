@@ -40,20 +40,20 @@ class CustomAppBar extends StatelessWidget {
               child: Row(children: [
                 
                 Badge(
-                  position: BadgePosition.topEnd(top: 3, end: -13),
+                  position: BadgePosition.topEnd(top: -3, end: -15),
                   toAnimate: false,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
-                  badgeContent: Container(
-                    height: 7.sp,
-                    width: 7.sp,
-                    child: FittedBox(
-                      child: Text(
-                        cartProvider.count.toString(),
-                        style: TextStyle(color: Colors.white,fontSize: 10.sp ),
+                  badgeContent: Padding(
+                    padding: const EdgeInsets.all(0.5),
+                    child: Text(
+                        
+                       cartProvider.count.toString(),
+                        style: TextStyle(
+                          
+                          color: Colors.white, fontSize: 10.sp),
                       ),
-                    ),
                   ),
                   child: Container(
                     height: 8.w,
@@ -93,7 +93,7 @@ class CustomAppBar extends StatelessWidget {
                     height: 20.h,
                     width: 35.w,
                     child: Image.asset("assets/images/Logo.png")),
-                    SizedBox(width: 7.w,),
+                    SizedBox(width: 15.w,),
                 InkWell(
                   onTap: (){
                            mainScreen.currentState!.push(
@@ -108,19 +108,19 @@ class CustomAppBar extends StatelessWidget {
                       );
                   },
                   child: Badge(
-                    position: BadgePosition.topEnd(top: -2, end: -15),
+                    position: BadgePosition.topEnd(top: -8, end: -16),
                     toAnimate: false,
                     shape: BadgeShape.circle,
                     badgeColor: Colors.red,
                     borderRadius: BorderRadius.circular(8),
-                    badgeContent: Container(
-                       height: 5.sp,
-                      width: 5.sp,
-                      child: FittedBox(
-                        child: Text(
-                          wlProvider.count.toString(),
-                          style: TextStyle(color: Colors.white, fontSize: 10.sp),
-                        ),
+                    badgeContent: Padding(
+                      padding: const EdgeInsets.all(0.5),
+                      child: Text(
+                        
+                        wlProvider.count.toString(),
+                        style: TextStyle(
+                          
+                          color: Colors.white, fontSize: 8.sp),
                       ),
                     ),
                     
@@ -153,28 +153,28 @@ class CustomAppBar extends StatelessWidget {
                     
                   ),
                 ),
-                SizedBox(width:7.w),
-                Badge(
-                  position: BadgePosition.topEnd(top: 5, end: -18),
-                  toAnimate: false,
-                  shape: BadgeShape.circle,
-                  badgeColor: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  badgeContent: Text(
-                    "0",
-                    style: TextStyle(color: Colors.white, fontSize: 4.sp),
-                  ),
-                   child: Container(
-                    margin: EdgeInsets.only(bottom:20),
-                        width:5.w,height:5.w,
-                        child: IconButton(
-                          icon:
-                              Icon(Icons.notifications,size: 5.5.w,color: Color(0xff73BFBD)),
-                          onPressed: () {},
-                          color: Colors.white,
-                        ),
-                      ),
-                ),
+                // SizedBox(width:7.w),
+                // Badge(
+                //   position: BadgePosition.topEnd(top: 5, end: -18),
+                //   toAnimate: false,
+                //   shape: BadgeShape.circle,
+                //   badgeColor: Colors.red,
+                //   borderRadius: BorderRadius.circular(8),
+                //   badgeContent: Text(
+                //     "0",
+                //     style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                //   ),
+                //    child: Container(
+                //     margin: EdgeInsets.only(bottom:20),
+                //         width:5.w,height:5.w,
+                //         child: IconButton(
+                //           icon:
+                //               Icon(Icons.notifications,size: 5.5.w,color: Color(0xff73BFBD)),
+                //           onPressed: () {},
+                //           color: Colors.white,
+                //         ),
+                //       ),
+                // ),
               ])),
         ],
       ),

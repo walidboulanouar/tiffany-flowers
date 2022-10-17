@@ -40,28 +40,28 @@ class AccountAppBar extends StatelessWidget {
             brightness: Brightness.light,
             backgroundColor: Color.fromARGB(0, 250, 249, 249),
             actions: [
-              Badge(
-                position: BadgePosition.topEnd(top: 9, end: -17),
-                toAnimate: false,
-                shape: BadgeShape.circle,
-                badgeColor: Colors.red,
-                borderRadius: BorderRadius.circular(8),
-                badgeContent: Text(
-                  "0",
-                  style: TextStyle(color: Colors.white, fontSize: 4.sp),
-                ),
-                child: Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  width: 5.w,
-                  height: 5.w,
-                  child: IconButton(
-                    icon: Icon(Icons.notifications,
-                        size: 15.sp, color: Color(0xff73BFBD)),
-                    onPressed: () {},
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              // Badge(
+              //   position: BadgePosition.topEnd(top: 9, end: -17),
+              //   toAnimate: false,
+              //   shape: BadgeShape.circle,
+              //   badgeColor: Colors.red,
+              //   borderRadius: BorderRadius.circular(8),
+              //   badgeContent: Text(
+              //     "0",
+              //     style: TextStyle(color: Colors.white, fontSize: 4.sp),
+              //   ),
+              //   child: Container(
+              //     margin: EdgeInsets.only(bottom: 20),
+              //     width: 5.w,
+              //     height: 5.w,
+              //     child: IconButton(
+              //       icon: Icon(Icons.notifications,
+              //           size: 15.sp, color: Color(0xff73BFBD)),
+              //       onPressed: () {},
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 width: 8.w,
               ),

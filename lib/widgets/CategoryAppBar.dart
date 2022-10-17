@@ -57,48 +57,50 @@ class CategoryAppBar extends StatelessWidget {
             brightness: Brightness.light,
             backgroundColor: Color.fromARGB(0, 250, 249, 249),
             actions: [
-              Badge(
-                  position: BadgePosition.topEnd(top: 7, end: -9),
-                  toAnimate: false,
-                  shape: BadgeShape.circle,
-                  badgeColor: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  badgeContent: Text(
-                    "0",
-                    style: TextStyle(color: Colors.white, fontSize: 4.sp),
-                  ),
+              // Badge(
+              //     position: BadgePosition.topEnd(top: 7, end: -9),
+              //     toAnimate: false,
+              //     shape: BadgeShape.circle,
+              //     badgeColor: Colors.red,
+              //     borderRadius: BorderRadius.circular(8),
+              //     badgeContent: Text(
+              //       "0",
+              //       style: TextStyle(color: Colors.white, fontSize: 4.sp),
+              //     ),
                   
-                      child: Container(
-                        margin: EdgeInsets.only(bottom:20),
-                        width:7.w,height:7.w,
-                        child: IconButton(
-                          icon:
-                              Icon(Icons.notifications,size: 15.sp,color: Color(0xff73BFBD)),
-                          onPressed: () {},
-                          color: Colors.white,
-                        ),
-                      ),
+              //         child: Container(
+              //           margin: EdgeInsets.only(bottom:20),
+              //           width:7.w,height:7.w,
+              //           child: IconButton(
+              //             icon:
+              //                 Icon(Icons.notifications,size: 15.sp,color: Color(0xff73BFBD)),
+              //             onPressed: () {},
+              //             color: Colors.white,
+              //           ),
+              //         ),
                    
                   
-                ),
+              //   ),
                 SizedBox(width: 8.w,),
                 
                 Badge(
-                  position: BadgePosition.topEnd(top: 5, end: -11),
+                  position: BadgePosition.topEnd(top: -1, end: -11),
                   toAnimate: false,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
-                  badgeContent: Container(
-                     height: 5.sp,
-                    width: 5.sp,
-                    child: FittedBox(
-                      child: Text(
-                        cartProvider.count.toString(),
-                        style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                  badgeContent:Padding(
+                    padding: const EdgeInsets.all(0.5),
+                    child: Text(
+                        
+                       cartProvider.count.toString(),
+                        style: TextStyle(
+                          
+                          color: Colors.white, fontSize: 8.sp),
                       ),
-                    ),
                   ),
+                  
+                
                    child: Container(
                     margin: EdgeInsets.only(bottom:20),
                         width:7.w,height:7.w,

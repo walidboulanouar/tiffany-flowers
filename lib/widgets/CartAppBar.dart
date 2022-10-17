@@ -56,30 +56,30 @@ void Function() myfc;
                 
                   SizedBox(width: 8.w,),
                   
-                  Badge(
-                    position: BadgePosition.topEnd(top: 9, end: -17),
-                    toAnimate: false,
-                    shape: BadgeShape.circle,
-                    badgeColor: Colors.red,
-                    borderRadius: BorderRadius.circular(8),
-                    badgeContent: Text(
-                      "0",
-                      style: TextStyle(color: Colors.white, fontSize: 4.3.sp),
-                    ),
+                  // Badge(
+                  //   position: BadgePosition.topEnd(top: 9, end: -17),
+                  //   toAnimate: false,
+                  //   shape: BadgeShape.circle,
+                  //   badgeColor: Colors.red,
+                  //   borderRadius: BorderRadius.circular(8),
+                  //   badgeContent: Text(
+                  //     "0",
+                  //     style: TextStyle(color: Colors.white, fontSize: 4.3.sp),
+                  //   ),
                     
-                        child: Container(
-                          margin: EdgeInsets.only(bottom:20),
-                          width:5.w,height:5.w,
-                          child: IconButton(
-                            icon:
-                                Icon(Icons.notifications,size: 15.sp,color: Color(0xff73BFBD)),
-                            onPressed: () {},
-                            color: Colors.white,
-                          ),
-                        ),
+                  //       child: Container(
+                  //         margin: EdgeInsets.only(bottom:20),
+                  //         width:5.w,height:5.w,
+                  //         child: IconButton(
+                  //           icon:
+                  //               Icon(Icons.notifications,size: 15.sp,color: Color(0xff73BFBD)),
+                  //           onPressed: () {},
+                  //           color: Colors.white,
+                  //         ),
+                  //       ),
                      
                     
-                  ),
+                  // ),
                   SizedBox(width: 10.w,)
               ],
             )

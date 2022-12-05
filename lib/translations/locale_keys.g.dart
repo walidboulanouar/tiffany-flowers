@@ -34,6 +34,7 @@ abstract class  LocaleKeys {
   static const Eng = 'Eng';
   static const Arab = 'Arab';
   static const EmptyCart = 'EmptyCart';
+  static const EmptyWishList = 'EmptyWishList';
   static const Add_To_Cart = 'Add_To_Cart';
   static const AvailableOptions = 'AvailableOptions';
   static const Color = 'Color';
@@ -109,5 +110,9 @@ abstract class  LocaleKeys {
   static const Delete = 'Delete';
   static const sure = 'sure';
   static const ProcessCannotBeUndone = 'ProcessCannotBeUndone';
+  static const ChooseLang = 'ChooseLang';
+  static const GetStarted = 'GetStarted';
+  static const TIFFANYFLOWERSGUARANTEED = 'TIFFANYFLOWERSGUARANTEED';
+  static const Desc1 = 'Desc1';
 
 }

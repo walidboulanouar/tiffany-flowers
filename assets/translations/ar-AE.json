@@ -30,10 +30,11 @@
     "Pennding":"قيد الانتظار",
     "Canceled":"ملغاة",
     "Re_Order":"إعادة الطلب",
-    "App_Lan":"لغة التطبيق",
+    "App_Lan":"اللغة",
     "Eng":"الإنجليزية",
     "Arab":"العربية",
     "EmptyCart":"عربة التسوق الخاصة بك فارغة ابدأ الإضافة إلى عربة التسوق",
+    "EmptyWishList":"قائمة المفضلة لديك فارغة ابدأ الإضافة إلى المفضلة",
 "Add_To_Cart":"أضف إلى السلة",
 "AvailableOptions":"الخيارات المتاحة",
 "Color":"اللون",
@@ -48,20 +49,20 @@
 "OrderEndDate":"تاريخ انتهاء الطلب",
 "OrderStatus":"حالة الطلب",
 "PaymentMethod":"طرق الدفع",
-"ReceiverAddress":"عنوان المستلم",
-"AdditionalAddressInfo":"معلومات العنوان الإضافية",
+"ReceiverAddress":"*عنوان المستلم",
+"AdditionalAddressInfo":"*معلومات العنوان الإضافية",
 
-"ReceiverPhoneNumber":"رقم هاتف المستلم",
+"ReceiverPhoneNumber":"*رقم هاتف المستلم",
 "SelectedMessage":"الرسالة المختارة",
 
 "PhraseOnTheFlowerBouquet":"عبارة على باقة الورد",
 "ItemsDetails":"تفاصيل المنتجات",
 "OrderDetails":"تفاصيل الطلب",
 "ShippingInfo":"معلومات الشحن",
-"YourPhoneNumber":"*رقم هاتفك",
+"YourPhoneNumber":"رقم هاتفك",
 "SelectReceiverCity":"حدد مدينة المتلقي",
 "SelectYourMessage":"حدد رسالتك",
-"PutAPhrase":"ضع عبارة على باقة الورد",
+"PutAPhrase":"*ضع عبارة على باقة الورد",
 "Yourmessagehere":"رسالتك هنا",
 "Somthingwrong":"هناك شيء خاطئ",
 "Pleaseentermobilenumber":"الرجاء إدخال رقم الهاتف المحمول",
@@ -93,7 +94,7 @@
 "phonenumber":"رقم الهاتف",
 "Cancel":"إلغاء",
 "Login":"تسجيل الدخول",
-"SignUp":"اشتراك",
+"SignUp":"تسجيل جديد",
 "Userdoesntexists":"المستخدم غير موجود",
 "UserAlready":"المستخدم برقم الهاتف هذا موجود بالفعل",
 "PhoneNumberVerification":"التحقق من رقم الهاتف",
@@ -111,7 +112,12 @@
 "DeleteAccount":"حذف الحساب",
 "Delete":"حذف",
 "sure":"هل أنت واثق؟",
-"ProcessCannotBeUndone":"هل تريد حقًا حذف جميع سجلاتك؟ لا يمكن التراجع عن هذه العملية"
+"ProcessCannotBeUndone":"هل تريد حقًا حذف جميع سجلاتك؟ لا يمكن التراجع عن هذه العملية",
+"ChooseLang":"اختر اللغة",
+"GetStarted":"ابدأ الآن",
+"TIFFANYFLOWERSGUARANTEED":"زهور تيفاني مضمونة",
+"Desc1":"يضمن بائعي الأزهار الخبراء لدينا أن زهورك نضرة لمدة 7 أيام ومن أفضل جودة متوفرة في جميع أنحاء العالم."
+
 
     
     

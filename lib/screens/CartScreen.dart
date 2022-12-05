@@ -21,7 +21,6 @@ import '../widgets/TotalCard.dart';
 
 import 'RegistrationScreen.dart';
 
-
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -156,7 +155,7 @@ class _CartScreenState extends State<CartScreen> {
                                         backgroundColor: Color(0xffD8AA6B),
                                         behavior: SnackBarBehavior.floating,
                                         content: Text(
-                                         LocaleKeys.TheTotalshould.tr(),
+                                          LocaleKeys.TheTotalshould.tr(),
                                           style: TextStyle(
                                             fontSize: 8.sp,
                                             color: Colors.white,
@@ -166,41 +165,46 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     );
                                   } else {
-                                 
                                     userProvider.user == null
                                         ? AwesomeDialog(
-              btnCancelText: LocaleKeys.Cancel.tr(),
-              btnOkText: LocaleKeys.SignIn.tr(),
-              context: context,
-              titleTextStyle: TextStyle(
-                fontSize: 10.sp,
-                color: Color(0xff73BFBD),
-              ),
-              descTextStyle: TextStyle(
-                fontSize: 8.sp,
-                color: Color(0xffD8AA6B),
-              ),
-              buttonsTextStyle: TextStyle(fontSize: 8.sp),
-              btnOkColor: Color(0xff73BFBD),
-              btnCancelColor: Color(0xffD8AA6B),
-              dialogType: DialogType.WARNING,
-              animType: AnimType.RIGHSLIDE,
-              title:LocaleKeys.SignInRequired.tr(),
-              desc:LocaleKeys.ThisActionRequire.tr(),
-              btnCancelOnPress: () {},
-              btnOkOnPress: () {
-                
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => RegistrationScreen(cartScreen)),
-                );
-              },
-            ).show()
+                                            btnCancelText:
+                                                LocaleKeys.Cancel.tr(),
+                                            btnOkText: LocaleKeys.SignIn.tr(),
+                                            context: context,
+                                            titleTextStyle: TextStyle(
+                                              fontSize: 10.sp,
+                                              color: Color(0xff73BFBD),
+                                            ),
+                                            descTextStyle: TextStyle(
+                                              fontSize: 8.sp,
+                                              color: Color(0xffD8AA6B),
+                                            ),
+                                            buttonsTextStyle:
+                                                TextStyle(fontSize: 8.sp),
+                                            btnOkColor: Color(0xff73BFBD),
+                                            btnCancelColor: Color(0xffD8AA6B),
+                                            dialogType: DialogType.WARNING,
+                                            animType: AnimType.RIGHSLIDE,
+                                            title:
+                                                LocaleKeys.SignInRequired.tr(),
+                                            desc: LocaleKeys.ThisActionRequire
+                                                .tr(),
+                                            btnCancelOnPress: () {},
+                                            btnOkOnPress: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RegistrationScreen(
+                                                            cartScreen)),
+                                              );
+                                            },
+                                          ).show()
                                         : (Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => Checkout()),
+                                                builder: (context) =>
+                                                    Checkout()),
                                           ));
                                   }
                                 },
@@ -208,7 +212,8 @@ class _CartScreenState extends State<CartScreen> {
                                   padding: EdgeInsets.symmetric(vertical: 8.sp),
                                   child: Text(
                                     LocaleKeys.Checkout.tr(),
-                                    style: TextStyle(color: Colors.white,fontSize: 12.sp),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12.sp),
                                   ),
                                 ),
                                 style: ButtonStyle(
@@ -229,8 +234,7 @@ class _CartScreenState extends State<CartScreen> {
                       child: Text(
                         LocaleKeys.EmptyCart.tr(),
                         style: TextStyle(
-                          fontSize: 10.sp,
-                          color: Color(0xff73BFBD)),
+                            fontSize: 10.sp, color: Color(0xff73BFBD)),
                       ),
                     ),
             ),

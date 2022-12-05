@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:ecomerceapp/screens/HomeScreen.dart';
+import 'package:ecomerceapp/screens/IntroScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
@@ -17,6 +19,20 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   VideoPlayerController? _controller;
   bool _visible = false;
+   Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) =>  HomeScreen()));
+    } else {
+      await prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) =>  IntroScreen()));
+    }
+  }
+
 
   @override
   void initState() {
@@ -40,10 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // });
 
     Future.delayed(Duration(seconds: 9), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+      checkFirstSeen();
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => IntroScreen()),
+      // );
     });
   }
 

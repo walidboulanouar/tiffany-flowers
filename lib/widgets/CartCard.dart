@@ -58,12 +58,15 @@ class CartCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                Container(
+                  width: 60.w,
                   padding: EdgeInsets.only(left: 8.sp),
                   child: Text(
-                    textAlign:TextAlign.center,
+                    textAlign:TextAlign.start,
                     item.name.toLowerCase(),
-                    style: TextStyle(fontSize: 7.sp, color: Color(0xff73BFBD)),
+                    style: TextStyle(
+                      overflow: TextOverflow.clip,
+                      fontSize: 10.sp, color: Color(0xff73BFBD)),
                   ),
                 ),
                 SizedBox(height: 2.h),
@@ -71,6 +74,7 @@ class CartCard extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.sp),
                   child: Text(item.size,
                       style: TextStyle(
+                        
                           fontSize: 9.sp,
                           color: Color.fromARGB(86, 80, 80, 80))),
                 ),
@@ -93,10 +97,10 @@ class CartCard extends StatelessWidget {
                           ]),
                     ),
                   ),
-                  SizedBox(width: 12.w),
+                  SizedBox(width: 8.w),
                   Container(
-                    width: 24.w,
-                    padding: EdgeInsets.symmetric(horizontal: 2.sp),
+                    width: 28.w,
+                    padding: EdgeInsets.symmetric(horizontal: 4.sp),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Color(0xff73BFBD)),
@@ -112,20 +116,25 @@ class CartCard extends StatelessWidget {
                             child: Icon(
                               Icons.remove,
                               color: Colors.white,
-                              size: 14.sp,
+                              size: 18.sp,
                             )),
                         Center(
                           child: Container(
+                            width: 13.w,
                             // margin: EdgeInsets.symmetric(horizontal: 3),
                             padding: EdgeInsets.only(
-                                bottom: 4.sp, left: 12.sp, right: 8.sp),
+                                bottom: 4.sp, 
+                                // left: 12.sp, right: 8.sp
+                                ),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
                                 color: Color(0xff73BFBD)),
-                            child: Text(
-                              item.count.toString(),
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 15.sp),
+                            child: Center(
+                              child: Text(
+                                item.count.toString(),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15.sp),
+                              ),
                             ),
                           ),
                         ),
@@ -136,7 +145,7 @@ class CartCard extends StatelessWidget {
                             child: Icon(
                               Icons.add,
                               color: Colors.white,
-                              size: 14.sp,
+                              size: 18.sp,
                             )),
                       ],
                     ),

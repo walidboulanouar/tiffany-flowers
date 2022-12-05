@@ -79,12 +79,13 @@ class DetailsAppBar extends StatelessWidget {
                   
                   InkWell(
                     onTap: () {
-                         cartScreen.currentState!.popUntil((route) => route.isFirst);
-                          indexProvider.setCurrentIndex(4);
+                     
+                        
                     },
                     child: Badge(
                       position: BadgePosition.topEnd(top: 2, end: -19),
                       toAnimate: false,
+                       showBadge: cartProvider.count>0?true:false,
                       shape: BadgeShape.circle,
                       badgeColor: Colors.red,
                       borderRadius: BorderRadius.circular(8),
@@ -112,7 +113,8 @@ class DetailsAppBar extends StatelessWidget {
                               icon:
                                   Icon(Icons.shopping_cart_outlined,size: 15.sp,color: Color(0xff73BFBD)),
                               onPressed: () {
-                                 
+                                cartScreen.currentState!.popUntil((route) => route.isFirst);
+                          indexProvider.setCurrentIndex(4);
                               },
                               color: Colors.white,
                             ),

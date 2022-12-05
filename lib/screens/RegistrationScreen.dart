@@ -24,7 +24,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     RegExp regExp = new RegExp(patttern);
     if (value!.trim().length == 0) {
       return LocaleKeys.Pleaseentermobilenumber.tr();
-    } else if (!regExp.hasMatch(value)) {
+    } else if (!regExp.hasMatch("+971"+value)) {
       return LocaleKeys.Pleaseentervalidmobilenumber.tr();
     }
     return null;
@@ -157,13 +157,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 style: TextStyle(color: Colors.white),
                                 focusNode: myFocusNode,
                                 validator: validateMobile,
-                                keyboardType: TextInputType.phone,
+                                keyboardType: TextInputType.number,
                                 onSaved: (String? val) {
                                   setState(() {
-                                    _phone = val;
+                                    _phone = "+971"+val!;
                                   });
                                 },
                                 decoration: InputDecoration(
+                                   prefixIcon: Container(
+                                  margin: EdgeInsets.only(
+                                      top: 11.sp, left: 6, right: 6),
+                                  child: Text(
+                                    "+971",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10.sp),
+                                  )),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(15.0)),
@@ -193,7 +202,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             : Colors.white),
                                     labelText: LocaleKeys.phonenumber.tr(),
                                     hintStyle: TextStyle(color: Colors.white),
-                                    hintText: '+971 xxx xxx xxx'),
+                                    hintText: 'xxx xxx xxx'),
                               ),
                             ),
                             Container(
@@ -448,13 +457,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               child: TextFormField(
                                 style: TextStyle(color: Colors.white),
                                 validator: validateMobile,
-                                keyboardType: TextInputType.phone,
+                                keyboardType: TextInputType.number,
                                 onSaved: (String? val) {
                                   setState(() {
-                                    _phone = val;
+                                    _phone = "+971"+val!;
                                   });
                                 },
                                 decoration: InputDecoration(
+                                   prefixIcon: Container(
+                                  margin: EdgeInsets.only(
+                                      top: 11.sp, left: 6, right: 6),
+                                  child: Text(
+                                    "+971",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10.sp),
+                                  )),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(15.0)),
@@ -484,7 +502,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             : Colors.white),
                                     labelText: LocaleKeys.phonenumber.tr(),
                                     hintStyle: TextStyle(color: Colors.white),
-                                    hintText: '+971 xxx xxx xxx'),
+                                    hintText: 'xxx xxx xxx'),
                               ),
                             ),
                             Container(

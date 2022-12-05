@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ImageCard extends StatelessWidget {
+  
   final String image;
   final String? title;
   ImageCard({Key? key, required this.image, this.title}) : super(key: key);
@@ -14,10 +15,14 @@ class ImageCard extends StatelessWidget {
       children: [
         Flexible(
           child: Card(
+            elevation: 2,
             
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: CachedNetworkImage(
+              height:20.h,
+              width: 18.h,
+              fit: BoxFit.cover,
         imageUrl: image,
         progressIndicatorBuilder: (context, url, downloadProgress) => 
                 Container(
@@ -32,7 +37,7 @@ class ImageCard extends StatelessWidget {
                   ),
                 ),
         errorWidget: (context, url, error) => Container(
-          height: 20.h,
+          height: 30.h,
           width: 18.h,
           child: Image.asset("assets/images/errorimage.png")),
      )

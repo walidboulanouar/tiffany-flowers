@@ -84,6 +84,8 @@ class CategoryAppBar extends StatelessWidget {
                 SizedBox(width: 8.w,),
                 
                 Badge(
+                  showBadge: cartProvider.count>0?true:false,
+                  elevation:0,
                   position: BadgePosition.topEnd(top: -1, end: -11),
                   toAnimate: false,
                   shape: BadgeShape.circle,

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:easy_localization/easy_localization.dart'  hide TextDirection;
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -27,23 +27,28 @@ class _CarouselImageState extends State<CarouselImage> {
       child: Container(
         // decoration:BoxDecoration(border: Border.all(color: Colors.red),),
         width: 100.w,
-        height: 25.h,
+        height: 30.h,
         child: Stack(
           children: [
             Container(
               child: CarouselSlider(
                 carouselController: carouselController, // Give the controller
                 options: CarouselOptions(
+                  enableInfiniteScroll: true,
                   onPageChanged: (index, reason) => {
                     setState(() {
                       currentIndexPage = index;
                     })
                   },
+                  autoPlayInterval: Duration(seconds: 2),
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  
                   disableCenter: false,
                   aspectRatio: 1,
-                  height: 25.h,
+                  height: 30.h,
                   viewportFraction: 1,
-                  autoPlay: false,
+                  autoPlay: true,
                 ),
                 items: featuredImages.map((featuredImage) {
                   return FittedBox(
@@ -62,7 +67,9 @@ class _CarouselImageState extends State<CarouselImage> {
                         ),
                       ),
                       errorWidget: (context, url, error) => Container(
-                          height: 24.h, width: 20.h, child: Image.asset("assets/images/errorimage.png")),
+                          height: 24.h,
+                          width: 20.h,
+                          child: Image.asset("assets/images/errorimage.png")),
                     ),
                   );
                 }).toList(),
@@ -70,7 +77,7 @@ class _CarouselImageState extends State<CarouselImage> {
             ),
             Container(
               width: 100.w,
-              height: 25.h,
+              height: 30.h,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: [
@@ -89,8 +96,8 @@ class _CarouselImageState extends State<CarouselImage> {
                 alignment: Alignment.centerLeft,
                 child: Container(
                   alignment: Alignment.center,
-                  height: 8.w,
-                  width: 8.w,
+                  height: 10.w,
+                  width: 10.w,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -124,8 +131,8 @@ class _CarouselImageState extends State<CarouselImage> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   alignment: Alignment.center,
-                  height: 8.w,
-                  width: 8.w,
+                  height: 10.w,
+                  width: 10.w,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -157,7 +164,7 @@ class _CarouselImageState extends State<CarouselImage> {
               height: 10.h,
               width: 70.w,
               top: 8.h,
-              left: 14.w,
+              left: 17.w,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -172,8 +179,7 @@ class _CarouselImageState extends State<CarouselImage> {
                               ? widget.banners[currentIndexPage].text
                               : "",
                           style: TextStyle(
-                        
-                              fontSize: 8.sp,
+                              fontSize: 10.sp,
                               color: Colors.white,
                               // fontStyle: FontStyle.italic,
                               fontFamily: "Lucida Calligraphy"),
@@ -185,7 +191,7 @@ class _CarouselImageState extends State<CarouselImage> {
                       child: GestureDetector(
                         child: Container(
                           height: 3.h,
-                          width: 18.w,
+                          width: 20.w,
                           decoration: BoxDecoration(
                             color: Color(0xffD8AA6B),
                             borderRadius: BorderRadius.circular(5),
@@ -193,12 +199,14 @@ class _CarouselImageState extends State<CarouselImage> {
                           child: Center(
                               child: FittedBox(
                             child: Container(
-                              height: 2.5.h,
-                              child: Text(
-                                LocaleKeys.View_More,
-                                style: TextStyle(
-                                    fontSize: 6.sp, color: Colors.white),
-                              ).tr(),
+                              height: 3.h,
+                              child: Center(
+                                child: Text(
+                                  LocaleKeys.View_More,
+                                  style: TextStyle(
+                                      fontSize: 8.sp, color: Colors.white),
+                                ).tr(),
+                              ),
                             ),
                           )),
                         ),

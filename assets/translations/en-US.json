@@ -30,10 +30,11 @@
 "Pennding":"Pennding",
 "Canceled":"Canceled",
 "Re_Order":"Re-Order",
-"App_Lan":"App Language",
+"App_Lan":"Language",
 "Eng":"English",
 "Arab":"Arabic",
 "EmptyCart":"Your Cart Is Empty Start Adding to The Cart",
+"EmptyWishList":"Your WishList Is Empty Start Adding to The WishList",
 "Add_To_Cart":"Add To Cart",
 "AvailableOptions":"Available Options",
 "Color":"Color",
@@ -48,20 +49,20 @@
 "OrderEndDate":"Order End Date",
 "OrderStatus":"Order Status",
 "PaymentMethod":"Payment Method",
-"ReceiverAddress":"Receiver Address",
-"AdditionalAddressInfo":"Additional Address Info",
+"ReceiverAddress":"Receiver Address*",
+"AdditionalAddressInfo":"Additional Address Info*",
 
-"ReceiverPhoneNumber":"Receiver Phone Number",
+"ReceiverPhoneNumber":"Receiver Phone Number*",
 "SelectedMessage":"Selected Massage",
 
 "PhraseOnTheFlowerBouquet":"Phrase On The Flower Bouquet",
 "ItemsDetails":"Items Details",
 "OrderDetails":"Order Details",
 "ShippingInfo":"Shipping Info",
-"YourPhoneNumber":"Your Phone Number*",
+"YourPhoneNumber":"Your Phone Number",
 "SelectReceiverCity":"Select Receiver City",
 "SelectYourMessage":"Select Your Message",
-"PutAPhrase":"Put A Phrase On The Flower Bouquet",
+"PutAPhrase":"Put A Phrase On The Flower Bouquet*",
 "Yourmessagehere":"your message here",
 "Somthingwrong":"somthing wrong",
 "Pleaseentermobilenumber":"Please enter mobile number",
@@ -115,7 +116,17 @@
 "DeleteAccount":"Delete Account",
 "Delete":"Delete",
 "sure":"Are You Sure?",
-"ProcessCannotBeUndone":"Do You Really Want To Delete All Your Records ? This Process Cannot Be Undone"
+"ProcessCannotBeUndone":"Do You Really Want To Delete All Your Records ? This Process Cannot Be Undone",
+
+"ChooseLang":"Choose the language",
+"GetStarted":"Get Started",
+"TIFFANYFLOWERSGUARANTEED":"TIFFANYFLOWERS GUARANTEED",
+"Desc1":"Our expert florists ensure your flowers are fresh for 7 days and are of the best quality available around the world."
+
+
+
+
+
 
 
 

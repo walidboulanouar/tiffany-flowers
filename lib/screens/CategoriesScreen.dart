@@ -101,6 +101,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         // changeWidget(CategoryDetailsScreen(categories: []), 1);
                       },
                       child: Container(
+                        
                         // color: Colors.red,
                         // height: 40.h,
                         child: ImageCard(

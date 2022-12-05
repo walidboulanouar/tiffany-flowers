@@ -129,15 +129,15 @@ class _CheckoutState extends State<Checkout> {
     RegExp regExp = new RegExp(patttern);
     if (value!.trim().length == 0) {
       return LocaleKeys.Pleaseentermobilenumber.tr();
-    } else if (!regExp.hasMatch(value)) {
-      return  LocaleKeys.Pleaseentervalidmobilenumber.tr();
+    } else if (!regExp.hasMatch("+971"+value)) {
+      return LocaleKeys.Pleaseentervalidmobilenumber.tr();
     }
     return null;
   }
 
   String? validateText(String? value) {
     if (value!.trim().length == 0) {
-      return  LocaleKeys.Pleaseenteravalidinput.tr();
+      return LocaleKeys.Pleaseenteravalidinput.tr();
     }
     return null;
   }
@@ -185,7 +185,7 @@ class _CheckoutState extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
-    var sqlService = SqlService();
+    // var sqlService = SqlService();
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
     LoadingProvider loadingProvider = Provider.of<LoadingProvider>(context);
@@ -213,7 +213,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Padding(
                           padding: EdgeInsets.only(left: 25.sp),
                           child: Text(
-                             LocaleKeys.YourPhoneNumber.tr(),
+                            LocaleKeys.YourPhoneNumber.tr(),
                             style: TextStyle(
                               color: Color(0xffD8AA6B),
                               fontSize: 10.sp,
@@ -224,29 +224,43 @@ class _CheckoutState extends State<Checkout> {
                       Container(
                         decoration: BoxDecoration(
                           color: Color.fromARGB(255, 249, 249, 249),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         margin: EdgeInsets.symmetric(
                             horizontal: 25.sp, vertical: 10.sp),
-                        height: 5.h,
-                        
+                        // height: 5.h,
+
                         // color: Color.fromARGB(255, 249, 249, 249),
                         child: TextFormField(
-                          style: TextStyle(color: Color(0xff73BFBD),fontSize: 10.sp),
+                          maxLines: 1,
+                          minLines: 1,
+                          style: TextStyle(
+                              color: Color(0xff73BFBD), fontSize: 10.sp),
                           enabled: false,
                           initialValue: userProvider.user!.phone.toString(),
-                          keyboardType: TextInputType.phone,
+                          // keyboardType: TextInputType.phone,
                           onSaved: (String? val) {},
-                           decoration: InputDecoration(
-                              hintStyle: TextStyle(color: Color(0xff73BFBD)),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                 borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintStyle: TextStyle(color: Color(0xff73BFBD)),
+                            disabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Color.fromARGB(255, 249, 249, 249))),
+                            // enabledBorder: OutlineInputBorder(
+                            //   borderRadius: BorderRadius.circular(10),
+                            //   borderSide: BorderSide(
+                            //     width: 0.001,
+                            //     color: Color.fromARGB(255, 249, 249, 249),
+                            //   ),
+                            // ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                width: 0.001,
+                                color: Color.fromARGB(255, 249, 249, 249),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(width: 0.001),
-                              )),
+                            ),
+                          ),
                         ),
                       ),
                       Align(
@@ -254,7 +268,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Padding(
                           padding: EdgeInsets.only(left: 25.sp),
                           child: Text(
-                             LocaleKeys.SelectReceiverCity.tr(),
+                            LocaleKeys.SelectReceiverCity.tr(),
                             style: TextStyle(
                               color: Color(0xffD8AA6B),
                               fontSize: 10.sp,
@@ -265,12 +279,11 @@ class _CheckoutState extends State<Checkout> {
                       Container(
                         decoration: BoxDecoration(
                           color: Color.fromARGB(255, 249, 249, 249),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         margin: EdgeInsets.symmetric(
                             horizontal: 25.sp, vertical: 10.sp),
                         height: 5.h,
-                        
                         child: Container(
                           width: 100.w,
                           child: DropdownButtonHideUnderline(
@@ -279,15 +292,12 @@ class _CheckoutState extends State<Checkout> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               dropdownWidth: 83.w,
-                              
                               iconSize: 25.sp,
                               iconEnabledColor: Color(0xff73BFBD),
-    
                               dropdownElevation: 2,
-    
                               isExpanded: true,
                               hint: Text(
-                                 LocaleKeys.SelectReceiverCity.tr(),
+                                LocaleKeys.SelectReceiverCity.tr(),
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Color(0xffDCDCDC),
@@ -305,7 +315,8 @@ class _CheckoutState extends State<Checkout> {
                               buttonHeight: 30.sp,
                               buttonWidth: 140,
                               itemHeight: 30.sp,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 8.sp),
+                              itemPadding:
+                                  EdgeInsets.symmetric(horizontal: 8.sp),
                             ),
                           ),
                         ),
@@ -326,9 +337,10 @@ class _CheckoutState extends State<Checkout> {
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: 25.sp, vertical: 10.sp),
-                        height: 5.h,
                         color: Color.fromARGB(255, 249, 249, 249),
                         child: TextFormField(
+                          maxLines: 1,
+                          minLines: 1,
                           style: TextStyle(color: Color(0xff73BFBD)),
                           validator: validateText,
                           keyboardType: TextInputType.streetAddress,
@@ -338,14 +350,21 @@ class _CheckoutState extends State<Checkout> {
                             });
                           },
                           decoration: InputDecoration(
+                              border: OutlineInputBorder(),
                               hintStyle: TextStyle(color: Color(0xff73BFBD)),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                 borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               )),
                         ),
                       ),
@@ -365,9 +384,10 @@ class _CheckoutState extends State<Checkout> {
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: 25.sp, vertical: 10.sp),
-                        height: 5.h,
                         color: Color.fromARGB(255, 249, 249, 249),
                         child: TextFormField(
+                          maxLines: 1,
+                          minLines: 1,
                           style: TextStyle(color: Color(0xff73BFBD)),
                           validator: validateText,
                           keyboardType: TextInputType.streetAddress,
@@ -377,14 +397,24 @@ class _CheckoutState extends State<Checkout> {
                             });
                           },
                           decoration: InputDecoration(
+
+                              // errorStyle: ,
+                              // counterText: ' ',
+                              border: OutlineInputBorder(),
                               hintStyle: TextStyle(color: Color(0xff73BFBD)),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                 borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               )),
                         ),
                       ),
@@ -393,7 +423,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Padding(
                           padding: EdgeInsets.only(left: 25.sp),
                           child: Text(
-                             LocaleKeys.ReceiverPhoneNumber.tr(),
+                            LocaleKeys.ReceiverPhoneNumber.tr(),
                             style: TextStyle(
                               color: Color(0xffD8AA6B),
                               fontSize: 10.sp,
@@ -404,27 +434,47 @@ class _CheckoutState extends State<Checkout> {
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: 25.sp, vertical: 10.sp),
-                        height: 5.h,
+                        // height: 5.h,
                         color: Color.fromARGB(255, 249, 249, 249),
                         child: TextFormField(
+                          maxLines: 1,
+                          minLines: 1,
                           style: TextStyle(color: Color(0xff73BFBD)),
                           validator: validateMobile,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
                           onSaved: (String? val) {
                             setState(() {
-                              _receiver_phone = val;
+                              _receiver_phone = "+971" + val!;
                             });
                           },
                           decoration: InputDecoration(
-                              hintText: '+971 xxx xxx xxx',
-                              hintStyle: TextStyle(color: Color(0xff73BFBD),fontSize: 10.sp),
+                            border: OutlineInputBorder(),
+                              prefixIcon: Container(
+                                  margin: EdgeInsets.only(
+                                      top: 12.sp, left: 6, right: 6),
+                                  child: Text(
+                                    "+971",
+                                    style: TextStyle(
+                                        color: Color(0xff73BFBD),
+                                        fontSize: 10.sp),
+                                  )),
+                              hintText: 'xxx xxx xxx',
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 104, 110, 110),
+                                  fontSize: 10.sp),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                               borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               )),
                         ),
                       ),
@@ -433,7 +483,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Padding(
                           padding: EdgeInsets.only(left: 25.sp),
                           child: Text(
-                             LocaleKeys.SelectYourMessage.tr(),
+                            LocaleKeys.SelectYourMessage.tr(),
                             style: TextStyle(
                               color: Color(0xffD8AA6B),
                               fontSize: 10.sp,
@@ -480,7 +530,8 @@ class _CheckoutState extends State<Checkout> {
                               buttonHeight: 30.sp,
                               buttonWidth: 140,
                               itemHeight: 30.sp,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 8.sp),
+                              itemPadding:
+                                  EdgeInsets.symmetric(horizontal: 8.sp),
                             ),
                           ),
                         ),
@@ -501,11 +552,12 @@ class _CheckoutState extends State<Checkout> {
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: 25.sp, vertical: 10.sp),
-                        height: 8.h,
+                        // height: 8.h,
                         color: Color.fromARGB(255, 249, 249, 249),
                         child: TextFormField(
                           style: TextStyle(color: Color(0xff73BFBD)),
-                          maxLines: 5,
+                          minLines: 1,
+                          maxLines: 3,
                           validator: validateText,
                           keyboardType: TextInputType.text,
                           onSaved: (String? val) {
@@ -514,16 +566,23 @@ class _CheckoutState extends State<Checkout> {
                             });
                           },
                           decoration: InputDecoration(
-                              hintText:  LocaleKeys.Yourmessagehere.tr(),
+                            border: OutlineInputBorder(),
+                              hintText: LocaleKeys.Yourmessagehere.tr(),
                               hintStyle: TextStyle(
                                   color: Color(0xffDCDCDC), fontSize: 10.sp),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                 borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                               borderSide: BorderSide(width: 0.001,color: Color.fromARGB(255, 249, 249, 249),),
+                                borderSide: BorderSide(
+                                  width: 0.001,
+                                  color: Color.fromARGB(255, 249, 249, 249),
+                                ),
                               )),
                         ),
                       ),
@@ -535,7 +594,7 @@ class _CheckoutState extends State<Checkout> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
-    
+
                               showGeneralDialog(
                                 context: context,
                                 barrierDismissible: false,
@@ -544,7 +603,8 @@ class _CheckoutState extends State<Checkout> {
                                   return SafeArea(
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height,
+                                      height:
+                                          MediaQuery.of(context).size.height,
                                       padding: EdgeInsets.all(20),
                                       color: Colors.transparent,
                                       child: Center(
@@ -558,7 +618,7 @@ class _CheckoutState extends State<Checkout> {
                                   );
                                 },
                               );
-    
+
                               Response response = await addOrder(
                                 userProvider.user!,
                                 cartProvider.subTotal(),
@@ -574,7 +634,7 @@ class _CheckoutState extends State<Checkout> {
                                 cities[selectedValue2]['city'],
                                 loadingProvider,
                               );
-    
+
                               if (response.statusCode == 200) {
                                 final jsonData = jsonDecode(response.data);
                                 Navigator.of(context, rootNavigator: true)
@@ -594,9 +654,6 @@ class _CheckoutState extends State<Checkout> {
                                                 ['redirectUrl'],
                                           )),
                                 );
-    
-                                
-    
                               } else {
                                 print(response);
                                 Navigator.of(context, rootNavigator: true)
@@ -604,35 +661,33 @@ class _CheckoutState extends State<Checkout> {
                                     ? Navigator.of(context, rootNavigator: true)
                                         .pop()
                                     : null;
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      backgroundColor: Color(0xffD8AA6B),
-                                      behavior: SnackBarBehavior.floating,
-                                      content: Text(
-                                        LocaleKeys.Somthingwrong.tr(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Color(0xffD8AA6B),
+                                    behavior: SnackBarBehavior.floating,
+                                    content: Text(
+                                      LocaleKeys.Somthingwrong.tr(),
+                                      style: TextStyle(
+                                        color: Colors.white,
                                       ),
-                                      duration: const Duration(seconds: 2),
                                     ),
-                                  );
-                                
+                                    duration: const Duration(seconds: 2),
+                                  ),
+                                );
                               }
                             }
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.sp),
                             child: Text(
-                               LocaleKeys.Checkout.tr(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12.sp),
+                              LocaleKeys.Checkout.tr(),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 12.sp),
                             ),
                           ),
                           style: ButtonStyle(
-                            shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(38.0),
                             )),
                             backgroundColor: MaterialStateProperty.all<Color>(
@@ -651,5 +706,3 @@ class _CheckoutState extends State<Checkout> {
     );
   }
 }
-
-

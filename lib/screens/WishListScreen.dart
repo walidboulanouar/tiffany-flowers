@@ -92,7 +92,8 @@ class _WishListScreenState extends State<WishListScreen> {
             //   height: 2.h,
             // ),
             // wlProvider.wishListProducts.length>0 ?
-            Flexible(
+             wlProvider.count>0? Flexible(
+              
               child: active
                   ? StaggeredGridView.countBuilder(
                       shrinkWrap: true,
@@ -203,7 +204,16 @@ class _WishListScreenState extends State<WishListScreen> {
                       staggeredTileBuilder: (int index) => StaggeredTile.count(
                           index == 0 ? 2 : 2, index == 0 ? 0.21 : 0.8),
                     ),
-            )
+            ):Flexible(
+              // top: 30.h,
+              child: Center(
+                        child: Text(
+                          LocaleKeys.EmptyWishList.tr(),
+                          style: TextStyle(
+                              fontSize: 9.sp, color: Color(0xff73BFBD)),
+                        ),
+                      ),
+            ),
             // :Container(height: 20.h,),
           ],
         ),

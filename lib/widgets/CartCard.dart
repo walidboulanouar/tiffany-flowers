@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecomerceapp/providers/CartProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -86,7 +87,7 @@ class CartCard extends StatelessWidget {
                       text: TextSpan(
                           text: item.price.toString(),
                           style: TextStyle(
-                            fontFamily: "Lucida Calligraphy",
+                            fontFamily: GoogleFonts.openSans().fontFamily,
                               fontSize: 12.sp, color: Color(0xffD8AA6B)),
                           children: <TextSpan>[
                             TextSpan(

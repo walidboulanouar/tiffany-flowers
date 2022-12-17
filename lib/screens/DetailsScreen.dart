@@ -7,6 +7,7 @@ import 'package:ecomerceapp/widgets/DetailsAppBar.dart';
 
 import 'package:ecomerceapp/widgets/NoLoppingSlider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -74,7 +75,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 text: TextSpan(
                     text: item.value + "(+",
                     style: TextStyle(
-                        fontFamily: "Lucida Calligraphy",
+                        fontFamily: GoogleFonts.openSans().fontFamily,
                         fontSize: 10.sp,
                         color: Color(0xff73BFBD)),
                     children: <TextSpan>[
@@ -138,9 +139,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
             .toList();
       }
       List<Feature> size1 = productProvider.selectedProduct!.features!
-          .where((feature) => feature.name == "size")
+          .where((feature) => feature.name.toLowerCase() == "size")
           .toList();
-      print(size1);
+      // print("size1");
+      // print(productProvider.selectedProduct!.features![0].name);
       size = size1[0].values;
     }
 
@@ -422,7 +424,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               .toString()
                                           : "",
                                       style: TextStyle(
-                                          fontFamily: "Lucida Calligraphy",
+                                         fontFamily: GoogleFonts.openSans().fontFamily,
                                           fontSize: 16.sp,
                                           color: Color(0xffD8AA6B)),
                                       children: <TextSpan>[
@@ -456,7 +458,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   text: TextSpan(
                                       text: LocaleKeys.TotalPrice.tr(),
                                       style: TextStyle(
-                                          fontFamily: "Lucida Calligraphy",
+                                          fontFamily: GoogleFonts.openSans().fontFamily,
                                           fontSize: 12.sp,
                                           color: Colors.white),
                                       children: <TextSpan>[
@@ -488,7 +490,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               .toString()
                                           : "",
                                       style: TextStyle(
-                                          fontFamily: "Lucida Calligraphy",
+                                          fontFamily: GoogleFonts.openSans().fontFamily,
                                           fontSize: 17.sp,
                                           color: Colors.white),
                                       children: <TextSpan>[
@@ -663,7 +665,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                       Container(
-                        height: 18.h,
+                        height: 24.h,
                         child: productProvider.selectedProduct != null
                             ? ProductScrollWidget(
                                 children: productProvider

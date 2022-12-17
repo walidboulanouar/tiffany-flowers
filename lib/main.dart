@@ -3,6 +3,7 @@ import 'package:ecomerceapp/providers/CartProvider.dart';
 import 'package:ecomerceapp/providers/IndexProvider.dart';
 import 'package:ecomerceapp/providers/LoadingProvider.dart';
 import 'package:ecomerceapp/providers/WishListProvider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ecomerceapp/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          theme: ThemeData(fontFamily: "Lucida Calligraphy"),
+          theme: ThemeData(fontFamily: GoogleFonts.openSans().fontFamily),
           title: 'Tiffany Flowers',
           initialRoute: '/',
           routes: {

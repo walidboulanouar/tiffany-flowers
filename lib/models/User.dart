@@ -8,6 +8,7 @@ class User {
     String? email;
     String? firstName;
     String? lastName;
+    
  
 
   User({required this.id, required this.phone, this.email, this.firstName, this.lastName});

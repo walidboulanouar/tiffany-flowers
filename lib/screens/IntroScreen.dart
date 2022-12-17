@@ -76,7 +76,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                 ),
           Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.18,
+            bottom: MediaQuery.of(context).size.height * 0.14,
             left: MediaQuery.of(context).size.width * 0.30,
             child: InkWell(
               hoverColor: Colors.transparent,
@@ -106,15 +106,15 @@ class _IntroScreenState extends State<IntroScreen> {
               child: Container(
                 width: 44.w,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 decoration: BoxDecoration(
                     color: Color.fromARGB(54, 158, 158, 158),
                     borderRadius: BorderRadius.circular(20)),
                 child: Center(
                   child: Text(
                     LocaleKeys.ChooseLang.tr(),
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.bold),
+                    style:  TextStyle(
+                        fontSize: 9.sp, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

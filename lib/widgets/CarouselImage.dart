@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import '../models/Banner.dart' as b;
@@ -182,7 +183,8 @@ class _CarouselImageState extends State<CarouselImage> {
                               fontSize: 10.sp,
                               color: Colors.white,
                               // fontStyle: FontStyle.italic,
-                              fontFamily: "Lucida Calligraphy"),
+                              fontFamily: GoogleFonts.openSans().fontFamily,
+                              ),
                         ),
                       ),
                     ),

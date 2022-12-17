@@ -253,6 +253,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                       },
                                     );
                                     Response response = await login(_phone!);
+                                    print(response);
                                     if (!(response.statusCode == 409)) {
                                       Navigator.of(context, rootNavigator: true)
                                               .canPop()
@@ -502,7 +503,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             : Colors.white),
                                     labelText: LocaleKeys.phonenumber.tr(),
                                     hintStyle: TextStyle(color: Colors.white),
-                                    hintText: 'xxx xxx xxx'),
+                                    hintText: 'xxx xxx xxx'
+                                    ),
                               ),
                             ),
                             Container(

@@ -1,21 +1,25 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../models/User.dart';
 import '../providers/UserProvider.dart';
+import '../services/Services.dart';
 import '../services/SqlService.dart';
+import '../translations/locale_keys.g.dart';
 import '../widgets/display_image_widget.dart';
-import 'edit_description.dart';
 import 'edit_email.dart';
 import 'edit_image.dart';
 import 'edit_name.dart';
 import 'edit_phone.dart';
 
-
 // This class handles the Page to dispaly the user's info on the "Edit Profile" Screen
 class ProfilePage extends StatefulWidget {
+  bool? reload;
+  ProfilePage({Key? key, this.reload}) : super(key: key);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -25,53 +29,73 @@ class _ProfilePageState extends State<ProfilePage> {
     // TODO: implement initState
     super.initState();
     var sqlService = SqlService();
-    
+
     UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
+    getUserImage(userProvider.user!.phone, userProvider);
 
-    
     sqlService.getUser(userProvider);
   }
+
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
-    // final user = UserData.myUser;
+   
+   
 
     return Scaffold(
-      body: Column(
-        children: [
-          AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            toolbarHeight: 10,
-          ),
-          Center(
-              child: Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700,
-                      color: Color.fromRGBO(64, 105, 225, 1),
-                    ),
-                  ))),
-          InkWell(
-              onTap: () {
-                navigateSecondPage(EditImagePage());
-              },
-              child: DisplayImage(
-                imagePath: "user.image",
-                onPressed: () {},
-              )),
-          buildUserInfoDisplay(userProvider.user!.firstName.toString()+userProvider.user!.lastName.toString(), 'Name', EditNameFormPage()),
-          buildUserInfoDisplay(userProvider.user!.phone.toString(), 'Phone', EditPhoneFormPage()),
-          buildUserInfoDisplay(userProvider.user!.email.toString(), 'Email', EditEmailFormPage()),
-          // Expanded(
-          //   child: buildAbout(User(id: 1, phone: "")),
-          //   flex: 4,
-          // )
-        ],
+      body: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Column(
+          children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              toolbarHeight: 10,
+            ),
+            Center(
+                child: Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: Text(
+                      LocaleKeys.EditProfil.tr(),
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                        // fontWeight: FontWeight.w700,
+                        color: Color(0xff73BFBD),
+                      ),
+                    ))),
+            InkWell(
+                onTap: () {
+                  navigateSecondPage(EditImagePage());
+                },
+                child: userProvider.userImage != null
+                    ? DisplayImage(
+                        imagePath: userProvider.userImage.toString(),
+                        //  userProvider.userImage.toString(),
+                        onPressed: () {},
+                      )
+                    : CircleAvatar(
+                        radius: 75,
+                        backgroundColor: Color(0xff73BFBD),
+                        child: CircleAvatar(
+                          backgroundColor: Color(0xff73BFBD),
+                          backgroundImage:
+                              AssetImage("assets/images/userimage.png"),
+                          radius: 70,
+                        ),
+                      )),
+            buildUserInfoDisplay(
+                userProvider.user!.firstName.toString() +
+                    " " +
+                    userProvider.user!.lastName.toString(),
+                LocaleKeys.Name.tr(),
+                EditNameFormPage()),
+            buildUserInfoDisplay(userProvider.user!.phone.toString(),
+                LocaleKeys.Phone.tr(), EditPhoneFormPage()),
+            buildUserInfoDisplay(userProvider.user!.email.toString(),
+                LocaleKeys.Email.tr(), EditEmailFormPage()),
+          ],
+        ),
       ),
     );
   }
@@ -83,12 +107,15 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey,
+              Padding(
+                padding: EdgeInsets.only(left: 8.sp),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xffD8AA6B),
+                  ),
                 ),
               ),
               SizedBox(
@@ -100,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 237, 233, 233),
                     width: 1,
                   ))),
                   child: Row(children: [
@@ -111,66 +138,19 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                             child: Text(
                               getValue,
-                              style: TextStyle(fontSize: 16, height: 1.4),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  color: Color(0xff73BFBD)),
                             ))),
                     Icon(
                       Icons.keyboard_arrow_right,
-                      color: Colors.grey,
+                      color: Color(0xffD8AA6B),
                       size: 40.0,
                     )
                   ]))
             ],
           ));
-
-  // Widget builds the About Me Section
-  Widget buildAbout(User user) => Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Tell Us About Yourself',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(height: 1),
-          Container(
-              width: 350,
-              height: 200,
-              decoration: BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(
-                color: Colors.grey,
-                width: 1,
-              ))),
-              child: Row(children: [
-                Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          navigateSecondPage(EditDescriptionFormPage());
-                        },
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
-                            child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  "user.aboutMeDescription",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    height: 1.4,
-                                  ),
-                                ))))),
-                Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.grey,
-                  size: 40.0,
-                )
-              ]))
-        ],
-      ));
 
   // Refrshes the Page after updating user info.
   FutureOr onGoBack(dynamic value) {

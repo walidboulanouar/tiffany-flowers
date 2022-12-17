@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -110,7 +111,7 @@ class _CategoryDetailCardTwoState extends State<CategoryDetailCardTwo> {
                       text: TextSpan(
                           text: widget.price.toString(),
                           style: TextStyle(
-                              fontFamily: "Lucida Calligraphy",
+                              fontFamily: GoogleFonts.openSans().fontFamily,
                               fontSize: 12.sp,
                               color: Color(0xffD8AA6B)),
                           children: <TextSpan>[

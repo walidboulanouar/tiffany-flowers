@@ -4,6 +4,7 @@ import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -45,6 +46,10 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
   }
 
   Widget build(BuildContext context) {
+    // print(widget.image);
+    // print("widget.image");
+
+
     var sqlService = SqlService();
     WishListProvider wlProvider = Provider.of<WishListProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
@@ -120,7 +125,7 @@ class _CategoryDetailCardState extends State<CategoryDetailCard> {
                     text: TextSpan(
                         text: widget.price.toString(),
                         style: TextStyle(
-                            fontFamily: "Lucida Calligraphy",
+                           fontFamily: GoogleFonts.openSans().fontFamily,
                             fontSize: 12.sp,
                             color: Color(0xffD8AA6B)),
                         children: <TextSpan>[

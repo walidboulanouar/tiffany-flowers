@@ -137,7 +137,44 @@ class SqlService {
       }
     });
   }
+  void editUserName(String firstName,String lastName, UserProvider userProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      // INSERT INTO User(id,phone,email,firstName,lastName) VALUES(${user.id},'${user.phone}','${user.email}','${user.firstName}','${user.lastName}')")
+        await txn.rawUpdate(
+          'UPDATE User SET firstName = ?, lastName = ? WHERE id = ?',
+    [firstName, lastName, userProvider.user!.id]);
 
+    });
+    userProvider.userFisrtName=firstName;
+    userProvider.userLastName=lastName;
+
+  }
+  void editUserEmail(String email, UserProvider userProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      // INSERT INTO User(id,phone,email,firstName,lastName) VALUES(${user.id},'${user.phone}','${user.email}','${user.firstName}','${user.lastName}')")
+        await txn.rawUpdate(
+          'UPDATE User SET email = ? WHERE id = ?',
+    [email,  userProvider.user!.id]);
+
+    });
+    userProvider.userEmail=email;
+  
+  }
+
+void editUserPhone(String newPhone, UserProvider userProvider) async {
+    var dbClient = await db;
+    await dbClient!.transaction((txn) async {
+      // INSERT INTO User(id,phone,email,firstName,lastName) VALUES(${user.id},'${user.phone}','${user.email}','${user.firstName}','${user.lastName}')")
+        await txn.rawUpdate(
+          'UPDATE User SET phone = ? WHERE id = ?',
+    [newPhone,  userProvider.user!.id]);
+
+    });
+    userProvider.userPhone=newPhone;
+  
+  }
   void editCount(int itemId, int count, CartProvider cartProvider) async {
     var dbClient = await db;
     await dbClient!.transaction((txn) async {

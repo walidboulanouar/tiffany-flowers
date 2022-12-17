@@ -3,6 +3,7 @@ import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -67,7 +68,7 @@ class TotalCard extends StatelessWidget {
                       text: TextSpan(
                           text: LocaleKeys.Total.tr(),
                           style: TextStyle(
-                              fontFamily: "Lucida Calligraphy",
+                             fontFamily: GoogleFonts.openSans().fontFamily,
                               fontSize: 14.sp,
                               color: Color(0xff73BFBD)),
                           children: <TextSpan>[
@@ -88,7 +89,7 @@ class TotalCard extends StatelessWidget {
                       text: TextSpan(
                           text: cartProvider.Total().toString(),
                           style: TextStyle(
-                              fontFamily: "Lucida Calligraphy",
+                              fontFamily: GoogleFonts.openSans().fontFamily,
                               fontSize: 14.sp,
                               color: Color(0xffD8AA6B)),
                           children: <TextSpan>[

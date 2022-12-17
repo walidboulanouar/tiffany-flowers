@@ -62,7 +62,7 @@ class ImageCard extends StatelessWidget {
                 margin: EdgeInsets.only(top: 0.3.h),
                 child: Padding(
                   padding:  EdgeInsets.only(left:title!.length>15?0.0:6.sp),
-                  child: Text(title!.length>15?title!.toLowerCase().substring(0,14)+"..":title!.toLowerCase(),
+                  child: Text(title!.length>18?title!.toLowerCase().substring(0,14)+"..":title!.toLowerCase(),
                   overflow: TextOverflow.visible,
                       style: TextStyle(
                         fontSize: 9.sp,

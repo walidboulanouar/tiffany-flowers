@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,6 +9,8 @@ import 'package:ecomerceapp/providers/BannerProvider.dart';
 import 'package:ecomerceapp/providers/CategoriesProvider.dart';
 import 'package:ecomerceapp/providers/LoadingProvider.dart';
 import 'package:ecomerceapp/providers/ProductProvider.dart';
+import 'package:ecomerceapp/providers/UserProvider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../models/Banner.dart';
@@ -20,6 +23,7 @@ import '../providers/OrderProvider.dart';
 import '../providers/WishListProvider.dart';
 
 var dio = Dio(BaseOptions(baseUrl: "http://new.tiffanyflowers.ae/api"));
+// http://new.tiffanyflowers.ae/api
 getCategories(CategoriesProvider categoriesProvider) async {
   Response response = await dio.get('/categories',
       options: Options(
@@ -102,6 +106,23 @@ getProductByID(int productId) async {
   return product.images[0];
 }
 
+getUserImage(String phone, UserProvider userProvider) async {
+  Response response = await dio.get('/user/image/${phone}');
+  
+//   print(response);
+//   print("xxxxx");
+//  print(response.data);
+
+if(response.data.runtimeType!=String){
+  
+List<dynamic> list = response.data['data'];
+  if (list.isNotEmpty) {
+    userProvider.userImage = response.data['data'][0];
+  }
+}
+  
+}
+
 getOrders(int userId, OrderProvider orderProvider) async {
   Response response = await dio.get('/order/user/${userId}',
       options: Options(
@@ -149,10 +170,9 @@ register(String phone, String email, String firsName, String lastName) async {
         "email": email
       },
       options: Options(
-        
         // headers: {
         //   HttpHeaders.acceptHeader: "json/application/json",
-          
+
         // },
         validateStatus: (_) => true,
         contentType: Headers.jsonContentType,
@@ -171,7 +191,7 @@ login(String phone) async {
         contentType: Headers.jsonContentType,
         responseType: ResponseType.json,
       ));
- return response;
+  return response;
 }
 
 Future<Response> verifyPhone(
@@ -187,13 +207,99 @@ Future<Response> verifyPhone(
       ));
   return response;
 }
-Future<Response> deleteAccount(
+Future<Response> sendOTPToNewNumber(
   String phone,
+  String newPhone,
+) async {
+  Response response = await dio.post('/send-otp',
+      data: {"phone_number": phone, "new_phone_number": newPhone},
+      options: Options(
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+      ));
+  return response;
+}
+
+Future<Response> updateUserName(
+ String phone,
+  String firstName,
+   String lastName,
+   
+) async {
+  Response response = await dio.post('/user/update-name',
+      data: {"phone": phone, "first_name": firstName,"last_name": lastName},
+      options: Options(
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+      ));
+  return response;
+}
+Future<Response> updateUserEmail(
+ String phone,
+  String email,
   
 ) async {
-  Response response = await dio.delete('/user/${phone}',
+  Response response = await dio.post('/user/update-email',
+      data: {"phone": phone, "email": email },
+      options: Options(
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+      ));
+  return response;
+}
+Future<Response> updateUserPhone(
+ String phone,
+  String newPhone,
+  
+) async {
+  Response response = await dio.post('/user/update-phone',
+      data: {"phone": phone, "new_phone": newPhone },
+      options: Options(
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+      ));
+  return response;
+}
+Future<Response> uploadImage(
+  String phone,
+  File image,
+) async {
+  // print(image);
+  // print(phone);
+  // print(image.path);
+  
+
+  
+
+  // String name = image.path.split('/').last;
+  var data =  FormData.fromMap({
+    "phone": phone,
+    "image": await MultipartFile.fromFile(
+      image.path,
       
-    options: Options(
+    ),
+  });
+
+  Response response = await dio.post('/user/image-upload',
+      data: data,
+      // {"image": image,  "phone":phone,},
+      options: Options(
+        validateStatus: (_) => true,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+      ));
+  return response;
+}
+
+Future<Response> deleteAccount(
+  String phone,
+) async {
+  Response response = await dio.delete('/user/${phone}',
+      options: Options(
         validateStatus: (_) => true,
         contentType: Headers.jsonContentType,
         responseType: ResponseType.json,
@@ -248,7 +354,7 @@ addOrder(
         "addt_addr": addtAddr,
         "selected_msg": selectedMsg,
         "phrase": phrase,
-         "city": city,
+        "city": city,
         "order_img": items[0].image,
         "items": items.map((item) {
           return {

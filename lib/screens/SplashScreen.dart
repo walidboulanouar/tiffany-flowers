@@ -19,20 +19,19 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   VideoPlayerController? _controller;
   bool _visible = false;
-   Future checkFirstSeen() async {
+  Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
 
     if (_seen) {
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) =>  HomeScreen()));
+          new MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
       await prefs.setBool('seen', true);
       Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) =>  IntroScreen()));
+          new MaterialPageRoute(builder: (context) => IntroScreen()));
     }
   }
-
 
   @override
   void initState() {
@@ -105,10 +104,16 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Stack(
           children: <Widget>[
-            _getVideoBackground(),
+            AspectRatio(
+                aspectRatio: 100.w / 100.h,
+                child: VideoPlayer(_controller!)),
 
             // VideoPlayer(_controller!)
-            100.w < 500 ? _getVideoBackground2() : Container(),
+            100.w < 500
+                ? AspectRatio(
+                    aspectRatio: _controller!.value.aspectRatio,
+                    child: VideoPlayer(_controller!))
+                : Container(),
           ],
         ),
       ),

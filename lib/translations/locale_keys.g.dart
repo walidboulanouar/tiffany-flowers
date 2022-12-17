@@ -114,5 +114,31 @@ abstract class  LocaleKeys {
   static const GetStarted = 'GetStarted';
   static const TIFFANYFLOWERSGUARANTEED = 'TIFFANYFLOWERSGUARANTEED';
   static const Desc1 = 'Desc1';
+  static const Profile = 'Profile';
+  static const EditProfil = 'EditProfil';
+  static const Name = 'Name';
+  static const Phone = 'Phone';
+  static const UploadAPhoto = 'UploadAPhoto';
+  static const Update = 'Update';
+  static const WhatisYourName = 'WhatisYourName';
+  static const WhatisYourphone = 'WhatisYourphone';
+  static const PhoneNumber = 'PhoneNumber';
+  static const WhatisYourEmail = 'WhatisYourEmail';
+  static const ImageUpdated = 'ImageUpdated';
+  static const ImageNotUpdated = 'ImageNotUpdated';
+  static const EnterYourFirstName = 'EnterYourFirstName';
+  static const EnterYourLastName = 'EnterYourLastName';
+  static const NameUpdated = 'NameUpdated';
+  static const NameNotUpdated = 'NameNotUpdated';
+  static const EnterPhone = 'EnterPhone';
+  static const OnlyNumbers = 'OnlyNumbers';
+  static const PleaseEnterValidPhone = 'PleaseEnterValidPhone';
+  static const EnterValidPhone = 'EnterValidPhone';
+  static const PhoneNotUpdated = 'PhoneNotUpdated';
+  static const PhoneUpdated = 'PhoneUpdated';
+  static const EnterEmail = 'EnterEmail';
+  static const EmailAdress = 'EmailAdress';
+  static const EmailUpdated = 'EmailUpdated';
+  static const EmailNotUpdated = 'EmailNotUpdated';
 
 }

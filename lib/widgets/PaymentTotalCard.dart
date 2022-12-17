@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 import '../translations/locale_keys.g.dart';
@@ -105,7 +106,7 @@ class PaymentTotalCard extends StatelessWidget {
                       text: TextSpan(
                           text: LocaleKeys.Total.tr(),
                           style: TextStyle(
-                              fontFamily: "Lucida Calligraphy",
+                              fontFamily: GoogleFonts.openSans().fontFamily,
                               fontSize: 14.sp,
                               color: Color(0xff73BFBD)),
                           children: <TextSpan>[
@@ -126,7 +127,7 @@ class PaymentTotalCard extends StatelessWidget {
                       text: TextSpan(
                           text: '${total}.',
                           style: TextStyle(
-                              fontFamily: "Lucida Calligraphy",
+                              fontFamily: GoogleFonts.openSans().fontFamily,
                               fontSize: 14.sp,
                               color: Color(0xffD8AA6B)),
                           children: <TextSpan>[

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 class PaymentCard extends StatelessWidget {
@@ -112,7 +113,7 @@ class PaymentCard extends StatelessWidget {
                             text: price.toString(),
                             
                             style: TextStyle(
-                                fontFamily: "Lucida Calligraphy",
+                                fontFamily: GoogleFonts.openSans().fontFamily,
                                 fontSize: 8.sp,
                                 color: Color(0xffD8AA6B)),
                             children: <TextSpan>[

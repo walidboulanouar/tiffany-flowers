@@ -42,6 +42,8 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
+//     Response rs=await getUserImage(userProvider.user!.phone);
+// print(rs);
     var sqlService = SqlService();
     UserProvider userProvider = Provider.of<UserProvider>(context);
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
@@ -63,7 +65,7 @@ class _AccountScreenState extends State<AccountScreen> {
               SizedBox(
                 height: 8.sp,
               ),
-              ListTile(
+              userProvider.user != null?ListTile(
                 leading: Icon(
                   Icons.person,
                   color: Color(0xff73BFBD),
@@ -72,7 +74,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
                 title: Text(
-                  "Profile",
+                  LocaleKeys.Profile.tr(),
                   style: TextStyle(fontSize: 13.sp),
                 ),
                 onTap: () {
@@ -81,7 +83,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     MaterialPageRoute(builder: (context) => ProfilePage()),
                   );
                 },
-              ),
+              ):Container(),
               ListTile(
                 leading: Image.asset(
                     fit: BoxFit.contain,

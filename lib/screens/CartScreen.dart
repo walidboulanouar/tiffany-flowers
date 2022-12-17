@@ -231,10 +231,25 @@ class _CartScreenState extends State<CartScreen> {
                           : Container(),
                     ])
                   : Center(
-                      child: Text(
-                        LocaleKeys.EmptyCart.tr(),
-                        style: TextStyle(
-                            fontSize: 10.sp, color: Color(0xff73BFBD)),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 100.sp,
+                          ),
+                          Icon(
+                            Icons.shopping_cart_outlined,
+                            size: 110.sp,
+                            color: Color(0xffD8AA6B),
+                          ),
+                          SizedBox(
+                            height: 10.sp,
+                          ),
+                          Text(
+                            LocaleKeys.EmptyCart.tr(),
+                            style: TextStyle(
+                                fontSize: 9.sp, color: Color(0xff73BFBD)),
+                          ),
+                        ],
                       ),
                     ),
             ),

@@ -121,7 +121,64 @@
 "ChooseLang":"Choose the language",
 "GetStarted":"Get Started",
 "TIFFANYFLOWERSGUARANTEED":"TIFFANYFLOWERS GUARANTEED",
-"Desc1":"Our expert florists ensure your flowers are fresh for 7 days and are of the best quality available around the world."
+"Desc1":"Our expert florists ensure your flowers are fresh for 7 days and are of the best quality available around the world.",
+
+
+"Profile":"Profile",
+"EditProfil":"Edit Profile",
+"Name":"Name",
+"Phone":"Phone",
+"UploadAPhoto":"Upload a photo of yourself",
+"Update":"Update",
+"WhatisYourName":"What's Your Name?",
+"WhatisYourphone":"What's Your New Phone Number?",
+"PhoneNumber":"Phone Number",
+"WhatisYourEmail":"What's your email?",
+"ImageUpdated":"Profile image  updated succesfully",
+"ImageNotUpdated":"Profile image not updated ,try again",
+"EnterYourFirstName":"Please enter your first name",
+"EnterYourLastName":"Please enter your last name",
+"NameUpdated":"Your name  updated succesfully",
+"NameNotUpdated":"Your name not updated,try again",
+"EnterPhone":"Please enter your phone number",
+"OnlyNumbers":"Only Numbers Please",
+"PleaseEnterValidPhone":"Please enter a VALID phone number",
+"EnterValidPhone":"Enter a valid phone number",
+"PhoneNotUpdated":"Phone number not updated,try again",
+"PhoneUpdated":"Phone number updated succesfully",
+"EnterEmail":"Please enter your email",
+"EmailAdress":"email address",
+"EmailUpdated":"Email updated successfully",
+"EmailNotUpdated":"Email not updated ,try again"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

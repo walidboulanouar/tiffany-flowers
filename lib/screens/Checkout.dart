@@ -9,6 +9,7 @@ import 'package:ecomerceapp/services/Services.dart';
 import 'package:ecomerceapp/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
@@ -73,7 +74,7 @@ class _CheckoutState extends State<Checkout> {
                 text: TextSpan(
                     text: item['city'] + "(+",
                     style: TextStyle(
-                        fontFamily: "Lucida Calligraphy",
+                        fontFamily: GoogleFonts.openSans().fontFamily,
                         fontSize: 10.sp,
                         color: Color(0xff73BFBD)),
                     children: <TextSpan>[

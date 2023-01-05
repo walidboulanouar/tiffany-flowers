@@ -39,7 +39,7 @@ class ProductScrollWidget extends StatelessWidget {
               child: Container(
                   // margin: EdgeInsets.symmetric(horizontal: 8.sp),
                   child: ImageCard(
-                    image: children[index].images[0],
+                    image: children[index].images.isNotEmpty?children[index].images[0]:"null",
                     title: children[index].name,
                   )));
         });

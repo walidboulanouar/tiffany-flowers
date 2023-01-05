@@ -3,9 +3,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import '../models/Banner.dart' as b;
+import '../providers/IndexProvider.dart';
+import '../screens/HomeScreen.dart';
 import '../translations/locale_keys.g.dart';
 
 class CarouselImage extends StatefulWidget {
@@ -22,6 +25,7 @@ class _CarouselImageState extends State<CarouselImage> {
 
   @override
   Widget build(BuildContext context) {
+     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
     List<String> featuredImages = widget.banners.map((e) => e.image).toList();
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -191,6 +195,12 @@ class _CarouselImageState extends State<CarouselImage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
+                       onTap: (() {
+                        print("zzzzzzzzz");
+                          categoriesScreen.currentState!.canPop()
+            ? categoriesScreen.currentState!.pop():null;
+             indexProvider.setCurrentIndex(1);
+                       }),
                         child: Container(
                           height: 3.h,
                           width: 20.w,

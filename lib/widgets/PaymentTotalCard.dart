@@ -43,7 +43,7 @@ class PaymentTotalCard extends StatelessWidget {
                 Text(
                   subTotal.toString()
                   ,
-                  style: TextStyle(color: Colors.white,fontSize: 8.sp),
+                  style: TextStyle(color: Colors.white,fontSize: 11.sp),
                 )
               ],
             ),
@@ -64,7 +64,7 @@ class PaymentTotalCard extends StatelessWidget {
                 ),
                 Text(
                   shipping_cost. toString(),
-                  style: TextStyle(color: Colors.white,fontSize: 8.sp),
+                  style: TextStyle(color: Colors.white,fontSize: 11.sp),
                 )
               ],
             ),
@@ -85,7 +85,7 @@ class PaymentTotalCard extends StatelessWidget {
                 ),
                 Text(
                   "5%",
-                  style: TextStyle(color: Colors.white,fontSize: 8.sp),
+                  style: TextStyle(color: Colors.white,fontSize: 11.sp),
                 )
               ],
             ),

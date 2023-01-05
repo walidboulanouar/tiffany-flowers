@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:easy_localization/easy_localization.dart'  hide TextDirection;
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 
 import 'package:ecomerceapp/screens/AccountScreen.dart';
 import 'package:ecomerceapp/screens/CartScreen.dart';
@@ -16,14 +16,17 @@ import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
-
-
+import '../providers/BannerProvider.dart';
+import '../providers/CartProvider.dart';
 import '../providers/CategoriesProvider.dart';
 import '../providers/IndexProvider.dart';
+import '../providers/ProductProvider.dart';
 import '../providers/UserProvider.dart';
 
+import '../providers/WishListProvider.dart';
 import '../services/Services.dart';
 
+import '../services/SqlService.dart';
 import '../translations/locale_keys.g.dart';
 
 import 'RegistrationScreen.dart';
@@ -33,46 +36,46 @@ final categoriesScreen = GlobalKey<NavigatorState>();
 final mainScreen = GlobalKey<NavigatorState>();
 final accountScreen = GlobalKey<NavigatorState>();
 final cartScreen = GlobalKey<NavigatorState>();
- List<Widget> pages = [
-    Navigator(
-      key: orderScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-          settings: route,
-          builder: (context) => OrdersScreen(
-                key: UniqueKey(),
-              )),
-    ),
-    Navigator(
-      key: categoriesScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
+List<Widget> pages = [
+  Navigator(
+    key: orderScreen,
+    onGenerateRoute: (route) => MaterialPageRoute(
         settings: route,
-        builder: (context) => CategoriesScreen(
-          categoriesScreen: categoriesScreen,
-        ),
+        builder: (context) => OrdersScreen(
+              key: UniqueKey(),
+            )),
+  ),
+  Navigator(
+    key: categoriesScreen,
+    onGenerateRoute: (route) => MaterialPageRoute(
+      settings: route,
+      builder: (context) => CategoriesScreen(
+        categoriesScreen: categoriesScreen,
       ),
     ),
-    Navigator(
-      key: mainScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => MainScreen(),
-      ),
+  ),
+  Navigator(
+    key: mainScreen,
+    onGenerateRoute: (route) => MaterialPageRoute(
+      settings: route,
+      builder: (context) => MainScreen(),
     ),
-    Navigator(
-      key: accountScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => AccountScreen(),
-      ),
+  ),
+  Navigator(
+    key: accountScreen,
+    onGenerateRoute: (route) => MaterialPageRoute(
+      settings: route,
+      builder: (context) => AccountScreen(),
     ),
-    Navigator(
-      key: cartScreen,
-      onGenerateRoute: (route) => MaterialPageRoute(
-        settings: route,
-        builder: (context) => CartScreen(),
-      ),
+  ),
+  Navigator(
+    key: cartScreen,
+    onGenerateRoute: (route) => MaterialPageRoute(
+      settings: route,
+      builder: (context) => CartScreen(),
     ),
-  ];
+  ),
+];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -161,11 +164,10 @@ class _HomeScreenState extends State<HomeScreen> {
               btnCancelColor: Color(0xffD8AA6B),
               dialogType: DialogType.WARNING,
               animType: AnimType.RIGHSLIDE,
-              title:LocaleKeys.SignInRequired.tr(),
-              desc:LocaleKeys.ThisActionRequire.tr(),
+              title: LocaleKeys.SignInRequired.tr(),
+              desc: LocaleKeys.ThisActionRequire.tr(),
               btnCancelOnPress: () {},
               btnOkOnPress: () {
-                
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -174,22 +176,40 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ).show();
           }
-         
         }
         pv.setCurrentIndex(val);
       }
     }
   }
 
- 
+  refreshapp(){
+     BannerProvider bannertProvider =
+        Provider.of<BannerProvider>(context, listen: false);
+    CategoriesProvider categoriesProvider =
+        Provider.of<CategoriesProvider>(context, listen: false);
+    ProductProvider productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+    getBanners(bannertProvider);
 
-  
+    getCategories(categoriesProvider);
+    getProducts(productProvider);
+     WishListProvider wlProvider =
+        Provider.of<WishListProvider>(context, listen: false);
+    var sqlService = SqlService();
+     
+    CartProvider cartProvider =
+        Provider.of<CartProvider>(context, listen: false);
+
+    sqlService.getItems(cartProvider);
+     sqlService.getProducts(wlProvider);
+
+  }
+
   DateTime? currentBackPressTime;
   Future<bool> onWillPop(IndexProvider indexProvider) {
     DateTime now = DateTime.now();
     switch (indexProvider.currentIndex) {
       case 0:
-        
         orderScreen.currentState!.canPop()
             ? orderScreen.currentState!.pop()
             : indexProvider.setCurrentIndex(2);
@@ -233,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     IndexProvider indexProvider = Provider.of<IndexProvider>(context);
-    // 
+    //
 
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
@@ -273,8 +293,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: SvgPicture.asset(
-                      height: 12.sp,
-                      width: 12.sp,
+                        height: 12.sp,
+                        width: 12.sp,
                         color: indexProvider.currentIndex == 1
                             ? Color(0xffD8AA6B)
                             : Color(0xff73BFBD),
@@ -288,7 +308,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: Colors.white),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person_outlined),
-                  label:LocaleKeys.ACCOUNT.tr().toLowerCase(),
+                  label: LocaleKeys.ACCOUNT.tr().toLowerCase(),
                   backgroundColor: Colors.white),
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart_outlined),
@@ -300,9 +320,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         extendBodyBehindAppBar: true,
-        body: IndexedStack(
-          index: indexProvider.currentIndex,
-          children: pages,
+        body: RefreshIndicator(
+          onRefresh: () async {
+           refreshapp();
+          },
+          semanticsLabel: 'Refreshing',
+          child: IndexedStack(
+            index: indexProvider.currentIndex,
+            children: pages,
+          ),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:ecomerceapp/models/FeatureValue.dart';
+import 'package:html/parser.dart' show parse;
 
 import 'package:ecomerceapp/widgets/DetailsAppBar.dart';
 
@@ -143,7 +144,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
           .toList();
       // print("size1");
       // print(productProvider.selectedProduct!.features![0].name);
-      size = size1[0].values;
+       if (size1.isNotEmpty) {
+        size = size1[0].values;
+      }
+     
     }
 
     int sizePrice = size.isNotEmpty ? size[selectedValue].price : 0;
@@ -191,7 +195,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               imgList:
                                   // productProvider.selectedProduct != null
                                   // ?
-                                  productProvider.selectedProduct!.images
+                                   productProvider.selectedProduct!.images
                               // : []
                               )
                           : Container(
@@ -384,8 +388,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                       productProvider.selectedProduct != null
-                                          ? productProvider
-                                              .selectedProduct!.description.toLowerCase()
+                                          ? parse(productProvider.selectedProduct!.description).body!.text.toLowerCase()
                                           : "",
                                       style: TextStyle(
                                           height: 2,
@@ -601,9 +604,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                                 .selectedProduct!.name,
                                             color: _color.value,
                                             count: _productCount,
-                                            image: productProvider
+                                            image:
+                                            productProvider
+                                                .selectedProduct!.images.isNotEmpty ? productProvider
                                                 .selectedProduct!.images[0]
-                                                .toString(),
+                                                .toString():"null",
                                             price: productProvider
                                                 .selectedProduct!.price,
                                             size: size.isNotEmpty

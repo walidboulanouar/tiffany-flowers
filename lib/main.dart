@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart'  hide TextDirection;
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:ecomerceapp/providers/CartProvider.dart';
 import 'package:ecomerceapp/providers/IndexProvider.dart';
 import 'package:ecomerceapp/providers/LoadingProvider.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -54,12 +55,23 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => OrderProvider()),
         ],
         child: MaterialApp(
-            //     localizationsDelegates: [
-            //   GlobalMaterialLocalizations.delegate,
-            //   GlobalWidgetsLocalizations.delegate,
-            //   GlobalCupertinoLocalizations.delegate,
-        
-            // ],
+          // builder: (context, child) => ResponsiveWrapper.builder(
+          //   child,
+          //   maxWidth: 1200,
+          //   minWidth: 480,
+          //   defaultScale: true,
+          //   breakpoints: [
+          //     ResponsiveBreakpoint.resize(480, name: MOBILE),
+          //     ResponsiveBreakpoint.autoScale(800, name: TABLET),
+          //     ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+          //   ],
+          // ),
+          //     localizationsDelegates: [
+          //   GlobalMaterialLocalizations.delegate,
+          //   GlobalWidgetsLocalizations.delegate,
+          //   GlobalCupertinoLocalizations.delegate,
+
+          // ],
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
@@ -68,8 +80,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => Directionality(
-              textDirection: TextDirection.ltr,
-              child: SplashScreen()),
+                textDirection: TextDirection.ltr, child: SplashScreen()),
           },
         ),
       );

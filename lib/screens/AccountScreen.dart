@@ -252,7 +252,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     : SvgPicture.asset(
                         width: 60.sp,
                         height: 20.sp,
-                        "assets/images/saoudiflag.svg"),
+                        "assets/images/united-arab-emirates-flag.svg"),
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
@@ -280,86 +280,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 },
                 hoverColor: Color(0xff73BFBD),
                 dense: true,
-                // trailing: Container(
-                //   width: 28.w,
-                //   child: Row(
-                //     children: [
-                //       Container(
-                //         // width: 10.w,
-                //         // Image.asset("assets/images/ukflag.png"),
-                //         child: Text(
-                //             context.locale.languageCode.toString() == 'en'
-                //                 ? LocaleKeys.Eng.tr()
-                //                 : LocaleKeys.Arab.tr(),
-                //             style: TextStyle(
-                //                 fontSize: 10.sp, color: Color(0xff73BFBD))),
-                //       ),
-                //       PopupMenuButton(
-                //         padding: EdgeInsets.zero,
-                //         icon: Icon(
-                //           Icons.arrow_drop_down_sharp,
-                //           size: 25.sp,
-                //           color: Color(0xff73BFBD),
-                //         ),
-                //         onSelected: (value) {
-                //           // print(value);
-                //           if (value == 0) {
-                //             context.setLocale(Locale('en', 'US'));
-
-                //             pages.removeAt(3);
-                //             pages.insert(
-                //               3,
-                //               Navigator(
-                //                 key: accountScreen,
-                //                 onGenerateRoute: (route) => MaterialPageRoute(
-                //                     settings: route,
-                //                     builder: (context) => AccountScreen(
-                //                           key: UniqueKey(),
-                //                         )),
-                //               ),
-                //             );
-                //           }
-                //           if (value == 1) {
-                //             context.setLocale(Locale('ar', 'AE'));
-
-                //             pages.removeAt(3);
-                //             pages.insert(
-                //               3,
-                //               Navigator(
-                //                 key: accountScreen,
-                //                 onGenerateRoute: (route) => MaterialPageRoute(
-                //                     settings: route,
-                //                     builder: (context) => AccountScreen(
-                //                           key: UniqueKey(),
-                //                         )),
-                //               ),
-                //             );
-                //           }
-                //         },
-                //         itemBuilder: (BuildContext bc) {
-                //           return [
-                //             PopupMenuItem(
-                //               textStyle: TextStyle(
-                //                 fontSize: 8.sp,
-                //                 color: Color(0xff73BFBD),
-                //               ),
-                //               child: Text(LocaleKeys.Eng.tr()),
-                //               value: 0,
-                //             ),
-                //             PopupMenuItem(
-                //               textStyle: TextStyle(
-                //                  fontSize: 8.sp,
-                //                 color: Color(0xff73BFBD),
-                //               ),
-                //               child: Text(LocaleKeys.Arab.tr()),
-                //               value: 1,
-                //             ),
-                //           ];
-                //         },
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                
                 selectedTileColor: Color(0xff73BFBD),
               ),
               SizedBox(
@@ -373,11 +294,13 @@ class _AccountScreenState extends State<AccountScreen> {
                 minLeadingWidth: 5,
                 contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                 textColor: Color(0xffD8AA6B),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const AboutUs()),
-                  );
+                onTap: () async {
+                   await launchUrl(Uri.parse(
+                      'https://tiffanyflowers.ae/store/about_us'));
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const AboutUs()),
+                  // );
                 },
                 hoverColor: Color(0xff73BFBD),
                 dense: true,

@@ -154,7 +154,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       EdgeInsets.symmetric(horizontal: 20.sp, vertical: 14.sp),
                   child: TextButton(
                     onPressed: () {
-                       sqlService.deleteCartItems(cartProvider);
+                      //  sqlService.deleteCartItems(cartProvider);
                       Navigator.push(
                             context,
                             MaterialPageRoute(

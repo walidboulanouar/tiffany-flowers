@@ -64,7 +64,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       child: Center(
                         child: Text(
                          LocaleKeys.GetStarted.tr(),
-                          style: TextStyle(fontSize: 13.sp, color: Color(0xff73BFBD)),
+                          style: TextStyle(fontSize: 11.sp, color: Color(0xff73BFBD)),
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -76,7 +76,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                 ),
           Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.14,
+            bottom: MediaQuery.of(context).size.height * 0.16,
             left: MediaQuery.of(context).size.width * 0.30,
             child: InkWell(
               hoverColor: Colors.transparent,
@@ -92,7 +92,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   builder: (context) {
                     return CustomBottomSheet(
                       withHeader: false,
-                      height: 30.h,
+                      height: 200.sp,
                       child: Container(
                         padding: EdgeInsets.all(20),
                         child: LangWidget(
@@ -105,6 +105,7 @@ class _IntroScreenState extends State<IntroScreen> {
               },
               child: Container(
                 width: 44.w,
+                
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 decoration: BoxDecoration(
@@ -153,33 +154,36 @@ class PageBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       padding: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 20),
+          Flexible(
+            // height: 200.sp,
+            // margin: const EdgeInsets.only(top: 20),
             child: Image.asset(imgurl),
           ),
-          const SizedBox(
-            height: 15,
+           SizedBox(
+            height: 15.sp,
           ),
           //Tite Text
           Text(title,
               style: TextStyle(
                   color: Color(0xffD8AA6B),
-                  fontSize: 15,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700)),
-          const SizedBox(
-            height: 20,
+           SizedBox(
+            height: 20.sp,
           ),
           //discription
           Text(description,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xff73BFBD),
-                fontSize: 14,
-              ))
+                fontSize: 10.sp,
+              )),
+              SizedBox(height: 120.sp,)
         ],
       ),
     );

@@ -36,7 +36,6 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
     ProductProvider productProvider =
         Provider.of<ProductProvider>(context, listen: false);
 
-    
     getProductsByCatgory(
       widget.catId,
       productProvider,
@@ -56,7 +55,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-    
+
     print(productProvider.categoryproducts);
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -86,69 +85,80 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
               },
               title: widget.name.toString().toLowerCase(),
             ),
-            
             Flexible(
               child: active
                   ? StaggeredGridView.countBuilder(
                       shrinkWrap: true,
-                      padding: EdgeInsets.only(bottom: 20.sp,top: 0),
+                      padding: EdgeInsets.only(bottom: 20.sp, top: 0),
                       crossAxisCount: 2,
                       crossAxisSpacing: 5.sp,
                       mainAxisSpacing: 15.sp,
                       itemCount: productProvider.categoryproducts.length + 1,
-                      itemBuilder: (BuildContext context, int index) => index == 0
-                          ? Wrap(children: [
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      active = true;
-                                    });
+                      itemBuilder: (BuildContext context, int index) =>
+                          index == 0
+                              ? Container(
+                                 margin: EdgeInsets.symmetric(horizontal: 20,),
+                                child: Wrap(children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            active = true;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          Icons.grid_view,
+                                          size: 20.sp,
+                                          color: active
+                                              ? active_color
+                                              : in_active_color,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            active = false;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          Icons.list_alt_outlined,
+                                          size: 20.sp,
+                                          color: !active
+                                              ? active_color
+                                              : in_active_color,
+                                        )),
+                                  ]),
+                              )
+                              : InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            (DetailsScreen(
+                                          productId: productProvider
+                                              .categoryproducts[index - 1].id,
+                                        )),
+                                      ),
+                                    );
                                   },
-                                  icon: Icon(
-                                    Icons.grid_view,
-                                    size: 14.sp,
-                                    color:
-                                        active ? active_color : in_active_color,
-                                  )),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      active = false;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.list_alt_outlined,
-                                    size: 14.sp,
-                                    color:
-                                        !active ? active_color : in_active_color,
-                                  )),
-                            ])
-                          : InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        (DetailsScreen(
-                                      productId: productProvider
-                                          .categoryproducts[index - 1].id,
-                                    )),
+                                  child: CategoryDetailCard(
+                                    id: productProvider
+                                        .categoryproducts[index - 1].id,
+                                    name: productProvider
+                                        .categoryproducts[index - 1].name,
+                                    image: productProvider
+                                            .categoryproducts[index - 1]
+                                            .images
+                                            .isNotEmpty
+                                        ? productProvider
+                                            .categoryproducts[index - 1]
+                                            .images[0]
+                                        : "null",
+                                    price: productProvider
+                                        .categoryproducts[index - 1].price,
+                                    // title: widget.categories[index-1].title
+                                    // .toString()
                                   ),
-                                );
-                              },
-                              child: CategoryDetailCard(
-                                id: productProvider
-                                    .categoryproducts[index - 1].id,
-                                name: productProvider
-                                    .categoryproducts[index - 1].name,
-                                image: productProvider
-                                    .categoryproducts[index - 1].images[0],
-                                price: productProvider
-                                    .categoryproducts[index - 1].price,
-                                // title: widget.categories[index-1].title
-                                // .toString()
-                              ),
-                            ),
+                                ),
                       staggeredTileBuilder: (int index) => StaggeredTile.count(
                           index == 0 ? 2 : 1, index == 0 ? 0.21 : 1.45),
                     )
@@ -156,60 +166,76 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       shrinkWrap: true,
                       padding: EdgeInsets.all(0),
                       crossAxisCount: 2,
-                     
                       crossAxisSpacing: 5.sp,
                       mainAxisSpacing: 15.sp,
                       itemCount: productProvider.categoryproducts.length + 1,
-                      itemBuilder: (BuildContext context, int index) => index == 0
-                          ? Wrap(children: [
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      active = true;
-                                    });
+                      itemBuilder: (BuildContext context, int index) =>
+                          index == 0
+                              ? Container(
+                                margin: EdgeInsets.symmetric(horizontal: 20,),
+                                
+                                child: Wrap(
+                                  
+                                  spacing: 5.sp,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            active = true;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          Icons.grid_view_outlined,
+                                          size: 20.sp,
+                                          color: active
+                                              ? active_color
+                                              : in_active_color,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            active = false;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          Icons.list_alt_outlined,
+                                          size: 20.sp,
+                                          color: !active
+                                              ? active_color
+                                              : in_active_color,
+                                        )),
+                                  ]),
+                              )
+                              : InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            (DetailsScreen(
+                                                productId: productProvider
+                                                    .categoryproducts[index - 1]
+                                                    .id)),
+                                      ),
+                                    );
                                   },
-                                  icon: Icon(
-                                    Icons.grid_view_outlined,
-                                    size: 14.sp,
-                                    color:
-                                        active ? active_color : in_active_color,
-                                  )),
-                              IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      active = false;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.list_alt_outlined,
-                                    size: 14.sp,
-                                    color:
-                                        !active ? active_color : in_active_color,
-                                  )),
-                            ])
-                          : InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        (DetailsScreen(
-                                            productId: productProvider
-                                                .categoryproducts[index - 1].id)),
+                                  child: CategoryDetailCardTwo(
+                                    id: productProvider
+                                        .categoryproducts[index - 1].id,
+                                    name: productProvider
+                                        .categoryproducts[index - 1].name,
+                                    image: productProvider
+                                            .categoryproducts[index - 1]
+                                            .images
+                                            .isNotEmpty
+                                        ? productProvider
+                                            .categoryproducts[index - 1]
+                                            .images[0]
+                                        : "null",
+                                    price: productProvider
+                                        .categoryproducts[index - 1].price,
                                   ),
-                                );
-                              },
-                              child: CategoryDetailCardTwo(
-                                id: productProvider
-                                    .categoryproducts[index - 1].id,
-                                name: productProvider
-                                    .categoryproducts[index - 1].name,
-                                image: productProvider
-                                    .categoryproducts[index - 1].images[0],
-                                price: productProvider
-                                    .categoryproducts[index - 1].price,
-                              ),
-                            ),
+                                ),
                       staggeredTileBuilder: (int index) => StaggeredTile.count(
                           index == 0 ? 2 : 2, index == 0 ? 0.21 : 0.8),
                     ),

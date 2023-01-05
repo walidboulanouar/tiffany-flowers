@@ -28,11 +28,11 @@ class NoLoopingSlider extends StatelessWidget {
           initialPage: 2,
           autoPlay: false,
         ),
-        items: imgList
+        items:imgList.isNotEmpty? imgList
       .map((item) => Container(
             child: ImgCard(image: item)
           ))
-      .toList(),
+      .toList():[ImgCard(image: "null")],
       )
     );
   }

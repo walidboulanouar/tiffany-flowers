@@ -77,6 +77,7 @@ List<Product> mostViewProducts=sortedProducts.length > 10
     List<Category> categories = categoriesProvider.categories.length > 10
         ? categoriesProvider.categories.sublist(0, 10)
         : categoriesProvider.categories;
+        
     return  Directionality(
       textDirection: TextDirection.ltr,
       child: Column(

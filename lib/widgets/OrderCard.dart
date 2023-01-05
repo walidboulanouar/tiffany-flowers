@@ -86,13 +86,13 @@ class _OrderCardState extends State<OrderCard> {
             Container(
                 // padding: EdgeInsets.only(left: 8.sp),
                 width: 25.w,
-                child: FittedBox(
-                    child: Text(widget.order.orderId,
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color: Colors.white,
-                            fontFamily: '',
-                            fontWeight: FontWeight.bold)))),
+                child: Text(widget.order.orderId,
+                    style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                        fontSize: 11.sp,
+                        color: Colors.white,
+                        fontFamily: '',
+                        fontWeight: FontWeight.bold))),
             SizedBox(height: 2.h),
             Container(
                 width: 25.w,

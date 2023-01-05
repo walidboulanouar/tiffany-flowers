@@ -99,34 +99,38 @@ class _WishListScreenState extends State<WishListScreen> {
                             itemCount: wlProvider.wishListProducts.length + 1,
                             itemBuilder: (BuildContext context, int index) =>
                                 index == 0
-                                    ? Wrap(children: [
-                                        IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                active = true;
-                                              });
-                                            },
-                                            icon: Icon(
-                                              Icons.grid_view_outlined,
-                                              size: 14.sp,
-                                              color: active
-                                                  ? active_color
-                                                  : in_active_color,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                active = false;
-                                              });
-                                            },
-                                            icon: Icon(
-                                              Icons.list_alt_outlined,
-                                              size: 14.sp,
-                                              color: !active
-                                                  ? active_color
-                                                  : in_active_color,
-                                            )),
-                                      ])
+                                    ?  Container(
+                                 margin: EdgeInsets.symmetric(horizontal: 20,),
+                                      child: Wrap(children: [
+                                          IconButton(
+                                           
+                                              onPressed: () {
+                                                setState(() {
+                                                  active = true;
+                                                });
+                                              },
+                                              icon: Icon(
+                                                Icons.grid_view_outlined,
+                                                size: 20.sp,
+                                                color: active
+                                                    ? active_color
+                                                    : in_active_color,
+                                              )),
+                                          IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  active = false;
+                                                });
+                                              },
+                                              icon: Icon(
+                                                Icons.list_alt_outlined,
+                                                size: 20.sp,
+                                                color: !active
+                                                    ? active_color
+                                                    : in_active_color,
+                                              )),
+                                        ]),
+                                    )
                                     : InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -146,9 +150,11 @@ class _WishListScreenState extends State<WishListScreen> {
                                               .wishListProducts[index - 1].id,
                                           name: wlProvider
                                               .wishListProducts[index - 1].name,
-                                          image: wlProvider
+                                          image:wlProvider
                                               .wishListProducts[index - 1]
-                                              .images[0],
+                                              .images.isNotEmpty ? wlProvider
+                                              .wishListProducts[index - 1]
+                                              .images[0]:"null",
                                           price: wlProvider
                                               .wishListProducts[index - 1]
                                               .price,
@@ -167,34 +173,37 @@ class _WishListScreenState extends State<WishListScreen> {
                             itemCount: wlProvider.wishListProducts.length + 1,
                             itemBuilder: (BuildContext context, int index) =>
                                 index == 0
-                                    ? Wrap(children: [
-                                        IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                active = true;
-                                              });
-                                            },
-                                            icon: Icon(
-                                              Icons.grid_view_outlined,
-                                              size: 14.sp,
-                                              color: active
-                                                  ? active_color
-                                                  : in_active_color,
-                                            )),
-                                        IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                active = false;
-                                              });
-                                            },
-                                            icon: Icon(
-                                              Icons.list_alt_outlined,
-                                              size: 14.sp,
-                                              color: !active
-                                                  ? active_color
-                                                  : in_active_color,
-                                            )),
-                                      ])
+                                    ?  Container(
+                                 margin: EdgeInsets.symmetric(horizontal: 20,),
+                                      child: Wrap(children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  active = true;
+                                                });
+                                              },
+                                              icon: Icon(
+                                                Icons.grid_view_outlined,
+                                                size: 20.sp,
+                                                color: active
+                                                    ? active_color
+                                                    : in_active_color,
+                                              )),
+                                          IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  active = false;
+                                                });
+                                              },
+                                              icon: Icon(
+                                                Icons.list_alt_outlined,
+                                                size: 20.sp,
+                                                color: !active
+                                                    ? active_color
+                                                    : in_active_color,
+                                              )),
+                                        ]),
+                                    )
                                     : InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -214,9 +223,11 @@ class _WishListScreenState extends State<WishListScreen> {
                                               .wishListProducts[index - 1].id,
                                           name: wlProvider
                                               .wishListProducts[index - 1].name,
-                                          image: wlProvider
+                                         image:wlProvider
                                               .wishListProducts[index - 1]
-                                              .images[0],
+                                              .images.isNotEmpty ? wlProvider
+                                              .wishListProducts[index - 1]
+                                              .images[0]:"null",
                                           price: wlProvider
                                               .wishListProducts[index - 1]
                                               .price,

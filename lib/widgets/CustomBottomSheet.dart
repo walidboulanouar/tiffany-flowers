@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:sizer/sizer.dart';
 
 import '../translations/locale_keys.g.dart';
@@ -152,6 +153,7 @@ class _LangWidgetState extends State<LangWidget> {
             activeColor: Color(0xff73BFBD),
             title: Text(
               LocaleKeys.Eng.tr(),
+               style:TextStyle(fontSize: 12.sp)
             ),
             value: "en",
             groupValue: language,
@@ -178,7 +180,9 @@ class _LangWidgetState extends State<LangWidget> {
           child: RadioListTile(
             activeColor: Color(0xff73BFBD),
             title: Text(
+              
               LocaleKeys.Arab.tr(),
+              style:TextStyle(fontSize: 12.sp)
             ),
             value: "ar",
             groupValue: language,
